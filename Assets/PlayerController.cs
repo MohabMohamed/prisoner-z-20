@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
     HealthSystem PlayerHealth;
 
 
+    bool isGrounded;
+
 
 
     void Start()
@@ -18,24 +20,36 @@ public class PlayerController : MonoBehaviour {
         RIGID = GetComponent<Rigidbody2D>();
         PlayerHealth = new HealthSystem(RIGID, 100);
 
+        isGrounded = false;
     }
 
 
-    void Update()
+    void LateUpdate()
     {
         // Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && RIGID.velocity.y < 0.5 && RIGID.velocity.y > -0.5)
+        if (Input.GetButtonDown("Jump") && isGrounded)
             RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
 
 
 
     }
 
+
     void OnTriggerEnter2D(Collider2D other)
     {
+
+       if(other.CompareTag("Ground") || other.CompareTag("Platform"))
+        {
+            isGrounded = true;
+            print("Ground Triggered");
+        }
+
+
+
+        /*
         if (other.CompareTag("Damage Block"))
         {
 
@@ -52,5 +66,17 @@ public class PlayerController : MonoBehaviour {
         {
             other.gameObject.SetActive(false);
         }
+        */
     }
-}
+
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground") || other.CompareTag("Platform"))
+        {
+            isGrounded = false;
+            print("Ground Triggered exit");
+        }
+    }
+
+    }

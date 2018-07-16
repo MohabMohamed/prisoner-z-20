@@ -19,10 +19,7 @@ public class HealthSystem : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
-        {
             print("Health: " + currentHealth);
-
-        }
 
     }
 
@@ -30,9 +27,7 @@ public class HealthSystem : MonoBehaviour {
     {
         currentHealth -= dmgNo;
         if (currentHealth < 0)
-        {
             currentHealth = 0;
-        }
 
         print("Health: " + currentHealth);
     }
