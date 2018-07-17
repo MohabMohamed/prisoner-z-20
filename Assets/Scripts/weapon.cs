@@ -7,7 +7,7 @@ public class weapon : MonoBehaviour {
 	public Transform shoulder;
 	private float angle;
 	private Vector3 mousePosition;
-	private Vector3 objectPos;
+	private Vector3 objectPosition;
 	// Use this for initialization
 	void Start () {
 		
@@ -19,14 +19,14 @@ public class weapon : MonoBehaviour {
 		mousePosition = Input.mousePosition;
 
 		mousePosition.z = 5.23f;
-		objectPos = Camera.main.WorldToScreenPoint (shoulder.position);
-		mousePosition.x = mousePosition.x - objectPos.x;
-		mousePosition.y = mousePosition.y - objectPos.y;
+		objectPosition = Camera.main.WorldToScreenPoint (shoulder.position);
+		mousePosition.x = mousePosition.x - objectPosition.x;
+		mousePosition.y = mousePosition.y - objectPosition.y;
 
 		angle = Mathf.Atan2 (mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
 
 		angle += 90; //Difference between shoulder and gun
-		print (angle); //Testing
+		//print (angle); //Testing
 
 		shoulder.rotation = Quaternion.Euler (new Vector3 (0, 0, angle));
 	}

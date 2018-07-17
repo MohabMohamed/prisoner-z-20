@@ -18,8 +18,12 @@ public class playerController : MonoBehaviour {
 
 	//Other attributes
 	private float speed; //Speed of movement
-	public bool isGrounded; //Whether character is standing on ground
+	private bool isGrounded; //Whether character is standing on ground
 	private float jumpHeight;
+
+	public GameObject bullet;
+	public Transform nosel;
+	private GameObject newBullet;
 
 	// Use this for initialization
 	void Start () {
@@ -55,6 +59,13 @@ public class playerController : MonoBehaviour {
 		if (Input.GetKeyDown (jumpKey) && isGrounded) {
 			//thisRigidBody.AddForce (Vector2.up * jumpHeight);
 			thisRigidBody.velocity = new Vector2(thisRigidBody.velocity.x, jumpHeight);
+		}
+
+		if (Input.GetKeyDown (KeyCode.Mouse0)) {
+			newBullet = Instantiate (this.bullet, this.nosel.position, nosel.rotation);
+			//newBullet.GetComponent<Rigidbody2D> ().velocity = newBullet.transform.forward * 60;
+			newBullet.GetComponent<Rigidbody2D>().velocity = (Input.mousePosition - Camera.main.WorldToScreenPoint(nosel.transform.position)).normalized * 15f;
+			Destroy (newBullet, 3f);
 		}
 
 		animationControl.SetFloat ("SPEED", Mathf.Abs (thisRigidBody.velocity.x));
