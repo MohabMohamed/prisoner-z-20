@@ -57,12 +57,14 @@ public class playerController : MonoBehaviour {
 			thisRigidBody.velocity = new Vector2(thisRigidBody.velocity.x, jumpHeight);
 		}
 
+		animationControl.SetFloat ("SPEED", Mathf.Abs (thisRigidBody.velocity.x));
+
 	}
 
 	void flip(){
-		if (thisRigidBody.velocity.x > 0) {
+		if (thisRigidBody.velocity.x > 0 || (FindObjectOfType<weapon>().getAngle() < 200 && FindObjectOfType<weapon>().getAngle() > 0)) {
 			transform.localScale = new Vector3 (x, y, z);
-		} else if (thisRigidBody.velocity.x < 0) {
+		} else if (thisRigidBody.velocity.x < 0 || (FindObjectOfType<weapon>().getAngle() >= 200 || FindObjectOfType<weapon>().getAngle() <= 0)) {
 			transform.localScale = new Vector3 (-x, y, z);
 		}
 	}

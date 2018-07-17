@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &808132164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1952580631}
 --- !u!1 &825490668
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,15 +426,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0.17671217
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.9842626
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 20.357
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000011874010830, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -459,6 +464,35 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012731963276, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013084339588, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2007387416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1854048164413140, guid: 30ef59945f2a7ea499bbbe10a7d48f1a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1952580631}
+--- !u!114 &2007387419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2007387416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a848cb63a09db4f841677e26dc5dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shoulder: {fileID: 808132164}
