@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class AIM : MonoBehaviour {
 
+
+    public GameObject player; 
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
         
             //rotation
             Vector3 mousePos = Input.mousePosition;
@@ -16,8 +19,8 @@ public class AIM : MonoBehaviour {
             mousePos.x = mousePos.x - objectPos.x;
             mousePos.y = mousePos.y - objectPos.y;
 
-            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * 2 *Mathf.Rad2Deg;
+            float angle = Mathf.Atan2(mousePos.y, mousePos.x) * 1 *Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 2, angle));
-
+       
 	}
 }

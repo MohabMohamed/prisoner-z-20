@@ -8,8 +8,12 @@ public class playcontroller : MonoBehaviour {
    // public float threshold;
     private Rigidbody2D rb;
 
-      public Transform spawnPoint;//Add empty gameobject as spawnPoint
+    public Transform spawnPoint;//Add empty gameobject as spawnPoint
+
     public float minHeightForDeath;
+
+
+
     public GameObject player; //Add your player
 
     void Start()
@@ -18,17 +22,23 @@ public class playcontroller : MonoBehaviour {
     }
     void  Update () 
     {
+
+
           if (Input.GetKeyDown ("space")){
-                  transform.Translate(Vector2.up * 260 * Time.deltaTime, Space.World);
-          } 
+            rb.AddForce(transform.up * 200);
+         } 
+
+       
+       
 
 
-    
-        if (player.transform.position.y < minHeightForDeath)
-            player.transform.position = spawnPoint.position;
- } 
+    } 
     void FixedUpdate()
     {
+
+
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 5.23f;
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -36,8 +46,13 @@ public class playcontroller : MonoBehaviour {
 
         rb.AddForce(movement * speed);
 
-        //if (transform.position.y < threshold)
-            //transform.position = new Vector3(0, 0, 0);
+        if (mousePos.x < player.transform.position.x)
+        {
+            Debug.Log("mouse x poisition is bigger then the player");
+
+            rb.transform.eulerAngles = new Vector2(180, 0);
+        }
+
     }
 
 
