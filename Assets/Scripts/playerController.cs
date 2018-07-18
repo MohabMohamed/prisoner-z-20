@@ -80,7 +80,7 @@ public class playerController : MonoBehaviour {
 		}
 		if ((FindObjectOfType<weapon>().getAngle() >= 200 || FindObjectOfType<weapon>().getAngle() <= 0)) {
 			if(thisRigidBody.velocity.x > 0)
-				thisRigidBody.velocity = new Vector2(0.1f,0f);
+				thisRigidBody.velocity = new Vector2(-0.1f,0f);
 			transform.localScale = new Vector3 (-x, y, z);
 		}
 		if (thisRigidBody.velocity.x > 0) {
