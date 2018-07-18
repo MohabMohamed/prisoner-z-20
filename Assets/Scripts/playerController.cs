@@ -30,7 +30,7 @@ public class playerController : MonoBehaviour {
 		//Set controls
 		this.rightKey = KeyCode.D;
 		this.leftKey = KeyCode.A;
-		this.jumpKey = KeyCode.W;
+		this.jumpKey = KeyCode.Space;
 
 		//Initializing components
 		this.thisRigidBody = GetComponent<Rigidbody2D>();
@@ -41,7 +41,7 @@ public class playerController : MonoBehaviour {
 
 		//Default inits
 		speed = 250f;
-		jumpHeight = 15f;
+		jumpHeight = 2000f;
 	}
 	
 	// Update is called once per frame
@@ -57,8 +57,8 @@ public class playerController : MonoBehaviour {
 		flip ();
 
 		if (Input.GetKeyDown (jumpKey) && isGrounded) {
-			//thisRigidBody.AddForce (Vector2.up * jumpHeight);
-			thisRigidBody.velocity = new Vector2(thisRigidBody.velocity.x, jumpHeight);
+			thisRigidBody.AddForce (Vector2.up * jumpHeight);
+			//thisRigidBody.velocity = new Vector2(thisRigidBody.velocity.x, jumpHeight);
 		}
 
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
@@ -73,9 +73,20 @@ public class playerController : MonoBehaviour {
 	}
 
 	void flip(){
-		if (thisRigidBody.velocity.x > 0 || (FindObjectOfType<weapon>().getAngle() < 200 && FindObjectOfType<weapon>().getAngle() > 0)) {
+		if ((FindObjectOfType<weapon> ().getAngle () < 200 && FindObjectOfType<weapon> ().getAngle () > 0)) {
+			if(thisRigidBody.velocity.x < 0)
+				thisRigidBody.velocity = new Vector2(0.1f,0f);
 			transform.localScale = new Vector3 (x, y, z);
-		} else if (thisRigidBody.velocity.x < 0 || (FindObjectOfType<weapon>().getAngle() >= 200 || FindObjectOfType<weapon>().getAngle() <= 0)) {
+		}
+		if ((FindObjectOfType<weapon>().getAngle() >= 200 || FindObjectOfType<weapon>().getAngle() <= 0)) {
+			if(thisRigidBody.velocity.x > 0)
+				thisRigidBody.velocity = new Vector2(0.1f,0f);
+			transform.localScale = new Vector3 (-x, y, z);
+		}
+		if (thisRigidBody.velocity.x > 0) {
+			transform.localScale = new Vector3 (x, y, z);
+		} 
+		if (thisRigidBody.velocity.x < 0) {
 			transform.localScale = new Vector3 (-x, y, z);
 		}
 	}

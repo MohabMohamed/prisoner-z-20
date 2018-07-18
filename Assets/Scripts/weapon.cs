@@ -17,7 +17,6 @@ public class weapon : MonoBehaviour {
 	void Update () {
 		//...
 		mousePosition = Input.mousePosition;
-
 		mousePosition.z = 5.23f;
 		objectPosition = Camera.main.WorldToScreenPoint (shoulder.position);
 		mousePosition.x = mousePosition.x - objectPosition.x;
