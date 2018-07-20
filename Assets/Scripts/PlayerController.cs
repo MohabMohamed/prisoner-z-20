@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 
 
         
+        
         if ((Input.GetButtonDown("Jump") && isGrounded)) // Jump
         {
             RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);  
