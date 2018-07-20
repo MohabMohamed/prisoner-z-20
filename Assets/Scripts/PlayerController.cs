@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour {
     private Rigidbody2D RIGID;
     public float speed;
     public float jumpheight;
+    public float doublejumpheight;
     HealthSystem PlayerHealth;
 
 
-    bool isGrounded;
+    bool isGrounded = false;
+    bool doubleJump = false;
 
 
 
@@ -20,18 +22,38 @@ public class PlayerController : MonoBehaviour {
         RIGID = GetComponent<Rigidbody2D>();
         PlayerHealth = new HealthSystem(RIGID, 100);
 
-        isGrounded = false;
     }
 
 
-    void LateUpdate()
+    void Update()
     {
         // Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
+        if (Input.GetKeyDown(KeyCode.Z))
+            print(doubleJump);
+
+
+        
+        if ((Input.GetButtonDown("Jump") && isGrounded)) // Jump
+        {
+            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);  
+        }
+        else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
+        {
+                RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
+                doubleJump = false;
+        }
+
+
+        
+       /* if (Input.mousePosition.x-0.5f*Screen.width - transform.position.x <=0)
+        {
+           
+           transform.Rotate(new Vector3(0, 180, 0));
+
+        }*/
 
 
 
@@ -44,7 +66,8 @@ public class PlayerController : MonoBehaviour {
        if(other.CompareTag("Ground") || other.CompareTag("Platform"))
         {
             isGrounded = true;
-            print("Ground Triggered");
+            doubleJump = false;
+            //print("Ground Triggered");
         }
 
 
@@ -75,8 +98,14 @@ public class PlayerController : MonoBehaviour {
         if (other.CompareTag("Ground") || other.CompareTag("Platform"))
         {
             isGrounded = false;
-            print("Ground Triggered exit");
+            doubleJump = true;
+            //print("Ground Triggered exit");
         }
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 
     }

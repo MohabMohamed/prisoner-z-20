@@ -30,6 +30,14 @@ public class HealthSystem : MonoBehaviour {
             currentHealth = 0;
 
         print("Health: " + currentHealth);
+
+
+
+        if (currentHealth <= 0)
+        {
+            RIGID.gameObject.SetActive(false);
+
+        }
     }
 
     public int GetHealth()
