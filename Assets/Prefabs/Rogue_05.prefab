@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 114172487297320328}
   - component: {fileID: 114354062773056952}
   - component: {fileID: 114327185722836992}
+  - component: {fileID: 82058087245291026}
   m_Layer: 0
   m_Name: Rogue_05
   m_TagString: Player
@@ -726,7 +727,7 @@ Transform:
   - {fileID: 4438998537204106}
   - {fileID: 4177887385311234}
   m_Father: {fileID: 4787295932074158}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &4291961100332274
 Transform:
@@ -776,7 +777,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1462735476000616}
   m_LocalRotation: {x: -0, y: -0, z: -0.004857927, w: 0.9999882}
-  m_LocalPosition: {x: 5.6, y: 2, z: 0}
+  m_LocalPosition: {x: 5.3, y: 1.6, z: 0}
   m_LocalScale: {x: 16.729452, y: 16.729452, z: 16.72944}
   m_Children: []
   m_Father: {fileID: 4291961100332274}
@@ -922,7 +923,7 @@ Transform:
   - {fileID: 4453384879594514}
   - {fileID: 4561411484632646}
   m_Father: {fileID: 4787295932074158}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.85}
 --- !u!4 &4561411484632646
 Transform:
@@ -991,8 +992,8 @@ Transform:
   m_LocalPosition: {x: -25.086628, y: 1.5016851, z: 0}
   m_LocalScale: {x: 0.17299, y: 0.17299, z: 0.17299}
   m_Children:
-  - {fileID: 4291026417020156}
   - {fileID: 4512897349087230}
+  - {fileID: 4291026417020156}
   - {fileID: 4502546322880966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1121,6 +1122,101 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.7966657, y: 1.3347065}
   m_EdgeRadius: 0
+--- !u!82 &82058087245291026
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426946126636014}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7c0f2088e15a3f848b693f851c6c6a94, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!95 &95125121058818914
 Animator:
   serializedVersion: 3
@@ -1166,6 +1262,7 @@ MonoBehaviour:
   bulletSpawn: {fileID: 4335502638758404}
   muzzleFlash: {fileID: 1366794325306588, guid: 369a7e0f688c1994f8d7291ca442ac61,
     type: 2}
+  gunShot: {fileID: 82058087245291026}
   bulletSpeed: 15
 --- !u!114 &114354062773056952
 MonoBehaviour:
