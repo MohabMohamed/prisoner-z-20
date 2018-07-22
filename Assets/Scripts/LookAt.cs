@@ -29,7 +29,7 @@ public class LookAt : MonoBehaviour {
         if (Input.mousePosition.x - 0.5f * Screen.width - transform.position.x  <= 0)
         {
             //print("WOW");
-            transform.Rotate(new Vector3(0, 180 , 0));
+            //transform.Rotate(new Vector3(0, 180 , 0));
         }
     }
 }

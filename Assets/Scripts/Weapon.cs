@@ -6,7 +6,9 @@ public class Weapon : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
-    public float speed;
+    public GameObject muzzleFlash;
+    public AudioSource gunShot;
+    public float bulletSpeed;
 	// Use this for initialization
 	void Start () {
 		
@@ -16,15 +18,19 @@ public class Weapon : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("Fire1"))
         {
-            // Create the Bullet from the Bullet Prefab
-            GameObject bullet = (GameObject)Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
             // Add velocity to the bullet
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * speed;
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletSpeed;
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);
 
+            GameObject flash = Instantiate(muzzleFlash, bulletSpawn.position, bulletSpawn.rotation);
+            flash.transform.parent = bulletSpawn.transform;
+            Destroy(flash, 0.1f);
+
+            gunShot.Play();
             
         }
            

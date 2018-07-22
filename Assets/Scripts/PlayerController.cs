@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
     private Rigidbody2D RIGID;
+
     public float speed;
     public float jumpheight;
     public float doublejumpheight;
+
     HealthSystem PlayerHealth;
 
 
@@ -47,14 +49,15 @@ public class PlayerController : MonoBehaviour {
                 doubleJump = false;
         }
 
+       
+
+        /*if (Input.mousePosition.x < this.transform.position.x)
+        {
+            print("FlipCharTrigger");
+            transform.localScale.Set(-1, 1, 1);
+        }*/
 
         
-       /* if (Input.mousePosition.x-0.5f*Screen.width - transform.position.x <=0)
-        {
-           
-           transform.Rotate(new Vector3(0, 180, 0));
-
-        }*/
 
 
 
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour {
             //print("Ground Triggered");
         }
 
-
+        
 
         /*
         if (other.CompareTag("Damage Block"))
@@ -96,12 +99,16 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other)
     {
+        
+
         if (other.CompareTag("Ground") || other.CompareTag("Platform"))
         {
             isGrounded = false;
             doubleJump = true;
             //print("Ground Triggered exit");
         }
+
+        
     }
 
     public float GetSpeed()
