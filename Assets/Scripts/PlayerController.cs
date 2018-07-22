@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     public float jumpheight;
     public float doublejumpheight;
 
-    HealthSystem PlayerHealth;
+    HealthSystem healthsystem;
 
 
     bool isGrounded = false;
@@ -22,7 +22,8 @@ public class PlayerController : MonoBehaviour {
     {
 
         RIGID = GetComponent<Rigidbody2D>();
-        PlayerHealth = new HealthSystem(RIGID, 100);
+        this.gameObject.AddComponent<HealthSystem>();
+        healthsystem = this.gameObject.GetComponent<HealthSystem>();
 
     }
 
@@ -32,9 +33,6 @@ public class PlayerController : MonoBehaviour {
         // Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
-
-        if (Input.GetKeyDown(KeyCode.Z))
-            print(doubleJump);
 
 
         
@@ -71,29 +69,25 @@ public class PlayerController : MonoBehaviour {
         {
             isGrounded = true;
             doubleJump = false;
-            //print("Ground Triggered");
+            //print("Ground Trigger");
         }
 
         
 
-        /*
-        if (other.CompareTag("Damage Block"))
+        
+        if (other.CompareTag("Enemy"))
         {
 
-            PlayerHealth.Damage(20);
+            healthsystem.Damage(20);
             RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
 
-            if (PlayerHealth.GetHealth() <= 0)
+            if (healthsystem.GetHealth() <= 0)
             {
                 RIGID.gameObject.SetActive(false);
 
             }
         }
-        else if (other.CompareTag("Coin"))
-        {
-            other.gameObject.SetActive(false);
-        }
-        */
+        
     }
 
 
@@ -105,7 +99,7 @@ public class PlayerController : MonoBehaviour {
         {
             isGrounded = false;
             doubleJump = true;
-            //print("Ground Triggered exit");
+            //print("Ground Trigger exit");
         }
 
         

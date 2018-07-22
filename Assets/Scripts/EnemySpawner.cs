@@ -7,7 +7,8 @@ public class EnemySpawner : MonoBehaviour {
     private HealthSystem healthsystem;
 	// Use this for initialization
 	void Start () {
-        healthsystem = new HealthSystem(this.GetComponent<Rigidbody2D>(), 40);
+        this.gameObject.AddComponent < HealthSystem > ();
+        healthsystem = this.gameObject.GetComponent<HealthSystem>();
 	}
 	
 	// Update is called once per frame
@@ -21,6 +22,10 @@ public class EnemySpawner : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
+        {
+            
             healthsystem.Damage(20);
+           
+        }
     }
 }

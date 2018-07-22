@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class HealthSystem : MonoBehaviour {
 
+    public int maxHealth;
     private int currentHealth;
-    private int maxHealth;
+    
     private Rigidbody2D RIGID;
 
 
-    public HealthSystem(Rigidbody2D RIGID, int Health)
+    private void Start()
     {
-        this.RIGID = RIGID;
-        currentHealth = Health;
-        maxHealth = Health;
+        currentHealth = maxHealth;
+        RIGID = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.K))
-            print("Health: " + currentHealth);
+            print(this.name + " Health: " + currentHealth);
 
     }
 
@@ -29,10 +29,10 @@ public class HealthSystem : MonoBehaviour {
         if (currentHealth <= 0)
         {
             RIGID.gameObject.SetActive(false);
-            print("Dead");
+            print(this.name + " Dead");
         }
         else
-            print("Health: " + currentHealth);
+            print(this.name + " Health: " + currentHealth);
 
 
 
