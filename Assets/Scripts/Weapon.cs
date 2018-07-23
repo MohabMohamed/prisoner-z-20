@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
             // Add velocity to the bullet
-            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletSpeed;
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletSpeed * (ServiceLocator.GetService<PlayerController>().isLookingLeft? -1 : 1);
 
             // Destroy the bullet after 2 seconds
             Destroy(bullet, 2.0f);

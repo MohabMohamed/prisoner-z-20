@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     bool isGrounded = false;
     bool doubleJump = false;
 
-    bool isLookingLeft;
+    [HideInInspector]
+    public bool isLookingLeft;
 
     int count = 1;
 
@@ -72,14 +73,14 @@ public class PlayerController : MonoBehaviour
 
     void CheckFlip()
     {
-        if (Input.mousePosition.x <= camReference.WorldToScreenPoint(transform.position).x && !isLookingLeft)
+        if (!isLookingLeft && Input.mousePosition.x <= camReference.WorldToScreenPoint(transform.position).x)
         {
             //print("Flip Left , LocalScale " + transform.localScale);
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             isLookingLeft = true;
         }
-        else if (Input.mousePosition.x > camReference.WorldToScreenPoint(transform.position).x && isLookingLeft)
+        else if (isLookingLeft && Input.mousePosition.x > camReference.WorldToScreenPoint(transform.position).x)
         {
             //print("Flip Right , LocalScale " + transform.localScale);
             transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
