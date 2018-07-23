@@ -5,10 +5,10 @@ using UnityEngine;
 public class playcontroller : MonoBehaviour {
 
     public float speed;
-   // public float threshold;
+    // public float threshold;
     private Rigidbody2D rb;
-
-    public Transform spawnPoint;//Add empty gameobject as spawnPoint
+    public AudioSource JUMPSOUND;
+    //Add empty gameobject as spawnPoint
 
     public float minHeightForDeath;
 
@@ -24,21 +24,28 @@ public class playcontroller : MonoBehaviour {
     {
 
 
-          if (Input.GetKeyDown ("space")){
+        if (Input.GetKeyDown("space"))
+        {
             rb.AddForce(transform.up * 200);
+            JUMPSOUND.Play();
          } 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Fire();
+        }
 
+
+      
+    }
        
-       
 
 
-    } 
+     
     void FixedUpdate()
     {
 
 
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 5.23f;
+      
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
@@ -46,18 +53,32 @@ public class playcontroller : MonoBehaviour {
 
         rb.AddForce(movement * speed);
 
-        if (mousePos.x < player.transform.position.x)
+
+    }
+	private void LateUpdate()
+	{
+        Vector3 mousePos = Input.mousePosition;
+        mousePos.z = 5.23f;
+
+        if (mousePos.y > rb.transform.position.y)
         {
             Debug.Log("mouse x poisition is bigger then the player");
 
-            rb.transform.eulerAngles = new Vector2(180, 0);
+            rb.transform.eulerAngles = new Vector3(0, 180, 0);
         }
+	}
 
+
+    void Fire()
+    {
+
+
+        ;
     }
 
 
-   
- 
 
-         
+
+
+
 }
