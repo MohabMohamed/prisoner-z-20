@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour {
     public AudioSource gunShot;
     public float bulletSpeed;
     public GameObject flash;
+
+
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -35,7 +39,7 @@ public class Weapon : MonoBehaviour {
             flash.transform.parent = bulletSpawn.transform;
             Destroy(flash, 0.1f);*/
 
-            gunShot.Play();
+            ServiceLocator.GetService<AudioManager>().PlayGunShotSFX();
             
         }
            
