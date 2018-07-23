@@ -470,6 +470,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1705290726595032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4543244412060586}
+  m_Layer: 0
+  m_Name: CamTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1708782799973490
 GameObject:
   m_ObjectHideFlags: 1
@@ -925,6 +940,19 @@ Transform:
   m_Father: {fileID: 4787295932074158}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.85}
+--- !u!4 &4543244412060586
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1705290726595032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.57, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4787295932074158}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4561411484632646
 Transform:
   m_ObjectHideFlags: 1
@@ -995,6 +1023,7 @@ Transform:
   - {fileID: 4512897349087230}
   - {fileID: 4291026417020156}
   - {fileID: 4502546322880966}
+  - {fileID: 4543244412060586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1279,6 +1308,7 @@ MonoBehaviour:
   speed: 3
   jumpheight: 7
   doublejumpheight: 5
+  camReference: {fileID: 0}
 --- !u!114 &114529450468400846
 MonoBehaviour:
   m_ObjectHideFlags: 1

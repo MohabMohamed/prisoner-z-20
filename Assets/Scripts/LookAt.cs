@@ -22,14 +22,9 @@ public class LookAt : MonoBehaviour {
 
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle + 90 , Vector3.forward);
 
 
 
-        if (Input.mousePosition.x - 0.5f * Screen.width - transform.position.x  <= 0)
-        {
-            //print("WOW");
-            //transform.Rotate(new Vector3(0, 180 , 0));
-        }
     }
 }

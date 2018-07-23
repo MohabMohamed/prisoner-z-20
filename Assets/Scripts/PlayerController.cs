@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     private Rigidbody2D RIGID;
 
@@ -10,13 +11,17 @@ public class PlayerController : MonoBehaviour {
     public float jumpheight;
     public float doublejumpheight;
 
+    public Camera camReference;
+
     HealthSystem healthsystem;
 
 
     bool isGrounded = false;
     bool doubleJump = false;
 
+    bool isLookingLeft;
 
+    int count = 1;
 
     void Start()
     {
@@ -25,6 +30,20 @@ public class PlayerController : MonoBehaviour {
         this.gameObject.AddComponent<HealthSystem>();
         healthsystem = this.gameObject.GetComponent<HealthSystem>();
 
+        if(camReference == null)
+            camReference = ServiceLocator.GetService<CameraController>().GetComponent<Camera>();
+
+        isLookingLeft = false;
+
+
+        InvokeRepeating("LateStart" , 1 , 1);
+
+
+    }
+
+    void LateStart()
+    {
+        Debug.Log(count++);
     }
 
 
@@ -35,46 +54,53 @@ public class PlayerController : MonoBehaviour {
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
 
 
-        
-        
+
+
         if ((Input.GetButtonDown("Jump") && isGrounded)) // Jump
         {
-            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);  
+            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
         }
         else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
         {
-                RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
-                doubleJump = false;
+            RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
+            doubleJump = false;
         }
 
-       
-
-        /*if (Input.mousePosition.x < this.transform.position.x)
-        {
-            print("FlipCharTrigger");
-            transform.localScale.Set(-1, 1, 1);
-        }*/
-
-        
-
-
-
+        CheckFlip();
+                
     }
 
+    void CheckFlip()
+    {
+        if (Input.mousePosition.x <= camReference.WorldToScreenPoint(transform.position).x && !isLookingLeft)
+        {
+            //print("Flip Left , LocalScale " + transform.localScale);
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+            isLookingLeft = true;
+        }
+        else if (Input.mousePosition.x > camReference.WorldToScreenPoint(transform.position).x && isLookingLeft)
+        {
+            //print("Flip Right , LocalScale " + transform.localScale);
+            transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+            isLookingLeft = false;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
 
-       if(other.CompareTag("Ground") || other.CompareTag("Platform"))
+        if (other.CompareTag("Ground") || other.CompareTag("Platform"))
         {
             isGrounded = true;
             doubleJump = false;
             //print("Ground Trigger");
         }
 
-        
 
-        
+
+
         if (other.CompareTag("Enemy"))
         {
 
@@ -87,13 +113,13 @@ public class PlayerController : MonoBehaviour {
 
             }
         }
-        
+
     }
 
 
     void OnTriggerExit2D(Collider2D other)
     {
-        
+
 
         if (other.CompareTag("Ground") || other.CompareTag("Platform"))
         {
@@ -102,7 +128,7 @@ public class PlayerController : MonoBehaviour {
             //print("Ground Trigger exit");
         }
 
-        
+
     }
 
     public float GetSpeed()
@@ -110,4 +136,4 @@ public class PlayerController : MonoBehaviour {
         return speed;
     }
 
-    }
+}

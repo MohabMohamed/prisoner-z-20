@@ -5763,6 +5763,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!4 &648328144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4543244412060586, guid: 4683a86c81713ed438dba2693a4e4b5b,
+    type: 2}
+  m_PrefabInternal: {fileID: 771423837}
 --- !u!1 &654824289
 GameObject:
   m_ObjectHideFlags: 0
@@ -6329,9 +6334,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114354062773056952, guid: 4683a86c81713ed438dba2693a4e4b5b,
+        type: 2}
+      propertyPath: camReference
+      value: 
+      objectReference: {fileID: 821805162}
     - target: {fileID: 1426946126636014, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
       propertyPath: m_Name
       value: Prisoner Z-20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4543244412060586, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512897349087230, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512897349087230, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4512897349087230, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4683a86c81713ed438dba2693a4e4b5b, type: 2}
@@ -6742,6 +6768,8 @@ MonoBehaviour:
   playerLocation: {fileID: 540091052}
   x: 7
   y: 2
+  speed: 3
+  CameraTarget: {fileID: 648328144}
 --- !u!95 &821805159
 Animator:
   serializedVersion: 3
