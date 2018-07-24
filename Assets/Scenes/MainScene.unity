@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 50
-  jumpSpeed: 600
+  jumpSpeed: 940.6
+  groundChecker: {fileID: 793196665}
 --- !u!4 &302237269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011914616612, guid: 30ef59945f2a7ea499bbbe10a7d48f1a,
@@ -206,6 +207,34 @@ Transform:
   m_Father: {fileID: 302237269}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &991983013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 991983014}
+  m_Layer: 0
+  m_Name: Camera Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &991983014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 991983013}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.9, y: 8.128122, z: -10}
+  m_LocalScale: {x: 2.006944, y: 2.006944, z: 2.006944}
+  m_Children: []
+  m_Father: {fileID: 302237269}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1396254852
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +245,7 @@ GameObject:
   - component: {fileID: 1396254855}
   - component: {fileID: 1396254854}
   - component: {fileID: 1396254853}
+  - component: {fileID: 1396254856}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -283,6 +313,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1396254856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1396254852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a9322fe3049e842a7d99713018ca9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraTarget: {fileID: 991983014}
+  CameraTransSmothing: 0.05
 --- !u!1 &1826465620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010325814420, guid: 30ef59945f2a7ea499bbbe10a7d48f1a,
@@ -525,7 +568,7 @@ Prefab:
     - target: {fileID: 50635248542980740, guid: 30ef59945f2a7ea499bbbe10a7d48f1a,
         type: 2}
       propertyPath: m_Mass
-      value: 4.89
+      value: 1.87
       objectReference: {fileID: 0}
     - target: {fileID: 1000013304306144, guid: 30ef59945f2a7ea499bbbe10a7d48f1a, type: 2}
       propertyPath: m_Name
