@@ -1,22 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour {
 
     private HealthSystem healthsystem;
-	// Use this for initialization
+
+    public Slider healthslider;
+    public TextMeshProUGUI healthtext;
+    
+
 	void Start () {
         this.gameObject.AddComponent < HealthSystem > ();
         healthsystem = this.gameObject.GetComponent<HealthSystem>();
+
+       
 	}
 	
-	// Update is called once per frame
+	
 	void Update () {
         if (healthsystem.IsDead()) 
-        {
             Destroy(this);
-        }
+
+        healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
+        healthtext.SetText( Mathf.Ceil(healthsystem.GetHealth() / healthsystem.GetMaxHealth() * 100 ) + "%");
+
+
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)

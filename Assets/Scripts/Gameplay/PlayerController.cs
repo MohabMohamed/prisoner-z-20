@@ -19,8 +19,8 @@ public class PlayerController : MonoBehaviour
     bool isGrounded = false;
     bool doubleJump = false;
 
-    [HideInInspector]
-    public bool isLookingLeft;
+    
+    bool isLookingLeft;
 
 
     void Start()
@@ -51,8 +51,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-        if ((Input.GetButtonDown("Jump") && isGrounded)) // Jump
+        // Jump
+        if ((Input.GetButtonDown("Jump") && isGrounded)) 
         {
             RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
         }
@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
             RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
             doubleJump = false;
         }
+
+     
 
         CheckFlip();
                 
@@ -132,4 +134,8 @@ public class PlayerController : MonoBehaviour
         return speed;
     }
 
+    public bool IsLookingLeft()
+    {
+        return isLookingLeft;
+    }
 }

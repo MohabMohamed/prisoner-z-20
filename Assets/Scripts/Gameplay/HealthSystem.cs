@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour {
 
-    public int maxHealth;
-    private int currentHealth;
+    public float maxHealth;
+    private float currentHealth;
     
     private Rigidbody2D RIGID;
 
+    
 
+    
     private void Start()
     {
         currentHealth = maxHealth;
@@ -20,6 +23,8 @@ public class HealthSystem : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.K))
             print(this.name + " Health: " + currentHealth);
+
+        
 
     }
 
@@ -55,9 +60,14 @@ public class HealthSystem : MonoBehaviour {
         
     }
 
-    public int GetHealth()
+    public float GetHealth()
     {
         return currentHealth;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 
     public bool IsDead()
