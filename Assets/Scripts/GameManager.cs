@@ -31,6 +31,13 @@ public class GameManager : MonoBehaviour {
     {
         Time.timeScale = 1;
     }
+    
+    public bool IsPaused()
+    {
+        if (Time.timeScale == 0)
+            return true;
+        else return false;
+    }
 
 
 	// Update is called once per frame

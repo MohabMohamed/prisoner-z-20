@@ -52,19 +52,26 @@ public class PlayerController : MonoBehaviour
 
 
         // Jump
-        if ((Input.GetButtonDown("Jump") && isGrounded)) 
+        if (! ServiceLocator.GetService<GameManager>().IsPaused())
         {
-            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
-        }
-        else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
-        {
-            RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
-            doubleJump = false;
+            if ((Input.GetButtonDown("Jump") && isGrounded))
+            {
+                RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
+                ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
+            }
+            else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
+            {
+                RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
+                doubleJump = false;
+                ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
+            }
+
+            CheckFlip();
         }
 
      
 
-        CheckFlip();
+        
                 
     }
 

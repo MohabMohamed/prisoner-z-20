@@ -19,14 +19,6 @@ public class HealthSystem : MonoBehaviour {
         RIGID = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
-    void LateUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-            print(this.name + " Health: " + currentHealth);
-
-        
-
-    }
 
     public void Damage(int dmgNo)
     {

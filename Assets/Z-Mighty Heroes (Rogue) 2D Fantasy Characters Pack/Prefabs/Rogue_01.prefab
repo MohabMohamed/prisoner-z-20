@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 61163395951247850}
   - component: {fileID: 114863198704332028}
   - component: {fileID: 114526408217667198}
+  - component: {fileID: 70487175268507782}
   m_Layer: 0
   m_Name: Rogue_01
   m_TagString: Enemy
@@ -1087,7 +1088,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010208881502}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1106,6 +1107,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.6843324, y: 8.472618}
   m_EdgeRadius: 0
+--- !u!70 &70487175268507782
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010208881502}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.15833838, y: 3.9188602}
+  m_Size: {x: 4.4584494, y: 8.204375}
+  m_Direction: 0
 --- !u!95 &95000012403032898
 Animator:
   serializedVersion: 3

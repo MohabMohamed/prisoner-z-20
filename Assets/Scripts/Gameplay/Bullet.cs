@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public GameObject particleFX;
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -18,7 +15,16 @@ public class Bullet : MonoBehaviour {
     {
         if ( collision.CompareTag("Enemy") | collision.CompareTag("Ground") )
         {
+            Invoke("GroundParticleFX", 0.04f);
             Destroy(this.gameObject, 0.05f);
+            
         }
     }
+
+    private void GroundParticleFX()
+    {
+        GameObject particle = Instantiate(particleFX, this.transform.position, this.transform.rotation);
+        Destroy(particle, 1f);
+    }
+    
 }
