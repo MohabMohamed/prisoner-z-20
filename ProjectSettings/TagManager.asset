@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - FlipCharTrigger
   - GroundTouchTrigger
+  - HealthPickup
   layers:
   - Default
   - TransparentFX

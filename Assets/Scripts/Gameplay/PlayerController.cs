@@ -119,7 +119,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-    }
+        if (other.CompareTag("HealthPickup"))
+        {
+            healthsystem.Heal(20);
+        }
+
+
+        }
 
 
     void OnTriggerExit2D(Collider2D other)

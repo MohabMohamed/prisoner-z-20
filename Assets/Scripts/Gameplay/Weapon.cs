@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour {
         if ( Input.GetButtonDown("Fire1") && (!ServiceLocator.GetService<GameManager>().IsPaused()) )
         {
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+            
 
             // Add velocity to the bullet
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletSpeed * (ServiceLocator.GetService<PlayerController>().IsLookingLeft() ? -1 : 1);

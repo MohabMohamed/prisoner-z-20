@@ -25,7 +25,6 @@ public class HealthSystem : MonoBehaviour {
         currentHealth -= dmgNo;
         if (currentHealth <= 0)
         {
-            RIGID.gameObject.SetActive(false);
             print(this.name + " Dead");
         }
         else
@@ -39,11 +38,11 @@ public class HealthSystem : MonoBehaviour {
 
     public void Heal(int healNo)
     {
-        currentHealth += healNo;
-        if (currentHealth > maxHealth)
-            currentHealth = maxHealth;
-        else if (currentHealth == maxHealth)
+        if (currentHealth >= maxHealth)
             print("Cannot heal, already at full health");
+        else
+            currentHealth += healNo;
+        
 
         print("Health: " + currentHealth);
 

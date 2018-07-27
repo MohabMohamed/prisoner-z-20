@@ -259,7 +259,9 @@ GameObject:
   - component: {fileID: 114172487297320328}
   - component: {fileID: 114354062773056952}
   - component: {fileID: 114327185722836992}
+  - component: {fileID: 114528266402671316}
   - component: {fileID: 82058087245291026}
+  - component: {fileID: 58820231836763976}
   m_Layer: 0
   m_Name: Rogue_05
   m_TagString: Player
@@ -1131,6 +1133,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &58820231836763976
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426946126636014}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1.67}
+  serializedVersion: 2
+  m_Radius: 1.7723922
 --- !u!61 &61328271807046944
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -1143,7 +1160,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05065298, y: 0.15585434}
+  m_Offset: {x: 0.05065298, y: 0.13}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1154,7 +1171,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7584257, y: 0.2674873}
+  m_Size: {x: 0.7584257, y: 0.3}
   m_EdgeRadius: 0
 --- !u!61 &61965605546717014
 BoxCollider2D:
@@ -1162,7 +1179,7 @@ BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426946126636014}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1340,6 +1357,17 @@ MonoBehaviour:
   jumpheight: 11
   doublejumpheight: 7
   camReference: {fileID: 0}
+--- !u!114 &114528266402671316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426946126636014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80a2fda8df5e0b444bf1fc69957b9849, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114529450468400846
 MonoBehaviour:
   m_ObjectHideFlags: 1

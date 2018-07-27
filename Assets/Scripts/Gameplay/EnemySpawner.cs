@@ -7,6 +7,7 @@ using TMPro;
 public class EnemySpawner : MonoBehaviour {
 
     private HealthSystem healthsystem;
+    public GameObject healthpickup;
 
     public Slider healthslider;
     public TextMeshProUGUI healthtext;
@@ -21,8 +22,17 @@ public class EnemySpawner : MonoBehaviour {
 	
 	
 	void Update () {
-        if (healthsystem.IsDead()) 
-            Destroy(this);
+        if (healthsystem.IsDead())
+        {
+            if (Mathf.Round(Random.Range(0, 2)) == 1)
+            {
+                    GameObject health =  Instantiate(healthpickup, transform.position, transform.rotation);
+                    health.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
+            }
+            Destroy(this.gameObject);
+            
+
+        }
 
         healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
         healthtext.SetText( Mathf.Ceil(healthsystem.GetHealth() / healthsystem.GetMaxHealth() * 100 ) + "%");
