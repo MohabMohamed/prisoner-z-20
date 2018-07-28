@@ -46,11 +46,13 @@ public class PlayerController : MonoBehaviour
 
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
 
-       //Debug.Log("isGrounded " + isGrounded + " Vel. " + RIGID.velocity.magnitude);
+
+        // Animation
         if (isGrounded && RIGID.velocity.magnitude != 0)
             anim.SetBool("Run" ,true);
         else
             anim.SetBool("Run", false);
+
 
         // Jump
         if (! ServiceLocator.GetService<GameManager>().IsPaused())

@@ -16,8 +16,10 @@ public abstract class Enemy : MonoBehaviour {
     [Space]
     [Header("• References")]
     public GameObject healthpickup;
+    public Transform PlayerTarget;
 
-   
+    
+
 
 
     //-------------- Privates ------------------
@@ -26,16 +28,16 @@ public abstract class Enemy : MonoBehaviour {
     private Slider healthslider;
     private TextMeshProUGUI healthtext;
 
-    private Transform Target;
+    
 
-    void Start()
+    public void Start()
     {      
         healthsystem = gameObject.AddComponent<HealthSystem>();
         healthslider = transform.GetComponentInChildren<Slider>();
         healthtext = transform.GetComponentInChildren<TextMeshProUGUI>();
 
         healthsystem.maxHealth = Health;
-        Target = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
 
@@ -67,6 +69,11 @@ public abstract class Enemy : MonoBehaviour {
             healthsystem.Damage(20);
 
         }
+    }
+
+    public Transform GetTargetTransform()
+    {
+        return PlayerTarget;
     }
 
 }

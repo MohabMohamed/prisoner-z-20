@@ -8,7 +8,6 @@ public class HealthSystem : MonoBehaviour {
     public float maxHealth;
     private float currentHealth;
     
-    private Rigidbody2D RIGID;
 
     
 
@@ -16,7 +15,6 @@ public class HealthSystem : MonoBehaviour {
     private void Start()
     {
         currentHealth = maxHealth;
-        RIGID = this.gameObject.GetComponent<Rigidbody2D>();
     }
 
 
