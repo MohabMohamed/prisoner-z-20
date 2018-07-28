@@ -21,11 +21,11 @@ public class PlayerController : MonoBehaviour
 
     
     bool isLookingLeft;
-
+    Animator anim;
 
     void Start()
     {
-
+        anim = GetComponent<Animator>();
         RIGID = GetComponent<Rigidbody2D>();
         this.gameObject.AddComponent<HealthSystem>();
         healthsystem = this.gameObject.GetComponent<HealthSystem>();
@@ -35,10 +35,6 @@ public class PlayerController : MonoBehaviour
 
         isLookingLeft = false;
 
-
-
-
-
     }
 
 
@@ -47,31 +43,34 @@ public class PlayerController : MonoBehaviour
     {
         // Movement
         float moveHorizontal = Input.GetAxis("Horizontal");
+
         RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
 
-
+       //Debug.Log("isGrounded " + isGrounded + " Vel. " + RIGID.velocity.magnitude);
+        if (isGrounded && RIGID.velocity.magnitude != 0)
+            anim.SetBool("Run" ,true);
+        else
+            anim.SetBool("Run", false);
 
         // Jump
         if (! ServiceLocator.GetService<GameManager>().IsPaused())
         {
+
             if ((Input.GetButtonDown("Jump") && isGrounded))
             {
                 RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
                 ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
+                anim.SetBool("Run", false);
             }
             else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
             {
                 RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
                 doubleJump = false;
                 ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
+                anim.SetBool("Run", false);
             }
-
             CheckFlip();
-        }
-
-     
-
-        
+        }    
                 
     }
 

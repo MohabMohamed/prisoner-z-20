@@ -24,6 +24,11 @@ public class UIManager : MonoBehaviour {
         OptionsPanel.SetActive(!OptionsPanel.activeInHierarchy);
     }
 
+    public void HideOptionsPanel()
+    {
+        OptionsPanel.SetActive(false);
+    }
+
     public void TogglePauseMenu()
     {
         PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
