@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour {
 
-	public Transform target;
+	public Transform target; //What camera should follow
 
 	// Use this for initialization
 	void Start () {

@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class weapon : MonoBehaviour {
 
-	public Transform shoulder;
+	public Transform shoulder; //of player
 	private float angle;
 	private Vector3 mousePosition;
 	private Vector3 objectPosition;
+
 	// Use this for initialization
 	void Start () {
 		
