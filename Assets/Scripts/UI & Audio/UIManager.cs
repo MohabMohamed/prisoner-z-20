@@ -5,6 +5,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour {
 
     public GameObject MainMenuObject;
+    public GameObject OptionsPanel;
+    public GameObject PauseMenu;
 
     public void ShowMainMenu()
     {
@@ -16,7 +18,16 @@ public class UIManager : MonoBehaviour {
         MainMenuObject.SetActive(false);
     }
 
-   
+   public void ToggleOptionsPanel()
+    {
+        Debug.Log(OptionsPanel.activeInHierarchy);
+        OptionsPanel.SetActive(!OptionsPanel.activeInHierarchy);
+    }
 
+    public void TogglePauseMenu()
+    {
+        PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
+        OptionsPanel.SetActive(false);
+    }
 
 }
