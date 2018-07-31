@@ -8,7 +8,7 @@ public abstract class Enemy : MonoBehaviour {
 
     [Header("• Properties")]
     public float Speed;
-    public Weapon Weapon;
+    public RangedWeapon Weapon;
     public float Health;
     public float HitPower;
     public bool CanJump;
@@ -36,7 +36,7 @@ public abstract class Enemy : MonoBehaviour {
         healthslider = transform.GetComponentInChildren<Slider>();
         healthtext = transform.GetComponentInChildren<TextMeshProUGUI>();
 
-        healthsystem.maxHealth = Health;
+        healthsystem.SetMaxHealth(Health);
         
     }
 
@@ -63,7 +63,7 @@ public abstract class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("PlayerBullet") || collision.CompareTag("PlayerMelee"))
         {
 
             healthsystem.Damage(20);

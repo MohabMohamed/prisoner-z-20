@@ -7,10 +7,12 @@ TagManager:
   - Ground
   - Platform
   - Enemy
-  - Bullet
   - FlipCharTrigger
   - GroundTouchTrigger
   - HealthPickup
+  - PlayerMelee
+  - PlayerBullet
+  - EnemySword
   layers:
   - Default
   - TransparentFX

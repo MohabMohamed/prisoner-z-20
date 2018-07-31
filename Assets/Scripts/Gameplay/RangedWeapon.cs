@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Weapon : MonoBehaviour {
+public class RangedWeapon : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
@@ -22,7 +22,7 @@ public class Weapon : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if ( Input.GetButtonDown("Fire1") && FiringAllowed )
+        if ( Input.GetButtonDown("Fire1") && FiringAllowed)
         {
             Fire();          
         }          

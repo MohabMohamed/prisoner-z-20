@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour {
 
-    public float maxHealth;
+
+    [SerializeField]
+    private float maxHealth;
     private float currentHealth;
     
 
@@ -39,14 +41,10 @@ public class HealthSystem : MonoBehaviour {
         if (currentHealth >= maxHealth)
             print("Cannot heal, already at full health");
         else
+        {
             currentHealth += healNo;
-        
-
-        print("Health: " + currentHealth);
-
-
-
-        
+            print(this.name + " Health: " + currentHealth);
+        }
     }
 
     public float GetHealth()
@@ -57,6 +55,11 @@ public class HealthSystem : MonoBehaviour {
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void SetMaxHealth(float newhealth)
+    {
+        maxHealth = newhealth;
     }
 
     public bool IsDead()

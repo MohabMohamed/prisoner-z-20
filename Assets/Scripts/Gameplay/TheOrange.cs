@@ -15,6 +15,15 @@ public class TheOrange : Enemy {
     [Space]
     public float hitRadius;
 
+
+
+    //Melee
+    public Collider2D SwordCollider;
+    float cooldowntime = 4f;
+    float collidertime = 1.05f;
+    float cooldowntemp = 0f;
+    float collidertemp = 0f;
+
     private new void Start()
     {
         base.Start();
@@ -27,13 +36,46 @@ public class TheOrange : Enemy {
         base.Update();
         FollowTarget = GetTargetTransform();
 
-       
-            
 
 
-        
+        Follow();
+
+        HitIfClose();
+
+
+
+
+
+
+
+
+    }
+
+    void HitIfClose()
+    {
+        if (cooldowntemp <= 0 && FollowTarget.position.x - transform.position.x < 4 && FollowTarget.position.x - transform.position.x > -4)
+        {
+
+            anim.Play("OrangeMelee");
+            cooldowntemp = cooldowntime;
+            collidertemp = collidertime;
+        }
+
+
+        if (cooldowntemp > 0)
+            cooldowntemp -= Time.deltaTime;
+
+        if (collidertemp > 0)
+            collidertemp -= Time.deltaTime;
+        else
+            StartCoroutine(ColliderRoutine());
+
+    }
+
+    void Follow()
+    {
         // Follow & Set Animation
-        if (FollowTarget.position.x - transform.position.x < 0.5 & FollowTarget.position.x - transform.position.x > -0.5)
+        if (FollowTarget.position.x - transform.position.x < 2 & FollowTarget.position.x - transform.position.x > -2)
         {
             RIGID.velocity = new Vector2(0, 0);
             anim.SetBool("Run", false);
@@ -58,11 +100,17 @@ public class TheOrange : Enemy {
                 isLookingLeft = false;
             }
         }
-
-
-
-
     }
 
+
+
+    
+
+    IEnumerator ColliderRoutine()
+    {
+        SwordCollider.enabled = true;
+        yield return null;
+        SwordCollider.enabled = false;
+    }
 
 }
