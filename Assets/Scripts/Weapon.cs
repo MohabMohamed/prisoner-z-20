@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour {
         {
           Bullet clone = (Bullet)Instantiate(bullet, transform.position, transform.rotation);
             clone.GetComponent<Rigidbody2D>().AddForce(clone.transform.right*bulletSpeed);
+            FindObjectOfType<AudioManger>().Play("GunShot");
         }
 	}
 }
