@@ -4,10 +4,7 @@ using System;
 
 public class AudioManger : MonoBehaviour {
  
-
-    [Range(0f, 1f)]
-    public float soundLevel;
-
+    public AudioMixer MasterAudioMixer;
     [Space]
     [Header("Sounds")]
     public Sound[] sounds;
@@ -23,7 +20,7 @@ public class AudioManger : MonoBehaviour {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.loop = s.loop;
-
+            s.source.outputAudioMixerGroup = s.mixerGroup;
         }
         Play("MainMenuTheme");
     }
@@ -37,7 +34,7 @@ public class AudioManger : MonoBehaviour {
             return;
         }
 
-        s.source.volume = s.volume * soundLevel;
+        s.source.volume = s.volume;
         s.source.pitch = s.pitch;
 
         s.source.Play();
@@ -57,20 +54,22 @@ public class AudioManger : MonoBehaviour {
 
     }
 
-    public void OnSoundLevelChanged(float newSoundLevel)
+    public void SetMasterVolume(float SoundLevel)
     {
-        soundLevel = newSoundLevel;
-        foreach (Sound s in sounds)
-        {
-            if (s.source.isPlaying)
-            {
-                s.source.volume = s.volume * soundLevel;
-                
-            }
-
-        }
+        MasterAudioMixer.SetFloat("MainVolume", SoundLevel);
 
     }
 
+    public void SetMusicVolume(float SoundLevel)
+    {
+        MasterAudioMixer.SetFloat("MusicVolume", SoundLevel);
+
+    }
+
+    public void SetSFXVolume(float SoundLevel)
+    {
+        MasterAudioMixer.SetFloat("SFXVolume", SoundLevel);
+
+    }
 
 }
