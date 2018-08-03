@@ -15,14 +15,16 @@ public class RangedWeapon : MonoBehaviour {
     public bool FiringAllowed { get; set; }
 
 
-	// Use this for initialization
+    private HealthSystem health;
+
 	void Start () {
         FiringAllowed = true;
+        health = gameObject.GetComponent<HealthSystem>();
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
-        if ( Input.GetButtonDown("Fire1") && FiringAllowed)
+        if (!health.IsDead() && Input.GetButtonDown("Fire1") && FiringAllowed)
         {
             Fire();          
         }          

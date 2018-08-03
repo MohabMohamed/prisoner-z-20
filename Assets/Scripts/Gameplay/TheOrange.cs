@@ -10,19 +10,19 @@ public class TheOrange : Enemy {
     private Rigidbody2D RIGID;
     private Animator anim;
     private Transform body;
+    private Transform player;
 
-    bool isLookingLeft = false;
+    private float width;
+    private bool isLookingLeft = false;
     [Space]
-    public float hitRadius;
-
-
 
     //Melee
-    public Collider2D SwordCollider;
+    public float MeleeRange;
+    public int MeleeDmg;
     float cooldowntime = 4f;
-    float collidertime = 1.05f;
     float cooldowntemp = 0f;
-    float collidertemp = 0f;
+
+    public GameObject BloodParticleFX;
 
     private new void Start()
     {
@@ -30,6 +30,8 @@ public class TheOrange : Enemy {
         RIGID = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         body = transform.Find("Rogue_pelvis_01");
+        player = transform;
+        width = player.gameObject.GetComponent<CapsuleCollider2D>().size.x * player.localScale.x;
     }
     public new void Update()
     {
@@ -53,34 +55,26 @@ public class TheOrange : Enemy {
 
     void HitIfClose()
     {
-        if (cooldowntemp <= 0 && FollowTarget.position.x - transform.position.x < 4 && FollowTarget.position.x - transform.position.x > -4)
-        {
-
-            anim.Play("OrangeMelee");
-            cooldowntemp = cooldowntime;
-            collidertemp = collidertime;
-        }
-
-
         if (cooldowntemp > 0)
             cooldowntemp -= Time.deltaTime;
-
-        if (collidertemp > 0)
-            collidertemp -= Time.deltaTime;
-        else
-            StartCoroutine(ColliderRoutine());
-
+        else if (cooldowntemp <= 0 && FollowTarget.position.x - transform.position.x < 4 && FollowTarget.position.x - transform.position.x > -4)
+        {
+            anim.Play("OrangeMelee");
+            cooldowntemp = cooldowntime;
+            StartCoroutine(MeleeRoutine());
+        }
+       
     }
 
     void Follow()
     {
         // Follow & Set Animation
-        if (FollowTarget.position.x - transform.position.x < 2 & FollowTarget.position.x - transform.position.x > -2)
+        if (FollowTarget.position.x - transform.position.x < 2 & FollowTarget.position.x - transform.position.x > -2) // Stop
         {
             RIGID.velocity = new Vector2(0, 0);
             anim.SetBool("Run", false);
         }
-        else if (FollowTarget.position.x < transform.position.x)
+        else if (FollowTarget.position.x < transform.position.x) // Move Left
         {
             RIGID.velocity = new Vector2(-Speed, RIGID.velocity.y);
             anim.SetBool("Run", true);
@@ -90,7 +84,7 @@ public class TheOrange : Enemy {
                 isLookingLeft = true;
             }
         }
-        else if (FollowTarget.position.x > transform.position.x)
+        else if (FollowTarget.position.x > transform.position.x) // Move Right
         {
             RIGID.velocity = new Vector2(Speed, RIGID.velocity.y);
             anim.SetBool("Run", true);
@@ -104,13 +98,24 @@ public class TheOrange : Enemy {
 
 
 
-    
 
-    IEnumerator ColliderRoutine()
+
+    IEnumerator MeleeRoutine()
     {
-        SwordCollider.enabled = true;
-        yield return null;
-        SwordCollider.enabled = false;
+
+        yield return new WaitForSeconds(0.6f);
+        int lookleftorright = (body.localScale.x < 0) ? -1 : 1;
+        RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), player.right, MeleeRange * lookleftorright));
+        Debug.DrawLine(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), new Vector2(player.position.x + MeleeRange * lookleftorright, player.position.y + 1f), Color.cyan, 1f);
+
+        if (hit && hit.transform.CompareTag("Player"))
+        {
+            print("should hit player");
+            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(MeleeDmg);
+            GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
+            Destroy(BloodFX, 1f);
+        }
+
     }
 
 }

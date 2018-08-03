@@ -651,7 +651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010208881502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.62, y: -0.88, z: 0}
+  m_LocalPosition: {x: -16.61, y: -1.48, z: 0}
   m_LocalScale: {x: 0.15361999, y: 0.15361999, z: 0.15361999}
   m_Children:
   - {fileID: 224301316171055874}
@@ -1103,7 +1103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1363,15 +1363,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
-  Weapon: {fileID: 0}
   Health: 40
   HitPower: 30
   CanJump: 0
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   PlayerTarget: {fileID: 0}
-  hitRadius: 0.5
-  SwordCollider: {fileID: 61771797083915272}
+  MeleeRange: 2.3
+  MeleeDmg: 40
+  BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
+    type: 2}
 --- !u!114 &114621925903864736
 MonoBehaviour:
   m_ObjectHideFlags: 1

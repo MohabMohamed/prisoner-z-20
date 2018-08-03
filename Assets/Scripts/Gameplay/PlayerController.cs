@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float doublejumpheight;
 
     //public enum WeaponUsed {Sword, Pistol };
-    public string weapon;
+    public string CurrentWeapon;
 
 
     bool isGrounded = false;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     {
         health = gameObject.AddComponent<HealthSystem>();
         health.SetMaxHealth(maxhealth);
-        weapon = "Pistol";
+        CurrentWeapon = "Pistol";
     }
     void Start()
     {
@@ -58,7 +58,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(weapon.Equals("Sword"))
+        if (health.IsDead())
+        {
+    
+            anim.SetTrigger("Died");
+            Invoke("SetInactive", 2f);
+        }
+
+        if (CurrentWeapon.Equals("Sword"))
         {
             Pistol.SetActive(false);
             Sword.SetActive(true);
@@ -68,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
             AimingShoulder.transform.localEulerAngles = new Vector3(0,0,20);
         }
-        else if(weapon.Equals("Pistol"))
+        else if(CurrentWeapon.Equals("Pistol"))
         {
             Pistol.SetActive(true);
             Sword.SetActive(false);
@@ -171,13 +178,6 @@ public class PlayerController : MonoBehaviour
             health.Damage(20);
             //RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
 
-            if (health.GetHealth() <= 0)
-            {
-                //RIGID.gameObject.SetActive(false);
-
-                anim.SetTrigger("Died");
-
-            }
         }
 
         if (other.CompareTag("HealthPickup"))
@@ -198,10 +198,13 @@ public class PlayerController : MonoBehaviour
     {
         return isLookingLeft;
     }
-    public void ChangeWeapon(string www)
+    public void ChangeWeapon(string NewWeapon)
     {
-        weapon = www;
+        CurrentWeapon = NewWeapon;
     }
-
+    public void SetInactive()
+    {
+        gameObject.SetActive(false);
+    }
     
 }

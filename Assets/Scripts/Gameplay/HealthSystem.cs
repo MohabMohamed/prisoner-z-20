@@ -22,6 +22,10 @@ public class HealthSystem : MonoBehaviour {
 
     public void Damage(int dmgNo)
     {
+        if(this.CompareTag("Player"))
+        {
+            ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
+        }
         currentHealth -= dmgNo;
         if (currentHealth <= 0)
         {

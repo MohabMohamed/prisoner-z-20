@@ -291,6 +291,7 @@ GameObject:
   - component: {fileID: 114606536761161958}
   - component: {fileID: 114041103841546492}
   - component: {fileID: 61865577149534726}
+  - component: {fileID: 70553135738370430}
   m_Layer: 0
   m_Name: Rogue_05
   m_TagString: Player
@@ -423,7 +424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1601139029350234
 GameObject:
   m_ObjectHideFlags: 1
@@ -1258,7 +1259,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1426946126636014}
-  m_LocalRotation: {x: -0, y: -0, z: -0.018506397, w: 0.99982876}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.23, y: 2.66, z: 0}
   m_LocalScale: {x: 0.17299, y: 0.17299, z: 0.17299}
   m_Children:
@@ -1267,7 +1268,7 @@ Transform:
   - {fileID: 4543244412060586}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4857431445442034
 Transform:
   m_ObjectHideFlags: 1
@@ -1421,7 +1422,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.10208762, y: 0.7393222}
+  m_Offset: {x: -0.1020875, y: 2.0686846}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1432,8 +1433,23 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.559966, y: 12.437711}
+  m_Size: {x: 4.559966, y: 15.096436}
   m_EdgeRadius: 0
+--- !u!70 &70553135738370430
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1426946126636014}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 3.7990057}
+  m_Size: {x: 3.454772, y: 7.894489}
+  m_Direction: 0
 --- !u!82 &82058087245291026
 AudioSource:
   m_ObjectHideFlags: 1
@@ -1558,7 +1574,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71d4a083fbae9849a0297a813a5a01f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwordCollider: {fileID: 61962012938009286}
+  BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
+    type: 2}
+  MeleeRange: 2
 --- !u!114 &114354062773056952
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1575,7 +1593,8 @@ MonoBehaviour:
   speed: 5
   jumpheight: 11
   doublejumpheight: 7
-  weapon: Pistol
+  CurrentWeapon: 
+  AimingShoulder: {fileID: 1517852400415094}
   Pistol: {fileID: 1601139029350234}
   Sword: {fileID: 1583893615203224}
 --- !u!114 &114606536761161958
