@@ -9,7 +9,7 @@ public abstract class Enemy : MonoBehaviour {
     [Header("• Properties")]
     public float Speed;
     public float Health;
-    public float HitPower;
+    public int HitPower;
     public bool CanJump;
 
     [Space]

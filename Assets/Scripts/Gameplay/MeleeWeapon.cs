@@ -10,6 +10,7 @@ public class MeleeWeapon : MonoBehaviour {
 
     public GameObject BloodParticleFX;
     public float MeleeRange;
+    public int MeleeDamage;
     private float cooldowntime = 0.9f;
     private float cooldowntemp = 0f;
     private float Width;
@@ -50,7 +51,7 @@ public class MeleeWeapon : MonoBehaviour {
         
         if (hit && hit.transform.CompareTag("Enemy"))
         {
-            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(20);
+            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(MeleeDamage);
             GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
             Destroy(BloodFX, 1f);
             ServiceLocator.GetService<AudioManager>().PlaySwordHitSFX();

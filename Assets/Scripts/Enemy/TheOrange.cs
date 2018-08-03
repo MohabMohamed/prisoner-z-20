@@ -18,7 +18,6 @@ public class TheOrange : Enemy {
 
     //Melee
     public float MeleeRange;
-    public int MeleeDmg;
     float cooldowntime = 4f;
     float cooldowntemp = 0f;
 
@@ -111,7 +110,7 @@ public class TheOrange : Enemy {
         if (hit && hit.transform.CompareTag("Player"))
         {
             print("should hit player");
-            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(MeleeDmg);
+            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(HitPower);
             GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
             Destroy(BloodFX, 1f);
         }

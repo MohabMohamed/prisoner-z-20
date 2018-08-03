@@ -9,7 +9,6 @@ public class HealthSystem : MonoBehaviour {
     [SerializeField]
     private float maxHealth;
     private float currentHealth;
-    
 
     
 
