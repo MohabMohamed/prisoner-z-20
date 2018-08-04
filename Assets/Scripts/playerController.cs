@@ -31,7 +31,7 @@ public class playerController : MonoBehaviour {
 		//Set controls
 		this.rightKey = KeyCode.D;
 		this.leftKey = KeyCode.A;
-		this.jumpKey = KeyCode.Space;
+		this.jumpKey = KeyCode.W;
 
 		//Initializing components
 		this.thisRigidBody = GetComponent<Rigidbody2D>();
@@ -42,7 +42,7 @@ public class playerController : MonoBehaviour {
 
 		//Default inits
 		speed = 130f;
-		jumpHeight = 3000f;
+		jumpHeight = 5000f;
 	}
 
 	void FixedUpdate(){

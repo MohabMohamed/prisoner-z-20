@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour {
 		DontDestroyOnLoad (gameObject);
 		FindObjectOfType<AudioManager> ().playGameplay ();
 		player.gameObject.SetActive (false);
+		Time.timeScale = 0;
 	}
 
 	public void startGame(){
+		Time.timeScale = 1;
 		player.gameObject.SetActive (true);
 		resumeGame ();
 	}

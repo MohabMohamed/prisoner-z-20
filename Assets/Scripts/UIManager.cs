@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour {
 
 	public GameObject MainMenuCanvas;
 	public bool mainMenuOn;
-	public GameObject pauseMenuCanvas;
+	public GameObject pauseMenuCanvas = null;
 
 	void Start(){
 		pauseMenuCanvas.SetActive (false);
