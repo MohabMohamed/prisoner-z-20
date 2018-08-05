@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61169171797586030}
   - component: {fileID: 114653888346089244}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_player
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f7210dbc218064da325cd7b6e8f6c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerBullet: 1
   particleFX: {fileID: 1082417542264296, guid: 522a5c61af122dd4d994c9703544fddb, type: 2}
 --- !u!212 &212025481938342106
 SpriteRenderer:

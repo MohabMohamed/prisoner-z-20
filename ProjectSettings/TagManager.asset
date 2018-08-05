@@ -11,6 +11,8 @@ TagManager:
   - FlipCharTrigger
   - GroundTouchTrigger
   - HealthPickup
+  - Undefined
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

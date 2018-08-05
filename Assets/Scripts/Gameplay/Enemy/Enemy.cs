@@ -8,33 +8,40 @@ public abstract class Enemy : MonoBehaviour {
 
     [Header("• Properties")]
     public float Speed;
-    public Weapon Weapon;
+    //public Weapon Weapon;
     public float Health;
     public float HitPower;
     public bool CanJump;
+
+    public float followDistance;
+    public float attackDistance;
 
     [Space]
     [Header("• References")]
     public GameObject healthpickup;
 
-   
+
 
 
     //-------------- Privates ------------------
 
-    private HealthSystem healthsystem;
-    private Slider healthslider;
-    private TextMeshProUGUI healthtext;
+    protected Rigidbody2D myRigidBody;
 
-    private Transform Target;
+    protected HealthSystem healthsystem;
+    protected Slider healthslider;
+    protected TextMeshProUGUI healthtext;
 
-    void Start()
+    protected Transform Target;
+
+    protected void Start()
     {      
         healthsystem = gameObject.AddComponent<HealthSystem>();
         healthslider = transform.GetComponentInChildren<Slider>();
         healthtext = transform.GetComponentInChildren<TextMeshProUGUI>();
+        myRigidBody = gameObject.GetComponent<Rigidbody2D>();
 
         healthsystem.maxHealth = Health;
+        //Target = ServiceLocator.GetService<PlayerController>().transform;
         Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -59,14 +66,7 @@ public abstract class Enemy : MonoBehaviour {
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Bullet"))
-        {
 
-            healthsystem.Damage(20);
 
-        }
-    }
 
 }

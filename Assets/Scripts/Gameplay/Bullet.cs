@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
-
+    public bool isPlayerBullet = true;
     public GameObject particleFX;
 
 	// Update is called once per frame
@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ( collision.CompareTag("Enemy") | collision.CompareTag("Ground") )
+        if ((isPlayerBullet && collision.CompareTag("Enemy")) | collision.CompareTag("Ground") )
         {
             Invoke("GroundParticleFX", 0.04f);
             Destroy(this.gameObject, 0.05f);
