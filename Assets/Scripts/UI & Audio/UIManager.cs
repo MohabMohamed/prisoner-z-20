@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour {
 
    public void ToggleOptionsPanel()
     {
-        Debug.Log(OptionsPanel.activeInHierarchy);
         OptionsPanel.SetActive(!OptionsPanel.activeInHierarchy);
     }
 

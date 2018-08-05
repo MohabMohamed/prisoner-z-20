@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour {
     {
         GetComponent<AudioSource>().clip = GameplayClip;
         GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().volume = 0.5f;
     }
     public void ToggleMusic()
     {

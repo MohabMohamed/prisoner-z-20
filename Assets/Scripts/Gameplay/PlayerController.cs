@@ -172,13 +172,14 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (other.CompareTag("EnemySword"))
+        /*if (other.CompareTag("EnemySword"))
         {
 
             health.Damage(20);
             //RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
 
-        }
+        }*/
+       
 
         if (other.CompareTag("HealthPickup"))
         {

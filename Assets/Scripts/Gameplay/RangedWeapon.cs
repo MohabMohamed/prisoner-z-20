@@ -5,13 +5,16 @@ using UnityEngine.EventSystems;
 
 public class RangedWeapon : MonoBehaviour {
 
+    public int PistolDamage;
+
+    [Space]
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public GameObject muzzleFlash;
     public AudioSource gunShot;
     public float bulletSpeed;
     public GameObject flash;
-
+    
     public bool FiringAllowed { get; set; }
 
 

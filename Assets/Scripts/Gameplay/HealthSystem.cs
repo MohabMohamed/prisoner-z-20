@@ -10,12 +10,13 @@ public class HealthSystem : MonoBehaviour {
     private float maxHealth;
     private float currentHealth;
 
-    
 
+    private Animator anim;
     
     private void Start()
     {
         currentHealth = maxHealth;
+        anim = gameObject.GetComponent<Animator>();
     }
 
 
@@ -28,6 +29,7 @@ public class HealthSystem : MonoBehaviour {
         currentHealth -= dmgNo;
         if (currentHealth <= 0)
         {
+            
             print(this.name + " Dead");
         }
         else

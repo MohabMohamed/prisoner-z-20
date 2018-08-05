@@ -6,15 +6,18 @@ public class Bullet : MonoBehaviour {
 
     public GameObject BloodParticleFX;
     public GameObject GroundParticleFX;
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private int Dmg;
+    // Update is called once per frame
+    private void Start()
+    {
+        Dmg = ServiceLocator.GetService<RangedWeapon>().PistolDamage;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
+            collision.gameObject.GetComponent<HealthSystem>().Damage(Dmg);
             Invoke("PlayBloodFX", 0.04f);
             Destroy(this.gameObject, 0.05f);
 
