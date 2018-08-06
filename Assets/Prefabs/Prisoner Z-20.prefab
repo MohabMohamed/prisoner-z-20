@@ -1269,7 +1269,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1690260539851200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.23, y: 2.66, z: 0}
+  m_LocalPosition: {x: -17.23, y: 1.72, z: 0}
   m_LocalScale: {x: 0.17299, y: 0.17299, z: 0.17299}
   m_Children:
   - {fileID: 4944469154188540}
@@ -1365,7 +1365,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e5d2c9bf9bc82d44386930190078e245, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
     type: 2}
   MeleeRange: 2
-  MeleeDamage: 40
+  MeleeDamage: 100
 --- !u!114 &114352448943121462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1600,6 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8607c25129c1943b8278a89b126abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PistolDamage: 10
   bulletPrefab: {fileID: 1222731926214720, guid: fafe5bbdedc81384f9b5b8d860963a6e,
     type: 2}
   bulletSpawn: {fileID: 4804483931172234}
@@ -1620,7 +1621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camReference: {fileID: 0}
-  maxhealth: 100
+  maxhealth: 200
   speed: 5
   jumpheight: 11
   doublejumpheight: 7

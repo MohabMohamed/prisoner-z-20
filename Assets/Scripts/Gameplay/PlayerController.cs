@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             Invoke("SetInactive", 2f);
         }
 
+
         if (CurrentWeapon.Equals("Sword"))
         {
             Pistol.SetActive(false);
@@ -87,14 +88,24 @@ public class PlayerController : MonoBehaviour
         
 
 
+        Move();
+
+
+
+    }
+
+    void Move()
+    {
         if (!health.IsDead())
         {
+            /*
             if (isGrounded && RIGID.velocity.magnitude != 0)
             {
                 anim.SetBool("Run", true);
             }
             else
                 anim.SetBool("Run", false);
+                */
 
 
 
@@ -102,9 +113,14 @@ public class PlayerController : MonoBehaviour
 
 
             // Horizontal Movement
-            float moveHorizontal = Input.GetAxis("Horizontal");
-            RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
-
+            if(Input.GetAxis("Horizontal") != 0)
+            {
+                float moveHorizontal = Input.GetAxis("Horizontal");
+                RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
+                anim.SetBool("Run", true);
+            }
+            else
+                anim.SetBool("Run", false);
 
             // Jump
             if (!ServiceLocator.GetService<GameManager>().IsPaused())
@@ -116,11 +132,7 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-
-
-
     }
-
 
     void Jump()
     {
