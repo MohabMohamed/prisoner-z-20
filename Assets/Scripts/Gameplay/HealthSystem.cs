@@ -22,18 +22,20 @@ public class HealthSystem : MonoBehaviour {
 
     public void Damage(int dmgNo)
     {
-        if(this.CompareTag("Player"))
+        
+        currentHealth -= dmgNo;
+        if (this.CompareTag("Player"))
         {
             ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
+            print(this.name + " Health: " + currentHealth);
         }
-        currentHealth -= dmgNo;
         if (currentHealth <= 0)
         {
             
             print(this.name + " Dead");
         }
-        else
-            print(this.name + " Health: " + currentHealth);
+        
+            
 
 
 

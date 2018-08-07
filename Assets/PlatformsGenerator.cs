@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class PlatformsGenerator : MonoBehaviour {
 
+    [Header("• References")]
+    public GameObject PlatformParent;
     public GameObject[] platformPrefabs;
 
-    
+    [Space]
+    [Header("• Variables")]
     public float endOfMap = 32f;
 
     public float minHeight = -1f;
@@ -37,11 +40,11 @@ public class PlatformsGenerator : MonoBehaviour {
             platform = Instantiate(randomPlatform);
             platform.transform.position = new Vector3(currentPos, height);
 
-            
+            platform.transform.parent = PlatformParent.transform;
             platformList.Add(platform);
         }
 
-        print(platformList.Count);
+        
 
         gameObject.GetComponent<PlatformBezierLogic>().SetUp(platformList.ToArray());
 

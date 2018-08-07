@@ -2,8 +2,9 @@
 
 public class PlatformBezierLogic : MonoBehaviour {
 
-    
-    //Platforms
+
+    public GameObject CurveParent;
+
     //public GameObject[] platformList;
     private Vector2 Edge1;
     private Vector2 Edge2;
@@ -63,10 +64,12 @@ public class PlatformBezierLogic : MonoBehaviour {
         CurveLtoR.AddPointAt(BPoint0.transform.position);
         CurveLtoR.AddPointAt(new Vector2((BPoint1.transform.position.x + BPoint0.transform.position.x) / 2f, max + 1f)).setHandleX(1);
         CurveLtoR.AddPointAt(BPoint1.transform.position);
+        CurveLtoR.transform.parent = CurveParent.transform;
 
         CurveRtoL.AddPointAt(BPoint1.transform.position);
         CurveRtoL.AddPointAt(new Vector2((BPoint0.transform.position.x + BPoint1.transform.position.x) / 2f, max + 1f)).setHandleX(-1);
         CurveRtoL.AddPointAt(BPoint0.transform.position);
+        CurveRtoL.transform.parent = CurveParent.transform;
 
 
         // Triggers
