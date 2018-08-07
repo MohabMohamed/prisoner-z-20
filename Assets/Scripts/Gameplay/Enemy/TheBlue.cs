@@ -131,7 +131,12 @@ public class TheBlue: Enemy {
     {
         if(collision.CompareTag("PathTrigger"))
         {
+            gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
             gameObject.GetComponent<CurveFollow>().enabled = true;
+            gameObject.GetComponent<CurveFollow>().Move();
+
+            collision.enabled = false;
+            LeanTween.delayedCall(1, () => { collision.enabled = true; });
         }
     }
 

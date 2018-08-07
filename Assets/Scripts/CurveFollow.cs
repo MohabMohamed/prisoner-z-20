@@ -11,25 +11,20 @@ public class CurveFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //LeanTween.init(800);
-        transform.position = curve.GetPointAt(0);
+
         // curve.res
         //Debug.Log(curve.
 
-        Move(1);
+
 
     }
 
-
-    void Move(float t)
+    public void Move()
     {
-        Debug.Log(t);
-        if(t > 100)
-        {
-            return;
-        }
-        
-        LeanTween.move(gameObject, curve.GetPointAt(t / 100f), .001f).setOnComplete(() => { Move( t + 1); });
-    }
+        LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setOnComplete(()=> {
+            LeanTween.value(0, 1, 1).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setEaseInSine();
+        });
+ }
 
     /*void moveDown(int index)
     {
