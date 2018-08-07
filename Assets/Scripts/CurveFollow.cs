@@ -11,56 +11,35 @@ public class CurveFollow : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //LeanTween.init(800);
-        transform.position = curve.GetPointAt(0);
+
         // curve.res
         //Debug.Log(curve.
 
-        Move(1);
+
 
     }
 
-
-    void Move(float t)
+    public void Move()
     {
-        Debug.Log(t);
-        if(t > 100)
-        {
-            return;
-        }
-<<<<<<< HEAD
-        LeanTween.move(gameObject, curve.GetPointAt(t / 100f), .1f).setOnComplete(() => { Move( t + 1); });
-    }
-
-    void moveDown(int index)
-=======
-        
-        LeanTween.move(gameObject, curve.GetPointAt(t / 100f), .001f).setOnComplete(() => { Move( t + 1); });
-    }
+        LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setOnComplete(()=> {
+            LeanTween.value(0, 1, 1).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setEaseInSine();
+        });
+ }
 
     /*void moveDown(int index)
->>>>>>> Youssef
     {
         Debug.Log(index);
         if (index >= curve.length)
             return;
         else
-<<<<<<< HEAD
-            LeanTween.move(gameObject, curve.GetPointAt(index/curve.length), .5f).setOnComplete(()=> { moveDown(index + 1); });
-=======
             LeanTween.move(gameObject, curve.GetPointAt(index/curve.length), .1f).setOnComplete(()=> { moveDown(index + 1); });
->>>>>>> Youssef
     }
     void moveUp(int index)
     {
         if (index < 0)
             return;
         else
-<<<<<<< HEAD
-            LeanTween.move(gameObject, curve.GetAnchorPoints()[index].position, .5f).setOnComplete(() => { moveUp(index - 1); });
-    }
-=======
             LeanTween.move(gameObject, curve.GetAnchorPoints()[index].position, .1f).setOnComplete(() => { moveUp(index - 1); });
     }*/
->>>>>>> Youssef
 	
 }
