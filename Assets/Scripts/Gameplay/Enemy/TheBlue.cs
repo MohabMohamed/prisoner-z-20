@@ -137,8 +137,18 @@ public class TheBlue: Enemy {
     private void OnTriggerStay2D(Collider2D collision)
     {
         
+        /*if(collision.CompareTag("PathTrigger")) //remove
+        {
+            gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
+            gameObject.GetComponent<CurveFollow>().enabled = true;
+            gameObject.GetComponent<CurveFollow>().Move();
 
-        if(collision.CompareTag("LeftJumpPathTrigger") && myRigidBody.velocity.x <-0.5)  //transform.position.x > collision.gameObject.transform.position.x)
+
+            collision.enabled = false;
+            LeanTween.delayedCall(1, () => { collision.enabled = true; });
+        } */
+
+        if(collision.CompareTag("RightJumpPathTrigger") && myRigidBody.velocity.x <-0.5) //remove else
         {
 
             
@@ -151,7 +161,7 @@ public class TheBlue: Enemy {
                 LeanTween.delayedCall(1, () => { collision.enabled = true; });
                 
         }
-        else if(collision.CompareTag("RightJumpPathTrigger") && myRigidBody.velocity.x >0.5) // transform.position.x < collision.gameObject.transform.position.x)
+        else if(collision.CompareTag("LeftJumpPathTrigger") && myRigidBody.velocity.x >0.5)
         {
 
             
