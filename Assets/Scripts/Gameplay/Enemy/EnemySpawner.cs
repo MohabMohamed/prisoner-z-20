@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if (collision.CompareTag("PlayerBullet"))
         {
             
             healthsystem.Damage(20);

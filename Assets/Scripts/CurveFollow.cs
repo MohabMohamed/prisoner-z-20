@@ -27,23 +27,40 @@ public class CurveFollow : MonoBehaviour {
         {
             return;
         }
+<<<<<<< HEAD
         LeanTween.move(gameObject, curve.GetPointAt(t / 100f), .1f).setOnComplete(() => { Move( t + 1); });
     }
 
     void moveDown(int index)
+=======
+        
+        LeanTween.move(gameObject, curve.GetPointAt(t / 100f), .001f).setOnComplete(() => { Move( t + 1); });
+    }
+
+    /*void moveDown(int index)
+>>>>>>> Youssef
     {
         Debug.Log(index);
         if (index >= curve.length)
             return;
         else
+<<<<<<< HEAD
             LeanTween.move(gameObject, curve.GetPointAt(index/curve.length), .5f).setOnComplete(()=> { moveDown(index + 1); });
+=======
+            LeanTween.move(gameObject, curve.GetPointAt(index/curve.length), .1f).setOnComplete(()=> { moveDown(index + 1); });
+>>>>>>> Youssef
     }
     void moveUp(int index)
     {
         if (index < 0)
             return;
         else
+<<<<<<< HEAD
             LeanTween.move(gameObject, curve.GetAnchorPoints()[index].position, .5f).setOnComplete(() => { moveUp(index - 1); });
     }
+=======
+            LeanTween.move(gameObject, curve.GetAnchorPoints()[index].position, .1f).setOnComplete(() => { moveUp(index - 1); });
+    }*/
+>>>>>>> Youssef
 	
 }

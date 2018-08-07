@@ -5,26 +5,31 @@ using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour {
 
-    public float maxHealth;
+
+    [SerializeField]
+    private float maxHealth;
     private float currentHealth;
-    
-    private Rigidbody2D RIGID;
 
-    
 
+    private Animator anim;
     
     private void Start()
     {
         currentHealth = maxHealth;
-        RIGID = this.gameObject.GetComponent<Rigidbody2D>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
 
     public void Damage(int dmgNo)
     {
+        if(this.CompareTag("Player"))
+        {
+            ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
+        }
         currentHealth -= dmgNo;
         if (currentHealth <= 0)
         {
+            
             print(this.name + " Dead");
         }
         else
@@ -41,14 +46,10 @@ public class HealthSystem : MonoBehaviour {
         if (currentHealth >= maxHealth)
             print("Cannot heal, already at full health");
         else
+        {
             currentHealth += healNo;
-        
-
-        print("Health: " + currentHealth);
-
-
-
-        
+            print(this.name + " Health: " + currentHealth);
+        }
     }
 
     public float GetHealth()
@@ -59,6 +60,11 @@ public class HealthSystem : MonoBehaviour {
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public void SetMaxHealth(float newhealth)
+    {
+        maxHealth = newhealth;
     }
 
     public bool IsDead()

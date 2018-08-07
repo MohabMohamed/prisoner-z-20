@@ -6,34 +6,51 @@ public class PlayerController : MonoBehaviour
 {
 
     private Rigidbody2D RIGID;
+    public Camera camReference;
+    HealthSystem health;
+    Animator anim;
 
+
+    public float maxhealth;
     public float speed;
     public float jumpheight;
     public float doublejumpheight;
 
-    public Camera camReference;
-
-    HealthSystem healthsystem;
+    //public enum WeaponUsed {Sword, Pistol };
+    public string CurrentWeapon;
 
 
     bool isGrounded = false;
     bool doubleJump = false;
+    bool isLookingLeft = false;
 
-    
-    bool isLookingLeft;
-    Animator anim;
+    MeleeWeapon meleescript;
+    RangedWeapon rangedscript;
 
+
+    [Space]
+    [Header("• Weapon References")]
+    public GameObject AimingShoulder;
+    public GameObject Pistol;
+    public GameObject Sword;
+
+    void Awake()
+    {
+        health = gameObject.AddComponent<HealthSystem>();
+        health.SetMaxHealth(maxhealth);
+        CurrentWeapon = "Pistol";
+    }
     void Start()
     {
         anim = GetComponent<Animator>();
         RIGID = GetComponent<Rigidbody2D>();
-        this.gameObject.AddComponent<HealthSystem>();
-        healthsystem = this.gameObject.GetComponent<HealthSystem>();
 
-        if(camReference == null)
+        meleescript = GetComponent<MeleeWeapon>();
+        rangedscript = GetComponent<RangedWeapon>();
+
+        if (camReference == null)
             camReference = ServiceLocator.GetService<CameraController>().GetComponent<Camera>();
 
-        isLookingLeft = false;
 
     }
 
@@ -41,38 +58,90 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Movement
-        float moveHorizontal = Input.GetAxis("Horizontal");
+        if (health.IsDead())
+        {
+    
+            anim.SetTrigger("Died");
+            Invoke("SetInactive", 2f);
+        }
 
-        RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
+        if (CurrentWeapon.Equals("Sword"))
+        {
+            Pistol.SetActive(false);
+            Sword.SetActive(true);
+            meleescript.enabled = true;
+            rangedscript.enabled = false;
+            transform.Find("GunShoulder").GetComponent<LookAt>().enabled = false;
 
-       //Debug.Log("isGrounded " + isGrounded + " Vel. " + RIGID.velocity.magnitude);
-        if (isGrounded && RIGID.velocity.magnitude != 0)
-            anim.SetBool("Run" ,true);
-        else
+            AimingShoulder.transform.localEulerAngles = new Vector3(0,0,20);
+        }
+        else if(CurrentWeapon.Equals("Pistol"))
+        {
+            Pistol.SetActive(true);
+            Sword.SetActive(false);
+            meleescript.enabled = false;
+            rangedscript.enabled = true;
+            transform.Find("GunShoulder").GetComponent<LookAt>().enabled = true;
+            
+        }
+        
+
+
+        if (!health.IsDead())
+        {
+            if (isGrounded && RIGID.velocity.magnitude != 0)
+            {
+                anim.SetBool("Run", true);
+            }
+            else
+                anim.SetBool("Run", false);
+
+
+
+
+
+
+            // Horizontal Movement
+            float moveHorizontal = Input.GetAxis("Horizontal");
+            RIGID.velocity = new Vector2(moveHorizontal * speed, RIGID.velocity.y);
+
+
+            // Jump
+            if (!ServiceLocator.GetService<GameManager>().IsPaused())
+            {
+                if (Input.GetButtonDown("Jump"))
+                    Jump();
+
+                CheckFlip();
+            }
+
+        }
+
+
+
+    }
+
+
+    void Jump()
+    {
+        if (isGrounded)
+        { 
+            RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
+            ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
             anim.SetBool("Run", false);
 
-        // Jump
-        if (! ServiceLocator.GetService<GameManager>().IsPaused())
+            isGrounded = false;
+            doubleJump = true;
+        }
+        else if (doubleJump)
         {
-
-            if ((Input.GetButtonDown("Jump") && isGrounded))
-            {
-                RIGID.velocity = new Vector2(RIGID.velocity.x, jumpheight);
-                ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
-                anim.SetBool("Run", false);
-            }
-            else if (Input.GetButtonDown("Jump") && doubleJump) // Double Jump
-            {
-                RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
-                doubleJump = false;
-                ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
-                anim.SetBool("Run", false);
-            }
-            CheckFlip();
-        }    
-                
+            RIGID.velocity = new Vector2(RIGID.velocity.x, doublejumpheight);
+            doubleJump = false;
+            ServiceLocator.GetService<AudioManager>().PlayJumpSFX();
+            anim.SetBool("Run", false);
+        }
     }
+
 
     void CheckFlip()
     {
@@ -103,51 +172,40 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
-
-        if (other.CompareTag("Enemy"))
+        /*if (other.CompareTag("EnemySword"))
         {
 
-            healthsystem.Damage(20);
-            RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
+            health.Damage(20);
+            //RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
 
-            if (healthsystem.GetHealth() <= 0)
-            {
-                RIGID.gameObject.SetActive(false);
-
-            }
-        }
+        }*/
+       
 
         if (other.CompareTag("HealthPickup"))
         {
-            healthsystem.Heal(20);
-        }
-
-
-        }
-
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-
-
-        if (other.CompareTag("Ground") || other.CompareTag("Platform"))
-        {
-            isGrounded = false;
-            doubleJump = true;
-            //print("Ground Trigger exit");
+            health.Heal(20);
         }
 
 
     }
+
+
 
     public float GetSpeed()
     {
         return speed;
     }
-
     public bool IsLookingLeft()
     {
         return isLookingLeft;
     }
+    public void ChangeWeapon(string NewWeapon)
+    {
+        CurrentWeapon = NewWeapon;
+    }
+    public void SetInactive()
+    {
+        gameObject.SetActive(false);
+    }
+    
 }

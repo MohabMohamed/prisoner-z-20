@@ -3,19 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TheBlue: Enemy {
-    public GameObject bulletPrefab;
-    public Transform bulletSpawn;
-    //public float FireRate;
-    public float FireSpeed;
-    //private bool canAttack = true;
-    public float attackDelay;
-    public float attackDelayTemp = 0;
 
     private Transform myBody;
     bool isLookingLeft;
     Animator anim;
 
-    void Start()
+    //public float FireRate;
+    //private bool canAttack = true;
+
+    [Space]
+    public GameObject projectilePrefab;
+    public Transform projectileSpawn;
+    public float projectileSpeed;
+    public GameObject ShurikenSprite;
+    
+    [Space]
+    public float attackDelay;
+    public float attackDelayTemp = 0;
+    public float followDistance;
+    public float attackDistance;
+
+    
+
+    new void Start()
     {
         base.Start();
         attackDelayTemp = attackDelay;
@@ -25,7 +35,8 @@ public class TheBlue: Enemy {
         anim = GetComponent<Animator>();
     }
 
-    void Update() {
+    new void Update() {
+        if (!ServiceLocator.GetService<GameManager>().isGameON) return;
         base.Update();
         HandleTransitions();
 
@@ -41,13 +52,13 @@ public class TheBlue: Enemy {
         }
     }
 
-    // method handle transitions
+    
     // state object assigned depending on current enemy state
     ///////////////////
 
 
 
-    // method handle transitions
+    
     private void HandleTransitions()
     {
         if (Target == null)
@@ -59,10 +70,11 @@ public class TheBlue: Enemy {
 
         if (Mathf.Abs(distanceOverX) < attackDistance)
         {
+            Idle();
             if (attackDelayTemp >= attackDelay)
             {
                 attackDelayTemp = 0;
-                Attack();
+                StartCoroutine(AttackCoroutine());
             }
         }
         else if (Mathf.Abs(distanceOverX) < followDistance) {
@@ -73,42 +85,55 @@ public class TheBlue: Enemy {
             Idle();
         }
     }
-    // method idle
+    
+
     private void Idle()
     {
         anim.SetBool("Run", false);
-        myRigidBody.velocity = Vector3.zero;
+        
     }
-    // method follow
+    
+
     private void Follow(int sign)
     {
         anim.SetBool("Run", true);
-        myRigidBody.velocity = new Vector2(sign * Speed, 0);
+        myRigidBody.velocity = new Vector2(sign * Speed, myRigidBody.velocity.y);
     }
-    // method attack
+    
+
     private void Attack()
     {
-        GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
-
-        Vector2 direction = (Target.position + new Vector3(0, 1, 0) - bulletSpawn.position).normalized;
-        bullet.transform.Rotate(bullet.transform.forward,Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x));
-        Debug.Log(Mathf.Atan2(direction.y, direction.x));
+        
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+        Destroy(projectile, 4f);
+        Vector2 direction = (Target.position + new Vector3(0, 1, 0) - projectileSpawn.position).normalized;
+        projectile.transform.Rotate(projectile.transform.forward,Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x));
+        /*Debug.Log(Mathf.Atan2(direction.y, direction.x));
         Debug.Log(
             "Target: " + Target.position
-            +"\nbulletSpawnPosition: " + bulletSpawn.position
-            + "\n Direction: " + direction);
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * FireSpeed;
+            +"\nprojectileSpawnPosition: " + projectileSpawn.position
+            + "\n Direction: " + direction);*/
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+    }
+
+    IEnumerator AttackCoroutine()
+    {
+        anim.Play("BlueThrowShuriken_00");
+        ShurikenSprite.SetActive(true);
+        yield return new WaitForSeconds(1.23f);
+        Attack();
+        ShurikenSprite.SetActive(false);
     }
     // method death
 
 
-    protected void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Bullet"))
+        if(collision.CompareTag("PathTrigger"))
         {
-            Debug.Log(healthsystem);
-            healthsystem.Damage(20);
+            gameObject.GetComponent<CurveFollow>().enabled = true;
         }
     }
+
 
 }

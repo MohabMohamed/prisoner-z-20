@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour {
 
-    public AudioClip MainMusicClip, GameplayClip, GunShotClip , BTNClickSFX;
+    public AudioClip MainMusicClip, GameplayClip, GunShotClip , BTNClickSFX, PlayerHitClip;
     public List<AudioClip> JumpClips;
+    public List<AudioClip> SwordClips;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class AudioManager : MonoBehaviour {
     {
         GetComponent<AudioSource>().clip = GameplayClip;
         GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().volume = 0.5f;
     }
     public void ToggleMusic()
     {
@@ -40,7 +42,7 @@ public class AudioManager : MonoBehaviour {
         s.Play();
         Destroy(s, GunShotClip.length);
     }
-    public void PlayJumpSFX()
+    public void PlayJumpSFX() //random
     {
         int randomIndex = Random.Range(0 , JumpClips.Count);
         AudioSource s = gameObject.AddComponent<AudioSource>();
@@ -54,6 +56,27 @@ public class AudioManager : MonoBehaviour {
         s.clip = BTNClickSFX;
         s.Play();
         Destroy(s, BTNClickSFX.length);
+    }
+    public void PlaySwordWooshSFX()
+    {
+        AudioSource s = gameObject.AddComponent<AudioSource>();
+        s.clip = SwordClips[0];
+        s.Play();
+        Destroy(s, SwordClips[0].length);
+    }
+    public void PlaySwordHitSFX()
+    {
+        AudioSource s = gameObject.AddComponent<AudioSource>();
+        s.clip = SwordClips[1];
+        s.Play();
+        Destroy(s, SwordClips[1].length);
+    }
+    public void PlayPlayerHitSFX()
+    {
+        AudioSource s = gameObject.AddComponent<AudioSource>();
+        s.clip = PlayerHitClip;
+        s.Play();
+        Destroy(s, PlayerHitClip.length);
     }
 
 

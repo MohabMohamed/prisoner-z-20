@@ -6,9 +6,13 @@ public class GameManager : MonoBehaviour {
 
     public PlayerController player;
 
+    public bool isGameON { get; set; }
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
+        isGameON = false;
+
         DontDestroyOnLoad(gameObject);
         ServiceLocator.GetService<AudioManager>().PlayMainMenuMusic();
 
@@ -19,16 +23,19 @@ public class GameManager : MonoBehaviour {
 
     public void StartGame()
     {
+        isGameON = true;
         player.gameObject.SetActive(true);
     }
 
     public void PauseGame()
     {
+        isGameON = false;
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
+        isGameON = true;
         Time.timeScale = 1;
     }
     

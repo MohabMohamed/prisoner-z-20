@@ -8,45 +8,48 @@ public abstract class Enemy : MonoBehaviour {
 
     [Header("• Properties")]
     public float Speed;
-    //public Weapon Weapon;
     public float Health;
-    public float HitPower;
+    public int HitPower;
     public bool CanJump;
-
-    public float followDistance;
-    public float attackDistance;
 
     [Space]
     [Header("• References")]
     public GameObject healthpickup;
+    public Transform Target;
 
-
+    [HideInInspector]
+    public Rigidbody2D myRigidBody;
 
 
     //-------------- Privates ------------------
 
-    protected Rigidbody2D myRigidBody;
+    private HealthSystem healthsystem;
+    private Slider healthslider;
+    private TextMeshProUGUI healthtext;
 
-    protected HealthSystem healthsystem;
-    protected Slider healthslider;
-    protected TextMeshProUGUI healthtext;
 
-    protected Transform Target;
 
-    protected void Start()
+    public void Start()
     {      
         healthsystem = gameObject.AddComponent<HealthSystem>();
         healthslider = transform.GetComponentInChildren<Slider>();
         healthtext = transform.GetComponentInChildren<TextMeshProUGUI>();
-        myRigidBody = gameObject.GetComponent<Rigidbody2D>();
 
-        healthsystem.maxHealth = Health;
-        //Target = ServiceLocator.GetService<PlayerController>().transform;
-        Target = GameObject.FindGameObjectWithTag("Player").transform;
+        healthsystem.SetMaxHealth(Health);
+
+        myRigidBody = GetComponent<Rigidbody2D>();
+
     }
 
 
     public void Update()
+    {
+
+        CheckHealth();
+
+    }
+
+    void CheckHealth()
     {
         if (healthsystem.IsDead())
         {
@@ -62,11 +65,8 @@ public abstract class Enemy : MonoBehaviour {
 
         healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
         healthtext.SetText(Mathf.Ceil(healthsystem.GetHealth() / healthsystem.GetMaxHealth() * 100) + "%");
-
-
     }
-
-
+    
 
 
 }
