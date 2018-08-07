@@ -36,6 +36,7 @@ public class TheBlue: Enemy {
     }
 
     new void Update() {
+        if (!ServiceLocator.GetService<GameManager>().isGameON) return;
         base.Update();
         HandleTransitions();
 

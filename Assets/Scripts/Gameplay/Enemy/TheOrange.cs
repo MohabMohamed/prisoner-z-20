@@ -32,24 +32,14 @@ public class TheOrange : Enemy {
     }
     public new void Update()
     {
+        if (!ServiceLocator.GetService<GameManager>().isGameON) return;
+
         base.Update();
         
-
-
-
         Follow();
 
         HitIfClose();
-
-
-
-
-
-
-
-
     }
-
     
 
     void Follow()

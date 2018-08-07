@@ -32993,6 +32993,11 @@ Prefab:
       propertyPath: PistolDamage
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 50063469979456314, guid: 97b8c7dbea2b73941a93d3c641d5104e,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: e5d2c9bf9bc82d44386930190078e245, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97b8c7dbea2b73941a93d3c641d5104e, type: 2}
   m_IsPrefabAsset: 0
