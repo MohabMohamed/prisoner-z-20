@@ -13,8 +13,10 @@ public class HealthSystem : MonoBehaviour {
 
     private Animator anim;
     
+
     private void Start()
     {
+       
         currentHealth = maxHealth;
         anim = gameObject.GetComponent<Animator>();
     }
@@ -27,6 +29,7 @@ public class HealthSystem : MonoBehaviour {
             currentHealth -= dmgNo;
             if (this.CompareTag("Player"))
             {
+                ServiceLocator.GetService<UIManager>().UpdateHealtBar();
                 ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
                 print(this.name + " Health: " + currentHealth);
 
@@ -51,6 +54,8 @@ public class HealthSystem : MonoBehaviour {
             currentHealth += healNo;
             print(this.name + " Health: " + currentHealth);
         }
+
+        ServiceLocator.GetService<UIManager>().UpdateHealtBar();
     }
 
     public float GetHealth()

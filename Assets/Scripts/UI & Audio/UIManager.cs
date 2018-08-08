@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,16 @@ public class UIManager : MonoBehaviour
     public GameObject PauseMenu;
     public GameObject GameOverPanel;
     public GameObject GUI;
+    public Image HealthBar;
+    void Update()
+    {
+
+    }
+
+    public void UpdateHealtBar()
+    {
+        HealthBar.fillAmount = ServiceLocator.GetService<PlayerController>().gameObject.GetComponent<HealthSystem>().GetHealth() / ServiceLocator.GetService<PlayerController>().gameObject.GetComponent<HealthSystem>().GetMaxHealth();
+    }
 
     public void ShowMainMenu()
     {
@@ -50,6 +61,14 @@ public class UIManager : MonoBehaviour
     {
         HideGUI();
         GameOverPanel.SetActive(true);
+    }
+    public GameObject GetGameOverPanel()
+    {
+        return GameOverPanel;
+    }
+    public void ShowScore()
+    {
+        ServiceLocator.GetService<ScoreManager>().GetComponent<ScoreManager>().getScore();
     }
 
 } // end class UIManager

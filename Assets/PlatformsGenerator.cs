@@ -19,8 +19,7 @@ public class PlatformsGenerator : MonoBehaviour {
     public float maxDistance = 8;
 
     [Space]
-    public float currentPos = 0;
-
+    private float currentPos = 0;
     public List<GameObject> platformList;
 
     void Start () {

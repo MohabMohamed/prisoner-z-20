@@ -8,6 +8,7 @@ public class CurveFollow : MonoBehaviour {
 
     public Transform[] points;
 
+    
 	// Use this for initialization
 	void Start () {
         //LeanTween.init(800);

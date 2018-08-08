@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour {
 
@@ -58,15 +59,13 @@ public class GameManager : MonoBehaviour {
         }
 
         ServiceLocator.GetService<UIManager>().ShowGameOverPanel();
+        ServiceLocator.GetService<UIManager>().GetGameOverPanel().transform.Find("Total Score").GetComponent<TextMeshProUGUI>().text = "Total Score: " + ServiceLocator.GetService<ScoreManager>().getScore();
         ServiceLocator.GetService<AudioManager>().PlayGameOverMusic();
 
     }
 
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+
 
 
     public void Application_Exit()

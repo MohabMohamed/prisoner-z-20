@@ -53,6 +53,7 @@ public abstract class Enemy : MonoBehaviour {
     {
         if (healthsystem.IsDead())
         {
+            ServiceLocator.GetService<ScoreManager>().addScore(30);
             if (Mathf.Round(Random.Range(0, 2)) == 1)
             {
                 GameObject health = Instantiate(healthpickup, transform.position, transform.rotation);
