@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour {
 
     public bool isGameON { get; set; }
 
+    public int MaxConcurrentEnemiesCount;
+
+    [HideInInspector]
+    public int CurrentEnemiesCount;
 
     // Use this for initialization
     void Start () {
@@ -21,8 +25,8 @@ public class GameManager : MonoBehaviour {
 
         player.gameObject.SetActive(false);
 
+        CurrentEnemiesCount = 0;
 	}
-	
 
     public void StartGame()
     {

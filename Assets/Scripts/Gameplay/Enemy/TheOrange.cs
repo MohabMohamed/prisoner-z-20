@@ -44,6 +44,10 @@ public class TheOrange : Enemy {
 
     void Follow()
     {
+        if (Target == null)
+        {
+            Target = ServiceLocator.GetService<PlayerController>().transform;
+        }
         // Follow & Set Animation
         if (Target.position.x - transform.position.x < 2 & Target.position.x - transform.position.x > -2) // Stop
         {

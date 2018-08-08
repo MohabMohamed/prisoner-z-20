@@ -59,9 +59,8 @@ public abstract class Enemy : MonoBehaviour {
                 GameObject health = Instantiate(healthpickup, transform.position, transform.rotation);
                 health.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
             }
-            Destroy(this.gameObject);
-
-
+            Destroy( this.gameObject  , 1);
+            transform.parent.GetComponent<EnemySpawner>().EnemyDied(gameObject);
         }
 
         healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
