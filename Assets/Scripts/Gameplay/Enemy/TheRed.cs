@@ -6,8 +6,9 @@ using TMPro;
 
 public class TheRed : Enemy {
 
-	
-	private new void Start () {
+    private Animator anim;
+
+    private new void Start () {
         base.Start();
     }
 	
@@ -15,4 +16,20 @@ public class TheRed : Enemy {
 	public new void Update () {
         base.Update();
     }
+
+
+    override
+public void OnPlayerDied()
+    {
+        Debug.Log(name + " Knew that player is dead.");
+
+        StopMoving();
+    }
+
+
+    void StopMoving()
+    {
+        anim.SetBool("Run", false);
+    }
+
 }

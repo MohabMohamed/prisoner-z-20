@@ -177,7 +177,18 @@ public class TheBlue: Enemy {
         
     }
 
+    override
+public void OnPlayerDied()
+    {
+        Debug.Log(name + " Knew that player is dead.");
+
+        StopMoving();
+    }
 
 
+    void StopMoving()
+    {
+        anim.SetBool("Run", false);
+    }
 
-}
+} // end class

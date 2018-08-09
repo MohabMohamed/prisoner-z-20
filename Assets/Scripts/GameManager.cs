@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -46,12 +48,35 @@ public class GameManager : MonoBehaviour {
         else return false;
     }
 
+    internal void OnPlayerDied()
+    {
+        isGameON = false;
 
-	// Update is called once per frame
-	void Update () {
+        foreach (Enemy e in FindObjectsOfType<Enemy>())
+        {
+            e.OnPlayerDied();
+        }
+
+        ServiceLocator.GetService<UIManager>().ShowGameOverPanel();
+        ServiceLocator.GetService<AudioManager>().PlayGameOverMusic();
+
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
+
+    public void Application_Exit()
+    {
+        Application.Quit();
+    }
+    public void Application_Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 
 }

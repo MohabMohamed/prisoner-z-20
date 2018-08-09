@@ -66,7 +66,14 @@ public abstract class Enemy : MonoBehaviour {
         healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
         healthtext.SetText(Mathf.Ceil(healthsystem.GetHealth() / healthsystem.GetMaxHealth() * 100) + "%");
     }
-    
+
+
+    virtual public void OnPlayerDied()
+    {
+       Debug.Log("Enemy Parent Class : OnPlayer Died");
+    }
+
+
 
 
 }
