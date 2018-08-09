@@ -14,6 +14,8 @@ TagManager:
   - PlayerBullet
   - EnemySword
   - PathTrigger
+  - LeftJumpPathTrigger
+  - RightJumpPathTrigger
   layers:
   - Default
   - TransparentFX

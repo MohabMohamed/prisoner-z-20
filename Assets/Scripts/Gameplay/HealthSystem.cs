@@ -22,22 +22,23 @@ public class HealthSystem : MonoBehaviour {
 
     public void Damage(int dmgNo)
     {
-        if(this.CompareTag("Player"))
+        if (currentHealth > 0)
         {
-            ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
-        }
-        currentHealth -= dmgNo;
-        if (currentHealth <= 0)
-        {
-            
-            print(this.name + " Dead");
-        }
-        else
-            print(this.name + " Health: " + currentHealth);
+            currentHealth -= dmgNo;
+            if (this.CompareTag("Player"))
+            {
+                ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
+                print(this.name + " Health: " + currentHealth);
 
 
+                if (currentHealth <= 0)  ServiceLocator.GetService<GameManager>().OnPlayerDied();
+            }
+            else if (currentHealth <= 0)
+            {
 
-        
+                print(this.name + " Dead");
+            }
+        }        
     }
 
 

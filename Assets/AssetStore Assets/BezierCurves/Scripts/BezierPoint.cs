@@ -99,6 +99,11 @@ public class BezierPoint : MonoBehaviour{
 			_curve.SetDirty();
 		}
 	}
+    public void setHandleX(float num) ///////////////////////////// MADE BY ME
+    {
+        _handle1.x = -num;
+        _handle2.x = num;
+    }
 
 	/// <summary>
 	///		- Global position of the first handle

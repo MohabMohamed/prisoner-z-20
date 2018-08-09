@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour {
 
-    public AudioClip MainMusicClip, GameplayClip, GunShotClip , BTNClickSFX, PlayerHitClip;
+    public AudioClip MainMusicClip, GameplayClip, GameOverClip, GunShotClip , BTNClickSFX, PlayerHitClip;
     public List<AudioClip> JumpClips;
     public List<AudioClip> SwordClips;
 
@@ -26,6 +26,14 @@ public class AudioManager : MonoBehaviour {
         GetComponent<AudioSource>().Play();
         GetComponent<AudioSource>().volume = 0.5f;
     }
+
+    public void PlayGameOverMusic()
+    {
+        GetComponent<AudioSource>().clip = GameOverClip;
+        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().volume = 0.75f;
+    }
+
     public void ToggleMusic()
     {
         if (GetComponent<AudioSource>().isPlaying)

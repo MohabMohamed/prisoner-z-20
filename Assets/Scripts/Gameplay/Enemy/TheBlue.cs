@@ -23,7 +23,7 @@ public class TheBlue: Enemy {
     public float followDistance;
     public float attackDistance;
 
-    
+
 
     new void Start()
     {
@@ -35,13 +35,20 @@ public class TheBlue: Enemy {
         anim = GetComponent<Animator>();
     }
 
+
     new void Update() {
         if (!ServiceLocator.GetService<GameManager>().isGameON) return;
         base.Update();
         HandleTransitions();
 
         flip();
+
+
+       
+
     }
+
+
 
     void flip()
     {
@@ -54,7 +61,7 @@ public class TheBlue: Enemy {
 
     
     // state object assigned depending on current enemy state
-    ///////////////////
+    
 
 
 
@@ -127,18 +134,61 @@ public class TheBlue: Enemy {
     // method death
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.CompareTag("PathTrigger"))
+        
+        /*if(collision.CompareTag("PathTrigger")) //remove
         {
             gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
             gameObject.GetComponent<CurveFollow>().enabled = true;
             gameObject.GetComponent<CurveFollow>().Move();
 
+
             collision.enabled = false;
             LeanTween.delayedCall(1, () => { collision.enabled = true; });
+        } */
+
+        if(collision.CompareTag("RightJumpPathTrigger") && myRigidBody.velocity.x <-0.5) //remove else
+        {
+
+            
+                gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
+                gameObject.GetComponent<CurveFollow>().enabled = true;
+                gameObject.GetComponent<CurveFollow>().Move();
+            
+
+                collision.enabled = false;
+                LeanTween.delayedCall(1, () => { collision.enabled = true; });
+                
         }
+        else if(collision.CompareTag("LeftJumpPathTrigger") && myRigidBody.velocity.x >0.5)
+        {
+
+            
+                gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
+                gameObject.GetComponent<CurveFollow>().enabled = true;
+                gameObject.GetComponent<CurveFollow>().Move();
+            
+
+                collision.enabled = false;
+                LeanTween.delayedCall(1, () => { collision.enabled = true; });
+        }
+        
+        
+    }
+
+    override
+public void OnPlayerDied()
+    {
+        Debug.Log(name + " Knew that player is dead.");
+
+        StopMoving();
     }
 
 
-}
+    void StopMoving()
+    {
+        anim.SetBool("Run", false);
+    }
+
+} // end class

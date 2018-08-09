@@ -651,7 +651,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010208881502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.1469126, y: -4.288624, z: 0.1953125}
+  m_LocalPosition: {x: -2.46, y: -3.62, z: 0.1953125}
   m_LocalScale: {x: 0.15361999, y: 0.15361999, z: 0.15361999}
   m_Children:
   - {fileID: 224301316171055874}
@@ -1186,7 +1186,7 @@ Animator:
   m_GameObject: {fileID: 1000010208881502}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3f91ccc83710e0140844bbc6f2ff40a4, type: 2}
+  m_Controller: {fileID: 9100000, guid: f4c84fa6ec84ce946b1623220c0d87cd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1368,7 +1368,8 @@ MonoBehaviour:
   CanJump: 0
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
-  PlayerTarget: {fileID: 0}
+  Target: {fileID: 0}
+  myRigidBody: {fileID: 0}
   MeleeRange: 2.3
   BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
     type: 2}
