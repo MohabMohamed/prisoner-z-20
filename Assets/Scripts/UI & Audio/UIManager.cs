@@ -70,5 +70,5 @@ public class UIManager : MonoBehaviour
     {
         ServiceLocator.GetService<ScoreManager>().GetComponent<ScoreManager>().getScore();
     }
-
+    
 } // end class UIManager

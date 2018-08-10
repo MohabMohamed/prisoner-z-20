@@ -11,7 +11,6 @@ public class RangedWeapon : MonoBehaviour {
     public GameObject bulletPrefab;
     public Transform bulletSpawn;
     public GameObject muzzleFlash;
-    public AudioSource gunShot;
     public float bulletSpeed;
     public GameObject flash;
     

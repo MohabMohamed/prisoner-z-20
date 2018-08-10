@@ -10,8 +10,13 @@ public class PickupSystem : MonoBehaviour {
     {
         if(collision.CompareTag("Player"))
         {
-            if(collision.gameObject.GetComponent<HealthSystem>().GetHealth() < collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth())
+            if (collision.gameObject.GetComponent<HealthSystem>().GetHealth() < collision.gameObject.GetComponent<HealthSystem>().GetMaxHealth())
+            {
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.GetComponent<Collider2D>(), false);
                 Destroy(this.gameObject);
+            }
+            else
+                Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.GetComponent<Collider2D>());
         }
     }
 }

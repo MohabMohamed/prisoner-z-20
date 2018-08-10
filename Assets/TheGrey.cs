@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-
-public class TheRed : Enemy {
 
 
-    private new void Start () {
+public class TheGrey : Enemy
+{
+
+
+    private new void Start()
+    {
         base.Start();
     }
-	
-	
-	public new void Update () {
+
+
+    public new void Update()
+    {
         base.Update();
     }
 

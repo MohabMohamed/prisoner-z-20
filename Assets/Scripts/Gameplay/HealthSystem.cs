@@ -31,7 +31,6 @@ public class HealthSystem : MonoBehaviour {
             {
                 ServiceLocator.GetService<UIManager>().UpdateHealtBar();
                 ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
-                print(this.name + " Health: " + currentHealth);
 
 
                 if (currentHealth <= 0)  ServiceLocator.GetService<GameManager>().OnPlayerDied();
@@ -52,7 +51,6 @@ public class HealthSystem : MonoBehaviour {
         else
         {
             currentHealth += healNo;
-            print(this.name + " Health: " + currentHealth);
         }
 
         ServiceLocator.GetService<UIManager>().UpdateHealtBar();

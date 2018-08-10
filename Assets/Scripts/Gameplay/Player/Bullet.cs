@@ -15,17 +15,17 @@ public class Bullet : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") && !collision.gameObject.GetComponent<HealthSystem>().IsDead())
         {
             collision.gameObject.GetComponent<HealthSystem>().Damage(Dmg);
             Invoke("PlayBloodFX", 0.04f);
-            Destroy(this.gameObject, 0.05f);
+            Destroy(this.gameObject, 0.04f);
 
         }
         else if (collision.CompareTag("Ground"))
         {
             Invoke("PlayGroundFX", 0.04f);
-            Destroy(this.gameObject, 0.05f);
+            Destroy(this.gameObject, 0.04f);
 
         }
     }

@@ -7,14 +7,13 @@ using UnityEngine.UI;
 public class TheOrange : Enemy {
 
     
-    private Animator anim;
+    
     private Transform body;
     private Transform player;
-
     private float width;
-    private bool isLookingLeft = false;
-    [Space]
 
+
+    [Space]
     //Melee
     public float MeleeRange;
     float cooldowntime = 4f;
@@ -25,24 +24,30 @@ public class TheOrange : Enemy {
     private new void Start()
     {
         base.Start();
-        anim = GetComponent<Animator>();
+        
         body = transform.Find("Rogue_pelvis_01");
         player = transform;
         width = player.gameObject.GetComponent<CapsuleCollider2D>().size.x * player.localScale.x;
+
+        
     }
     public new void Update()
     {
         if (!ServiceLocator.GetService<GameManager>().isGameON) return;
 
-        base.Update();
-        
-        Follow();
+        if (!Dead)
+        {
+            base.Update();
+            //Follow();
+            //HitIfClose();
+        }
 
-        HitIfClose();
     }
+
     
 
-    void Follow()
+
+    /*void Follow()
     {
         if (Target == null)
         {
@@ -74,38 +79,22 @@ public class TheOrange : Enemy {
                 isLookingLeft = false;
             }
         }
-    }
+    }*/
 
 
-    void HitIfClose()
+    /*void HitIfClose()
     {
         if (cooldowntemp > 0)
             cooldowntemp -= Time.deltaTime;
-        else if (cooldowntemp <= 0 && Target.position.x - transform.position.x < 4 && Target.position.x - transform.position.x > -4)
+        else if (cooldowntemp <= 0 && (Target.position.x - transform.position.x < 4 && Target.position.x - transform.position.x > -4) && Vector2.Distance(Target.position, transform.position) < 6)
         {
             anim.Play("OrangeMelee");
             cooldowntemp = cooldowntime;
-            StartCoroutine(MeleeRoutine());
+            StartCoroutine(AttackCoroutine());
         }
 
-    }
-    IEnumerator MeleeRoutine()
-    {
+    }*/
 
-        yield return new WaitForSeconds(0.6f);
-        int lookleftorright = (body.localScale.x < 0) ? -1 : 1;
-        RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), player.right, MeleeRange * lookleftorright));
-        Debug.DrawLine(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), new Vector2(player.position.x + MeleeRange * lookleftorright, player.position.y + 1f), Color.cyan, 1f);
-
-        if (hit && hit.transform.CompareTag("Player"))
-        {
-            print("should hit player");
-            hit.transform.gameObject.GetComponent<HealthSystem>().Damage(HitPower);
-            GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
-            Destroy(BloodFX, 1f);
-        }
-
-    }
 
     override
     public void OnPlayerDied()
@@ -122,4 +111,23 @@ public class TheOrange : Enemy {
         anim.SetBool("Run", false);
     }
 
+    protected override IEnumerator AttackCoroutine()
+    {
+        anim.Play("OrangeMelee");
+        yield return new WaitForSeconds(0.6f);
+        if (!healthsystem.IsDead())
+        {
+            int lookleftorright = (body.localScale.x < 0) ? -1 : 1;
+            RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), player.right, MeleeRange * lookleftorright));
+            Debug.DrawLine(new Vector2(player.position.x + width * lookleftorright, player.position.y + 1f), new Vector2(player.position.x + MeleeRange * lookleftorright, player.position.y + 1f), Color.cyan, 1f);
+
+            if (hit && hit.transform.CompareTag("Player"))
+            {
+                print("should hit player");
+                hit.transform.gameObject.GetComponent<HealthSystem>().Damage(HitPower);
+                GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
+                Destroy(BloodFX, 1f);
+            }
+        }
+    }
 }

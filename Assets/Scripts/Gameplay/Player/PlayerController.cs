@@ -62,7 +62,6 @@ public class PlayerController : MonoBehaviour
         {
     
             anim.SetTrigger("Died");
-            Invoke("SetInactive", 2f);
         }
 
 
