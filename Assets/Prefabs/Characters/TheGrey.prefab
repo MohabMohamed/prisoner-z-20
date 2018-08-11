@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011454611054}
   - component: {fileID: 212000012290254990}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012179484438}
   - component: {fileID: 212000012346852014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_l_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011264453018}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013629764122}
   - component: {fileID: 212000013960839350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011745711600}
   - component: {fileID: 212000013015367302}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_head_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013239750270}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011634220802}
   - component: {fileID: 212000010490167732}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011953469752}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011944472904}
   - component: {fileID: 212000010607150618}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012227364014}
   - component: {fileID: 212000013350449930}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010867813540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -191,7 +191,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010593158540}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010889521784}
   - component: {fileID: 212000013348428842}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_torso_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010374464428}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_leg_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011732419726}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_wrist_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012608004752}
   - component: {fileID: 212000011447237430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_weapon_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013667368180}
   - component: {fileID: 212000012415518296}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_r_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010764366660}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_head_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 50674477472906406}
   - component: {fileID: 70357465908130536}
   - component: {fileID: 114297381544204134}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: TheGrey
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012976587322}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_pelvis_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013562920894}
   - component: {fileID: 212000012269901276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_l_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013884892800}
   - component: {fileID: 212000014065109600}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_r_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000011820106706}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_R_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000014150242486}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_torso_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -395,7 +395,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000013211790984}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -411,7 +411,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000014234547486}
   - component: {fileID: 212000011783171430}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_r_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000014061642266}
   - component: {fileID: 212000013213281192}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_pelvis_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -443,7 +443,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012683437620}
   - component: {fileID: 212000010753214550}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_face_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000012581718166}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_elbow_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000010494061198}
   - component: {fileID: 212000013373105302}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_shoulder_l_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012331952504}
   - component: {fileID: 212000011474379482}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_hood_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010434830896}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rogue_boot_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 223734900954862980}
   - component: {fileID: 114230624954317958}
   - component: {fileID: 114729737130581278}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224270352469797188}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,7 +555,7 @@ GameObject:
   - component: {fileID: 224690773920090694}
   - component: {fileID: 222106440699609714}
   - component: {fileID: 114922103267483878}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Health%Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,7 +572,7 @@ GameObject:
   - component: {fileID: 224682118410866292}
   - component: {fileID: 222211518920157792}
   - component: {fileID: 114542674322259778}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,7 +588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224615969942670180}
   - component: {fileID: 114875872216726006}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 224900385675349678}
   - component: {fileID: 222793464642626020}
   - component: {fileID: 114117925031698860}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

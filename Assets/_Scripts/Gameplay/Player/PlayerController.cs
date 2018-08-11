@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             Sword.SetActive(true);
             meleescript.enabled = true;
             rangedscript.enabled = false;
-            transform.Find("GunShoulder").GetComponent<LookAt>().enabled = false;
+            AimingShoulder.GetComponent<LookAt>().enabled = false;
 
             AimingShoulder.transform.localEulerAngles = new Vector3(0,0,20);
         }
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             Sword.SetActive(false);
             meleescript.enabled = false;
             rangedscript.enabled = true;
-            transform.Find("GunShoulder").GetComponent<LookAt>().enabled = true;
+            AimingShoulder.GetComponent<LookAt>().enabled = true;
             
         }
         

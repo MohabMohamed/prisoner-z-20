@@ -27,10 +27,9 @@ public class TheBlue: Enemy {
         attackDelayTemp = attackDelay;
         isLookingLeft = false;
 
-        
-
-        
-        
+        followDistance = Random.Range(followDistance - followDistance/3, followDistance + followDistance / 3);
+        attackDistance = Random.Range(attackDistance - attackDistance / 3, attackDistance + attackDistance / 3);
+                     
     }
 
 
@@ -43,30 +42,17 @@ public class TheBlue: Enemy {
             base.Update();
         }
 
-
-       
+   
 
     }
 
 
 
-    
-
+   
     
     // state object assigned depending on current enemy state
     
-
-
-
-    
-
-    
-    
-
-
-    
-
-    
+  
 
     protected override IEnumerator AttackCoroutine()
     {

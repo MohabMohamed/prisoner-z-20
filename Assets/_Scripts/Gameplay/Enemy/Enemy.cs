@@ -115,12 +115,12 @@ public abstract class Enemy : MonoBehaviour {
             ServiceLocator.GetService<ScoreManager>().addScore(30);
 
 
-           // if (!Died)// Mathf.Round(Random.Range(0, 2)) == 1)
-           // {
+            if ( Random.Range(0, 1f) <= .7f)
+            {
                 GameObject health = Instantiate(healthpickup, transform.position, transform.rotation);
                 health.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
 
-            // }
+            }
 
             
             Destroy( this.gameObject  , 1);

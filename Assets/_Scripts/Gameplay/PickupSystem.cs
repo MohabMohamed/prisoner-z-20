@@ -6,7 +6,8 @@ public class PickupSystem : MonoBehaviour {
 
     private void Start()
     {
-        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), ServiceLocator.GetService<Enemy>().gameObject.GetComponentInChildren<Collider2D>(), true);
+        //Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), ServiceLocator.GetService<Enemy>().gameObject.GetComponentInChildren<Collider2D>(), true);
+        Destroy(gameObject , Random.Range(5f , 10f));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

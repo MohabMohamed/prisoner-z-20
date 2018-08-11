@@ -44,7 +44,7 @@ public class MeleeWeapon : MonoBehaviour {
    IEnumerator MeleeRoutine()
     {
         
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.327f);
         int lookleftorright = (player.localScale.x < 0) ? -1 : 1;
         RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + Width * lookleftorright, player.position.y+0.5f) , player.right , MeleeRange * lookleftorright));
         Debug.DrawLine(new Vector2(player.position.x + Width * lookleftorright, player.position.y + 0.5f), new Vector2(player.position.x + MeleeRange * lookleftorright , player.position.y + 0.5f) , Color.cyan , 1f);

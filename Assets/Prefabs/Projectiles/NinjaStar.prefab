@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4055633880004756}
   - component: {fileID: 212203913435614414}
-  - component: {fileID: 61813411000657276}
   - component: {fileID: 50597017299566286}
   - component: {fileID: 114183869874230024}
+  - component: {fileID: 58314742869265170}
   m_Layer: 0
   m_Name: NinjaStar
   m_TagString: Untagged
@@ -63,8 +63,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &61813411000657276
-BoxCollider2D:
+--- !u!58 &58314742869265170
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -76,18 +76,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
-  m_EdgeRadius: 0
+  m_Radius: 1.8
 --- !u!114 &114183869874230024
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,9 +25,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - HealthLayer
+  - EnemyLayer
   - 
   - 
   - 

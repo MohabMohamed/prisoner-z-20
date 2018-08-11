@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour {
 
     public float SpawnRateInSec;
     public int MaxEnemiesToGenerate;
-    public float GeneratedSize;
 
     List<GameObject> spawnedEnemies;
     Transform playerTransform;
@@ -25,12 +24,11 @@ public class EnemySpawner : MonoBehaviour {
 
     void Generate()
     {
-        if(Vector3.Distance(transform.position , playerTransform.position) >= 5 && ServiceLocator.GetService<GameManager>().isGameON && spawnedEnemies.Count < MaxEnemiesToGenerate && ServiceLocator.GetService<GameManager>().CurrentEnemiesCount < ServiceLocator.GetService<GameManager>().MaxConcurrentEnemiesCount)
+        if(Vector3.Distance(transform.position , playerTransform.position) >= 8 && ServiceLocator.GetService<GameManager>().isWaveOn && spawnedEnemies.Count < MaxEnemiesToGenerate && ServiceLocator.GetService<GameManager>().currentTotalSpawnedEnemies < ServiceLocator.GetService<GameManager>().CurrentMaxEnemiesCount)
         {
-            spawnedEnemies.Add(Instantiate(AssociatedEnemies[Random.Range(0, AssociatedEnemies.Count)], transform.position, transform.rotation, transform ));
-
-            spawnedEnemies[spawnedEnemies.Count - 1].transform.localScale = new Vector3(GeneratedSize,GeneratedSize);
-
+            spawnedEnemies.Add(Instantiate(AssociatedEnemies[Random.Range(0, AssociatedEnemies.Count)], transform.position, transform.rotation));
+            spawnedEnemies[spawnedEnemies.Count - 1].transform.parent = transform;
+            
             ServiceLocator.GetService<GameManager>().CurrentEnemiesCount++;
         }
 

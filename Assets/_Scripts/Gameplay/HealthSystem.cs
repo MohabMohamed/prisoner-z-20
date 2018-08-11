@@ -14,9 +14,8 @@ public class HealthSystem : MonoBehaviour {
     private Animator anim;
     
 
-    private void Start()
-    {
-       
+    private void Awake()
+    {      
         currentHealth = maxHealth;
         anim = gameObject.GetComponent<Animator>();
     }
@@ -32,6 +31,7 @@ public class HealthSystem : MonoBehaviour {
                 ServiceLocator.GetService<UIManager>().UpdateHealtBar();
                 ServiceLocator.GetService<AudioManager>().PlayPlayerHitSFX();
 
+                Physics2D.IgnoreLayerCollision( 8 , 9 , false);
 
                 if (currentHealth <= 0)  ServiceLocator.GetService<GameManager>().OnPlayerDied();
             }
@@ -46,14 +46,17 @@ public class HealthSystem : MonoBehaviour {
 
     public void Heal(int healNo)
     {
+
+        currentHealth += healNo;
+
         if (currentHealth >= maxHealth)
-            print("Cannot heal, already at full health");
-        else
         {
-            currentHealth += healNo;
+            print("Cannot heal, already at full health");
+            Physics2D.IgnoreLayerCollision(8, 9, true);
+            currentHealth = maxHealth;
         }
 
-        ServiceLocator.GetService<UIManager>().UpdateHealtBar();
+         ServiceLocator.GetService<UIManager>().UpdateHealtBar();
     }
 
     public float GetHealth()
@@ -69,6 +72,7 @@ public class HealthSystem : MonoBehaviour {
     public void SetMaxHealth(float newhealth)
     {
         maxHealth = newhealth;
+        currentHealth = maxHealth;
     }
 
     public bool IsDead()

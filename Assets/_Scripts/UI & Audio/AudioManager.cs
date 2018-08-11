@@ -11,7 +11,12 @@ public class AudioManager : MonoBehaviour {
 
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        //if(ServiceLocator.GetService<AudioManager>() == null)
+        //     DontDestroyOnLoad(gameObject);
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
 
 
