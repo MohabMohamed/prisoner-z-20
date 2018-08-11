@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class BulletProjectile : MonoBehaviour {
 
     public GameObject BloodParticleFX;
     public GameObject GroundParticleFX;

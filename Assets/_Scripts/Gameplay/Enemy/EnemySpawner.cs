@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         playerTransform = ServiceLocator.GetService<PlayerController>().transform;
         spawnedEnemies = new List<GameObject>();
-        Invoke("Generate", Random.Range(0 , SpawnRateInSec/2));
+        Invoke("Generate", Random.Range(2 , SpawnRateInSec/2));
 	}
 
     void Generate()

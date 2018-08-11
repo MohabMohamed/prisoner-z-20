@@ -104,6 +104,9 @@ public abstract class Enemy : MonoBehaviour {
 
         if (healthsystem.IsDead() && !Dead)
         {
+            
+
+
             Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Target.GetComponent<CapsuleCollider2D>());
             healthslider.enabled = false;
             healthtext.enabled = false;

@@ -1009,7 +1009,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011922212602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.761654, y: -2.186857, z: 0}
+  m_LocalPosition: {x: 12.1, y: -2.71, z: 0}
   m_LocalScale: {x: 0.18946716, y: 0.18946716, z: 0.18946716}
   m_Children:
   - {fileID: 224277274868987748}
@@ -1172,14 +1172,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6702eb789aa03634ba77b3585e6e61f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 10
+  Speed: 8
   Health: 50
-  HitPower: 50
+  HitPower: 20
   CanJump: 1
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   Target: {fileID: 0}
   myRigidBody: {fileID: 0}
+  attackDelay: 1
+  attackDelayTemp: 0
+  followDistance: 50
+  attackDistance: 3
+  MeleeRange: 1
+  BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
+    type: 2}
 --- !u!114 &114542674322259778
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,13 +5,13 @@ using UnityEngine;
 public class TheBlue: Enemy {
 
 
-    
+
 
     //public float FireRate;
     //private bool canAttack = true;
 
     [Space]
-    [Header("• References")]
+    [Header("• Blue Specific")]
     public GameObject projectilePrefab;
     public Transform projectileSpawn;
     public float projectileSpeed;
@@ -36,12 +36,11 @@ public class TheBlue: Enemy {
 
     new void Update() {
         if (!ServiceLocator.GetService<GameManager>().isGameON) return;
-        base.Update();
+        
 
         if (!Dead)
         {
-            HandleTransitions();
-            
+            base.Update();
         }
 
 
@@ -67,29 +66,26 @@ public class TheBlue: Enemy {
 
     
 
-    private void Attack()
-    {
-        
-        GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
-        Destroy(projectile, 4f);
-        Vector2 direction = (Target.position + new Vector3(0, 1, 0) - projectileSpawn.position).normalized;
-        projectile.transform.Rotate(projectile.transform.forward,Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x));
-        /*Debug.Log(Mathf.Atan2(direction.y, direction.x));
-        Debug.Log(
-            "Target: " + Target.position
-            +"\nprojectileSpawnPosition: " + projectileSpawn.position
-            + "\n Direction: " + direction);*/
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
-    }
+    
 
     protected override IEnumerator AttackCoroutine()
     {
         anim.Play("ThrowShuriken_01");
         ShurikenSprite.SetActive(true);
         yield return new WaitForSeconds(1.23f);
-        Attack();
+
+        // throw projectile
+        GameObject projectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation);
+        Destroy(projectile, 4f);
+        Vector2 direction = (Target.position + new Vector3(0, 1, 0) - projectileSpawn.position).normalized;
+        projectile.transform.Rotate(projectile.transform.forward, Mathf.Rad2Deg * Mathf.Atan2(direction.y, direction.x));
+        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed;
+        // end of throw projectile
+
         ShurikenSprite.SetActive(false);
     }
+
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class PickupSystem : MonoBehaviour {
 
-
+    private void Start()
+    {
+        Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), ServiceLocator.GetService<Enemy>().gameObject.GetComponentInChildren<Collider2D>(), true);
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
