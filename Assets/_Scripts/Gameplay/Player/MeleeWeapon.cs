@@ -11,7 +11,7 @@ public class MeleeWeapon : MonoBehaviour {
     public GameObject BloodParticleFX;
     public float MeleeRange;
     public int MeleeDamage;
-    private float cooldowntime = 0.9f;
+    public float coolDownTime;
     private float cooldowntemp = 0f;
     private float Width;
     
@@ -31,10 +31,10 @@ public class MeleeWeapon : MonoBehaviour {
         {
             if (cooldowntemp > 0)
                 cooldowntemp -= Time.deltaTime;
-            else if (Input.GetButtonDown("Fire1"))
+            else if (Input.GetButtonDown("Fire1") && gameObject.GetComponent<PlayerController>().FiringAllowed)
             {
                 anim.Play("PlayerMelee");
-                cooldowntemp = cooldowntime;
+                cooldowntemp = coolDownTime;
                 StartCoroutine(MeleeRoutine());
             }
         }
@@ -48,7 +48,8 @@ public class MeleeWeapon : MonoBehaviour {
         int lookleftorright = (player.localScale.x < 0) ? -1 : 1;
         RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + Width * lookleftorright, player.position.y+0.5f) , player.right , MeleeRange * lookleftorright));
         Debug.DrawLine(new Vector2(player.position.x + Width * lookleftorright, player.position.y + 0.5f), new Vector2(player.position.x + MeleeRange * lookleftorright , player.position.y + 0.5f) , Color.cyan , 1f);
-        
+
+        print(hit.transform.name);
         if (hit && hit.transform.CompareTag("Enemy"))
         {
             hit.transform.gameObject.GetComponent<HealthSystem>().Damage(MeleeDamage);

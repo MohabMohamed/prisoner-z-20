@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 50674477472906406}
   - component: {fileID: 70357465908130536}
   - component: {fileID: 114297381544204134}
+  - component: {fileID: 114783292136688384}
   m_Layer: 10
   m_Name: TheGrey
   m_TagString: Enemy
@@ -1009,7 +1010,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011922212602}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.1, y: -2.71, z: 0}
+  m_LocalPosition: {x: 10.994938, y: 2.29, z: 0}
   m_LocalScale: {x: 0.18946716, y: 0.18946716, z: 0.18946716}
   m_Children:
   - {fileID: 224277274868987748}
@@ -1175,7 +1176,7 @@ MonoBehaviour:
   Speed: 8
   Health: 50
   HitPower: 20
-  CanJump: 1
+  isMelee: 1
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   Target: {fileID: 0}
@@ -1183,7 +1184,7 @@ MonoBehaviour:
   attackDelay: 1
   attackDelayTemp: 0
   followDistance: 50
-  attackDistance: 3
+  attackDistance: 1.2
   MeleeRange: 1
   BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,
     type: 2}
@@ -1230,6 +1231,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114783292136688384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011922212602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebe81e4fa96191b4ab24276493f18103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve: {fileID: 0}
+  points: []
 --- !u!114 &114875872216726006
 MonoBehaviour:
   m_ObjectHideFlags: 1

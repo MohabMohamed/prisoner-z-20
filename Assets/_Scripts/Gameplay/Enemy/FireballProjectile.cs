@@ -12,16 +12,19 @@ public class FireballProjectile : MonoBehaviour {
     void Start () {
         
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
-        myRigidBody.angularVelocity = 700;
+        //myRigidBody.angularVelocity = 700;
     }
 	
 
 	
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject explosion = Instantiate(explosioneffect, transform.position, explosioneffect.transform.rotation);
-        Destroy(explosion, 1f);
-        Destroy(gameObject);
+        if (collision.CompareTag("Player"))
+        {
+            GameObject explosion = Instantiate(explosioneffect, transform.position, explosioneffect.transform.rotation);
+            Destroy(explosion, 1f);
+            Destroy(gameObject);
+        }
     }
     
 }

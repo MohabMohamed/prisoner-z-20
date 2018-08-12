@@ -9,6 +9,11 @@ public class PlayerController : MonoBehaviour
     public Camera camReference;
     HealthSystem health;
     Animator anim;
+    bool isGrounded = false;
+    bool doubleJump = false;
+    bool isLookingLeft = false;
+    [HideInInspector]
+    public bool isPlayerOnPlatform;
 
 
     public float maxhealth;
@@ -16,29 +21,30 @@ public class PlayerController : MonoBehaviour
     public float jumpheight;
     public float doublejumpheight;
 
+    
+
+    
+
+    [Space]
+    [Header("• Weapons Related")]
     //public enum WeaponUsed {Sword, Pistol };
     public string CurrentWeapon;
-
-
-    bool isGrounded = false;
-    bool doubleJump = false;
-    bool isLookingLeft = false;
+    public GameObject AimingShoulder;
+    public GameObject Pistol;
+    public GameObject Sword;
 
     MeleeWeapon meleescript;
     RangedWeapon rangedscript;
 
-
-    [Space]
-    [Header("• Weapon References")]
-    public GameObject AimingShoulder;
-    public GameObject Pistol;
-    public GameObject Sword;
+    [HideInInspector]
+    public bool FiringAllowed { get; set; }
 
     void Awake()
     {
         health = gameObject.AddComponent<HealthSystem>();
         health.SetMaxHealth(maxhealth);
         CurrentWeapon = "Pistol";
+        FiringAllowed = true;
     }
     void Start()
     {
@@ -175,29 +181,31 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
 
-        if (other.CompareTag("Ground") || other.CompareTag("Platform"))
+        if (other.CompareTag("Ground"))
         {
             isGrounded = true;
             doubleJump = false;
-            //print("Ground Trigger");
-        }
-
-
-        /*if (other.CompareTag("EnemySword"))
+        } 
+        else if (other.CompareTag("Platform"))
         {
-
-            health.Damage(20);
-            //RIGID.velocity = new Vector2(RIGID.velocity.x, RIGID.velocity.y + 5);
-
-        }*/
-       
-
+            isGrounded = true;
+            doubleJump = false;
+            isPlayerOnPlatform = true;
+        }
         if (other.CompareTag("HealthPickup"))
         {
             health.Heal(20);
         }
 
 
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Platform"))
+        {
+            isPlayerOnPlatform = false;
+        }
     }
 
 

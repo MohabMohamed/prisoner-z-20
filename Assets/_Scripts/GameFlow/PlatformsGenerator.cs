@@ -5,42 +5,64 @@ using UnityEngine;
 public class PlatformsGenerator : MonoBehaviour {
 
     [Header("• References")]
+    public GameObject firstPlatform;
     public GameObject PlatformParent;
     public GameObject[] platformPrefabs;
 
     [Space]
     [Header("• Variables")]
-    public float endOfMap = 32f;
+    public float endOfMap;
 
-    public float minHeight = -1f;
-    public float maxHeight = 3.5f;
+    public float minDistance;
+    public float maxDistance;
+    
+    [Space]
+    public float high_minHeight;
+    public float high_maxHeight;
 
-    public float minDistance = 4;
-    public float maxDistance = 8;
+    public float low_minHeight;
+    public float low_maxHeight;
+
+
 
     [Space]
-    private float currentPos = 0;
     public List<GameObject> platformList;
+  //  public List<GameObject> lowplatformList;
 
+    private float currentPos = 0;
+    private int tmphigh;
     void Start () {
 
 
-
+        platformList.Add(firstPlatform);
+       // lowplatformList.Add(firstPlatform);
 
         while(currentPos <= endOfMap)
         {
-            GameObject randomPlatform = platformPrefabs[ Mathf.RoundToInt(Random.Range(0, platformPrefabs.Length)) ];
+            GameObject randomPlatform = platformPrefabs[Mathf.RoundToInt(Random.Range(0, platformPrefabs.Length))];
             GameObject platform;
-            float height = Random.Range(minHeight, maxHeight);
             float distance = Random.Range(minDistance, maxDistance);
             currentPos += distance;
 
+            if (Random.Range(0f,1f) <= .8f && tmphigh < 2) // high platform
+            {
+                float height = Random.Range(high_minHeight, high_maxHeight);
+                platform = Instantiate(randomPlatform , new Vector3(currentPos, height),randomPlatform.transform.rotation ,PlatformParent.transform);
+                platform.name = "HighPlatform";
+                tmphigh++;
+            }
+            else // low platform
+            {
+                float height = Random.Range(low_minHeight, low_maxHeight);
+                platform = Instantiate(randomPlatform, new Vector3(currentPos, height), randomPlatform.transform.rotation, PlatformParent.transform);
+                platform.name = "LowPlatform";
+                tmphigh = 0;
 
-            platform = Instantiate(randomPlatform);
-            platform.transform.position = new Vector3(currentPos, height);
+               // lowplatformList.Add(platform);
+            }
 
-            platform.transform.parent = PlatformParent.transform;
             platformList.Add(platform);
+
         }
 
         

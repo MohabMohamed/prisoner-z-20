@@ -22,25 +22,10 @@ GameObject:
   - component: {fileID: 212721145961615398}
   - component: {fileID: 68743720296019372}
   - component: {fileID: 251092415570608990}
+  - component: {fileID: 114449713167501642}
   m_Layer: 0
   m_Name: PlatformPrefab3
   m_TagString: Platform
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &1228273840419210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4958297985905836}
-  - component: {fileID: 114641701804660868}
-  m_Layer: 0
-  m_Name: Spawner
-  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,24 +37,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1205514797043144}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.33471, y: 5.776223, z: 0}
+  m_LocalPosition: {x: 19.04715, y: -1.5500951, z: 0}
   m_LocalScale: {x: 1.8486, y: 1.8486, z: 1.8486}
-  m_Children:
-  - {fileID: 4958297985905836}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4958297985905836
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228273840419210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 0.31, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4515367337537362}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &68743720296019372
@@ -89,12 +60,12 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.784343, y: -0.16160463}
   - {x: 0.93683857, y: 0.23128247}
---- !u!114 &114641701804660868
+--- !u!114 &114449713167501642
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1228273840419210}
+  m_GameObject: {fileID: 1205514797043144}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0769518b144213c4d893e9bebab9df5e, type: 3}
@@ -104,7 +75,7 @@ MonoBehaviour:
   - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
   SpawnRateInSec: 15
   MaxEnemiesToGenerate: 1
-  GeneratedSize: 0.1
+  isBossSpawner: 0
 --- !u!212 &212721145961615398
 SpriteRenderer:
   m_ObjectHideFlags: 1

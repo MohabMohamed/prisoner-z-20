@@ -23,7 +23,8 @@ public class CurveFollow : MonoBehaviour {
     public void Move()
     {
         LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setOnComplete(()=> {
-            LeanTween.value(0, 1, 1).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setEaseInSine();
+            if(gameObject!= null)
+                LeanTween.value(0, 1, 1).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setEaseInSine();
         });
  }
 

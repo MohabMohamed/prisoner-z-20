@@ -45,13 +45,15 @@ public class TheGrey : Enemy
     {
         Debug.Log(name + " Knew that player is dead.");
 
-        StopMoving();
+        Idle();
     }
 
-
-    void StopMoving()
+    
+    override
+    protected void Idle()
     {
-        anim.SetBool("Run", false);
+        base.Idle();
+        myRigidBody.velocity = new Vector2(0, myRigidBody.velocity.y);
     }
 
     protected override IEnumerator AttackCoroutine()
@@ -81,4 +83,42 @@ public class TheGrey : Enemy
             }
         }
     }
+
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        if (!healthsystem.IsDead())
+        {
+
+            if (collision.CompareTag("RightJumpPathTrigger") && myRigidBody.velocity.x < -0.5) // already moving left
+            {
+
+
+                gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
+                gameObject.GetComponent<CurveFollow>().Move();
+
+
+                collision.enabled = false;
+                LeanTween.delayedCall(1, () => { collision.enabled = true; });
+
+            }
+            else if (collision.CompareTag("LeftJumpPathTrigger") && myRigidBody.velocity.x > 0.5) // already moving right
+            {
+
+
+                gameObject.GetComponent<CurveFollow>().curve = collision.transform.parent.GetComponent<BezierCurve>();
+                gameObject.GetComponent<CurveFollow>().Move();
+
+
+                collision.enabled = false;
+                LeanTween.delayedCall(1, () => { collision.enabled = true; });
+            }
+        }
+
+
+    }
 }
+
+

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212159866638016628}
   - component: {fileID: 68038172580615974}
   - component: {fileID: 251971309124520626}
+  - component: {fileID: 114640862307970490}
   m_Layer: 0
   m_Name: PlatformPrefab1
   m_TagString: Platform
@@ -59,6 +60,23 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.59693635, y: 0.29425487}
   - {x: 0.6506718, y: -0.08458994}
+--- !u!114 &114640862307970490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1613154111833428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0769518b144213c4d893e9bebab9df5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AssociatedEnemies:
+  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
+  - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  SpawnRateInSec: 10
+  MaxEnemiesToGenerate: 2
+  isBossSpawner: 0
 --- !u!212 &212159866638016628
 SpriteRenderer:
   m_ObjectHideFlags: 1

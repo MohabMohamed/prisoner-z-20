@@ -22,13 +22,18 @@ public void OnPlayerDied()
     {
         Debug.Log(name + " Knew that player is dead.");
 
-        StopMoving();
+        Idle();
     }
 
-
-    void StopMoving()
+    protected override void CheckHealth()
     {
-        anim.SetBool("Run", false);
+        if(healthsystem.IsDead() && !Dead)
+        {
+            print("bosswaveend");
+            ServiceLocator.GetService<GameManager>().endWave();
+        }
+        base.CheckHealth();
+       
     }
 
     protected override IEnumerator AttackCoroutine()

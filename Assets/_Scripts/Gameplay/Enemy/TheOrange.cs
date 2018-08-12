@@ -49,15 +49,10 @@ public class TheOrange : Enemy {
     {
         Debug.Log(name + " Knew that player is dead.");
 
-        StopMoving();
+        Idle();
 
     }
 
-    void StopMoving()
-    {
-
-        anim.SetBool("Run", false);
-    }
 
     protected override IEnumerator AttackCoroutine()
     {

@@ -1365,14 +1365,14 @@ MonoBehaviour:
   Speed: 1
   Health: 80
   HitPower: 40
-  CanJump: 0
+  isMelee: 1
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   Target: {fileID: 0}
   myRigidBody: {fileID: 0}
   attackDelay: 4
   attackDelayTemp: 0
-  followDistance: 30
+  followDistance: 60
   attackDistance: 3
   MeleeRange: 2.3
   BloodParticleFX: {fileID: 1082417542264296, guid: 5aa18ceba7b6e254bb36de8c99e9b911,

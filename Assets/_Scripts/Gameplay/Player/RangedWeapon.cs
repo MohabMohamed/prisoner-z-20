@@ -14,19 +14,18 @@ public class RangedWeapon : MonoBehaviour {
     public float bulletSpeed;
     public GameObject flash;
     
-    public bool FiringAllowed { get; set; }
+    
 
 
     private HealthSystem health;
 
 	void Start () {
-        FiringAllowed = true;
         health = gameObject.GetComponent<HealthSystem>();
 	}
 	
 
 	void Update () {
-        if (!health.IsDead() && Input.GetButtonDown("Fire1") && FiringAllowed)
+        if (!health.IsDead() && Input.GetButtonDown("Fire1") && gameObject.GetComponent<PlayerController>().FiringAllowed)
         {
             Fire();          
         }          

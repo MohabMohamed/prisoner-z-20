@@ -22,7 +22,7 @@ public class NinjaProjectile : MonoBehaviour {
         {
             collision.gameObject.GetComponent<HealthSystem>().Damage(Dmg);
             Invoke("PlayBloodFX", 0.04f);
-            Destroy(this.gameObject, 0.05f);
+            Destroy(this.gameObject);
 
         }
         

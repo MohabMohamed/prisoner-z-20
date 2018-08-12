@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
     public bool isBossON { get; set; }
     public bool isWaveOn { get; set; }
 
-    public TextMeshProUGUI MsgTXT;
+    public GameObject MsgTXT;
 
     [Header("Waves Rules")]
     public float initialWaveTimeInSecs;
@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour {
     [Space]
     [Header("Boss Rules")]
     public GameObject BossEnemy;
-    public EnemySpawner BossEnemySpawner;
     public float BossHealthIncrement;
     public float BossDamageIncrement;
     public int BossAfterKamWave;
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour {
     {
         get { return _currentEnemiesCount; }
         set {
-            Debug.Log("Current : " + _currentEnemiesCount + " | value : " + value);
+            //Debug.Log("Current : " + _currentEnemiesCount + " | value : " + value);
             if(value > _currentEnemiesCount)
             {
                 currentTotalSpawnedEnemies++;
@@ -73,45 +72,102 @@ public class GameManager : MonoBehaviour {
         player.gameObject.SetActive(false);
 
         CurrentEnemiesCount = 0;
-	}
+    }
 
     public void StartGame()
     {
         player.gameObject.SetActive(true);
         isGameON = true;
 
-        prepareWave(1);
+        prepareWave(1, false);
+        
     }
 
-    void prepareWave(int waveNum)
+    void prepareWave(int waveNum, bool isBossWave)
     {
         currentWaveNum = waveNum;
-        ShowMsg("Wave " + currentWaveNum);
-
-        currentWaveTime = initialWaveTimeInSecs + (WaveTimeIncrement * (currentWaveNum - 1)) ;
-        currentWaveTime = currentWaveTime > MaxWaveTime ? MaxWaveTime : currentWaveTime;
-
-        CurrentEnemiesCount = currentTotalSpawnedEnemies =  0;
-        CurrentMaxEnemiesCount = initialMaxEnemies + (maxEnemiesIncrement * (currentWaveNum -1));
-
-        LeanTween.delayedCall(1f, () => 
+        if (!isBossWave) // normal wave
         {
-            isWaveOn = true;
+            
+            ShowMsg("Wave " + currentWaveNum);
 
-            Invoke("endWave" , currentWaveTime);
-        });
+            currentWaveTime = initialWaveTimeInSecs + (WaveTimeIncrement * (currentWaveNum - 1));
+            currentWaveTime = currentWaveTime > MaxWaveTime ? MaxWaveTime : currentWaveTime;
+
+            CurrentEnemiesCount = currentTotalSpawnedEnemies = 0;
+            CurrentMaxEnemiesCount = initialMaxEnemies + (maxEnemiesIncrement * (currentWaveNum - 1));
+
+            LeanTween.delayedCall(1f, () =>
+            {
+                isWaveOn = true;
+
+                Invoke("endWave", currentWaveTime);
+            });
+
+        }
+        else // boss wave
+        {
+            ShowMsg("Boss " + currentWaveNum / BossAfterKamWave);
+            
+            
+
+            LeanTween.delayedCall(1f, () =>
+            {
+                isWaveOn = true;
+                isBossON = true;
+
+                foreach (EnemySpawner s in FindObjectsOfType<EnemySpawner>())
+                {
+                    s.GenerateBoss();
+                }
+            });
+
+            
+        }
 
 
     }
 
-    void endWave()
+    public void endWave()
     {
         CancelInvoke("endWave");
         isWaveOn = false;
+        isBossON = false;
         Debug.Log("Wave " + currentWaveNum + " Ended");
         // prepare the next wave or prepare for the mighty boss
+
+        if (++currentWaveNum % BossAfterKamWave == 0)
+        {
+            prepareWave(currentWaveNum, true);
+        }
+        else
+        {
+            prepareWave(currentWaveNum, false);
+        }
+
     }
 
+
+
+    public void ShowMsg(string msg)
+    {
+
+          MsgTXT.GetComponentInChildren<TextMeshProUGUI>().text = msg;
+          MsgTXT.gameObject.SetActive(true);
+
+
+    }
+
+
+
+    public void Application_Exit()
+    {
+        Application.Quit();
+    }
+    public void Application_Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void PauseGame()
     {
         isGameON = false;
@@ -123,14 +179,13 @@ public class GameManager : MonoBehaviour {
         isGameON = true;
         Time.timeScale = 1;
     }
-    
+
     public bool IsPaused()
     {
         if (Time.timeScale == 0)
             return true;
         else return false;
     }
-
     internal void OnPlayerDied()
     {
         isGameON = false;
@@ -146,26 +201,6 @@ public class GameManager : MonoBehaviour {
 
     }
 
-    public void ShowMsg(string msg)
-    {
-        if (!MsgTXT.IsActive())
-        {
-            MsgTXT.text = msg;
-            MsgTXT.gameObject.SetActive(true);
-        }
-    }
-
-
-
-    public void Application_Exit()
-    {
-        Application.Quit();
-    }
-    public void Application_Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-   
 
 
 }

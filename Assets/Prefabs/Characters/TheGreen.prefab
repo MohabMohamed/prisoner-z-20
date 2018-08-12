@@ -396,8 +396,7 @@ GameObject:
   - component: {fileID: 50118462021958486}
   - component: {fileID: 61207083922283670}
   - component: {fileID: 70170081679882664}
-  - component: {fileID: 114204718913130142}
-  - component: {fileID: 114215675485844754}
+  - component: {fileID: 114751725374907020}
   m_Layer: 10
   m_Name: TheGreen
   m_TagString: Enemy
@@ -660,7 +659,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013301305156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.58366156, y: -0.88943696, z: 0}
+  m_LocalPosition: {x: 11.81, y: -2.39, z: 0}
   m_LocalScale: {x: 0.26145, y: 0.26145, z: 0.26145}
   m_Children:
   - {fileID: 224543213567381988}
@@ -1167,33 +1166,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114204718913130142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013301305156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b4a8d926c5f5a44e8336a60f27631e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 60
---- !u!114 &114215675485844754
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013301305156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 243cc5e7e7d7a5e4e829ebf3b89e0593, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
-    type: 2}
-  healthslider: {fileID: 114956044800547648}
-  healthtext: {fileID: 114868945688300738}
 --- !u!114 &114566789973514684
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1231,6 +1203,31 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114751725374907020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013301305156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0d6b9817187e640b46716bdd327a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  Health: 200
+  HitPower: 70
+  CanJump: 0
+  healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
+    type: 2}
+  Target: {fileID: 0}
+  myRigidBody: {fileID: 0}
+  attackDelay: 5
+  attackDelayTemp: 0
+  followDistance: 200
+  attackDistance: 30
+  ProjectileVelocity: 10
+  Projectile: {fileID: 1838905933415494, guid: 0888f7be13a1b5447a362c1656b200f8, type: 2}
 --- !u!114 &114868945688300738
 MonoBehaviour:
   m_ObjectHideFlags: 1

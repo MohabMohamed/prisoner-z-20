@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour {
     public float Speed;
     public float Health;
     public int HitPower;
-    public bool CanJump;
+    public bool isMelee;
 
     [Space]
     [Header("• References")]
@@ -34,12 +34,13 @@ public abstract class Enemy : MonoBehaviour {
 
     [Space]
     public float attackDelay;
-    public float attackDelayTemp = 0;
+    public float attackDelayTemp;
     public float followDistance;
     public float attackDistance;
 
     public void Start()
-    {   
+    {
+        attackDelayTemp = attackDelay;
         // health
         healthsystem = gameObject.AddComponent<HealthSystem>();
         healthslider = transform.GetComponentInChildren<Slider>();
@@ -81,10 +82,21 @@ public abstract class Enemy : MonoBehaviour {
         if (Mathf.Abs(distanceOverX) < attackDistance) // in attack distance
         {
             Idle();
-            if (attackDelayTemp >= attackDelay) // attack
+            if (attackDelayTemp >= attackDelay ) // attack
             {
-                attackDelayTemp = 0;
-                StartCoroutine(AttackCoroutine());
+                if (!isMelee)
+                {
+                    attackDelayTemp = 0;
+                    StartCoroutine(AttackCoroutine());
+                }
+                else
+                {
+                    if(Vector3.Distance(Target.position, transform.position) < attackDistance) // melee radius
+                    {
+                        attackDelayTemp = 0;
+                        StartCoroutine(AttackCoroutine());
+                    }
+                }
             }
         }
         else if (Mathf.Abs(distanceOverX) < followDistance) // in follow distance
@@ -97,7 +109,7 @@ public abstract class Enemy : MonoBehaviour {
         }
     }
 
-    private void CheckHealth()
+    virtual protected void CheckHealth()
     {
         healthslider.value = healthsystem.GetHealth() / healthsystem.GetMaxHealth();
         healthtext.SetText(Mathf.Ceil(healthsystem.GetHealth() / healthsystem.GetMaxHealth() * 100) + "%");
@@ -114,8 +126,10 @@ public abstract class Enemy : MonoBehaviour {
             anim.Play("Rogue_death_01");
             ServiceLocator.GetService<ScoreManager>().addScore(30);
 
+            if (gameObject.GetComponent<CurveFollow>() != null)
+                gameObject.GetComponent<CurveFollow>().enabled = false;
 
-            if ( Random.Range(0, 1f) <= .7f)
+            if ( Random.Range(0, 1f) <= .7f) // 70% chance to spawn health
             {
                 GameObject health = Instantiate(healthpickup, transform.position, transform.rotation);
                 health.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 5);
@@ -135,9 +149,10 @@ public abstract class Enemy : MonoBehaviour {
        Debug.Log("Enemy Parent Class : OnPlayer Died");
     }
 
-    protected void Idle()
+    virtual protected void Idle()
     {
         anim.SetBool("Run", false);
+        
     }
 
     protected void Follow(int sign)
