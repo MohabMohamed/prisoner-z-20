@@ -12,7 +12,7 @@ public class HealthSystem : MonoBehaviour {
 
 
     private Animator anim;
-    
+
 
     private void Awake()
     {      

@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 public class TheOrange : Enemy {
 
-    
-    
-
     private float width;
 
 

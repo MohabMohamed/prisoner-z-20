@@ -109,7 +109,7 @@ public class TheBlue: Enemy {
 
     public override void OnPlayerDied()
     {
-        Debug.Log(name + " Knew that player is dead.");
+        //Debug.Log(name + " Knew that player is dead.");
 
         Idle();
     }

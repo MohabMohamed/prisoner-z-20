@@ -120,8 +120,6 @@ public abstract class Enemy : MonoBehaviour {
         if (healthsystem.IsDead() && !Dead)
         {
             
-
-
             Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), Target.GetComponent<CapsuleCollider2D>());
             healthslider.enabled = false;
             healthtext.enabled = false;
@@ -174,4 +172,10 @@ public abstract class Enemy : MonoBehaviour {
     }
 
     abstract protected IEnumerator AttackCoroutine();
+
+
+    protected float map(float val, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (val - a1) * (b2 - b1) / (a2 - a1);
+    }
 }

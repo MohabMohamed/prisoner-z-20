@@ -20,9 +20,12 @@ public class NinjaProjectile : MonoBehaviour {
     {
         if (collision.CompareTag("Player"))
         {
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
+
             collision.gameObject.GetComponent<HealthSystem>().Damage(Dmg);
             Invoke("PlayBloodFX", 0.04f);
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, 1.1f);
 
         }
         

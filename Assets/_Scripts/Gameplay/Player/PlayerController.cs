@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded = false;
     bool doubleJump = false;
     bool isLookingLeft = false;
-    [HideInInspector]
+    //[HideInInspector]
     public bool isPlayerOnPlatform;
 
 
@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Platform"))
         {

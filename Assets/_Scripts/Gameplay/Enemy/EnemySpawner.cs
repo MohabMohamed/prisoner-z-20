@@ -13,10 +13,13 @@ public class EnemySpawner : MonoBehaviour {
     Transform playerTransform;
 
 
+    [HideInInspector]
+    public bool bossGenerated;
 
 	// Use this for initialization
 	void Start ()
     {
+        bossGenerated = false;
         playerTransform = ServiceLocator.GetService<PlayerController>().transform;
         spawnedEnemies = new List<GameObject>();
 
@@ -39,9 +42,9 @@ public class EnemySpawner : MonoBehaviour {
     }
     public void GenerateBoss()
     {
-        
-        if (isBossSpawner && ServiceLocator.GetService<GameManager>().isWaveOn && ServiceLocator.GetService<GameManager>().isBossON )
+        if (isBossSpawner && ServiceLocator.GetService<GameManager>().isBossON  && !bossGenerated)
         {
+            bossGenerated = true;
             print("BossShouldGenerate");
             spawnedEnemies.Add(Instantiate(AssociatedEnemies[Random.Range(0, AssociatedEnemies.Count)], transform.position, Quaternion.identity));
             spawnedEnemies[spawnedEnemies.Count - 1].transform.parent = transform;
@@ -52,6 +55,7 @@ public class EnemySpawner : MonoBehaviour {
 
     public void EnemyDied(GameObject enemyObject)
     {
+        bossGenerated = false;
         spawnedEnemies.Remove(enemyObject);
         ServiceLocator.GetService<GameManager>().CurrentEnemiesCount--;
     }

@@ -20,11 +20,15 @@ public class CurveFollow : MonoBehaviour {
 
     }
 
-    public void Move()
+    void OnDestroy()
     {
-        LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setOnComplete(()=> {
-            if(gameObject!= null)
-                LeanTween.value(0, 1, 1).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setEaseInSine();
+        LeanTween.cancelAll(gameObject);
+    }
+
+    public void Move(float speed = 1 , LeanTweenType easeType = LeanTweenType.easeInSine)
+    {
+        LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setEase(easeType).setOnComplete(()=> {
+            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); });
         });
  }
 

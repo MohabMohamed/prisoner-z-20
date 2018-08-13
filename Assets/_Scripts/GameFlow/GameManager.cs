@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour {
         currentWaveNum = waveNum;
         if (!isBossWave) // normal wave
         {
-            
+
             ShowMsg("Wave " + currentWaveNum);
 
             currentWaveTime = initialWaveTimeInSecs + (WaveTimeIncrement * (currentWaveNum - 1));
@@ -113,7 +113,6 @@ public class GameManager : MonoBehaviour {
 
             LeanTween.delayedCall(1f, () =>
             {
-                isWaveOn = true;
                 isBossON = true;
 
                 foreach (EnemySpawner s in FindObjectsOfType<EnemySpawner>())
