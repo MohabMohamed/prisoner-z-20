@@ -659,7 +659,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013301305156}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.81, y: -2.39, z: 0}
+  m_LocalPosition: {x: 19.633652, y: -2.1045592, z: 0}
   m_LocalScale: {x: 0.26145, y: 0.26145, z: 0.26145}
   m_Children:
   - {fileID: 224543213567381988}
@@ -1217,7 +1217,7 @@ MonoBehaviour:
   Speed: 0
   Health: 200
   HitPower: 70
-  CanJump: 0
+  isMelee: 0
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   Target: {fileID: 0}

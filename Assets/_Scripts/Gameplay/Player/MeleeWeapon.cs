@@ -49,7 +49,7 @@ public class MeleeWeapon : MonoBehaviour {
         RaycastHit2D hit = (Physics2D.Raycast(new Vector2(player.position.x + Width * lookleftorright, player.position.y+0.5f) , player.right , MeleeRange * lookleftorright));
         Debug.DrawLine(new Vector2(player.position.x + Width * lookleftorright, player.position.y + 0.5f), new Vector2(player.position.x + MeleeRange * lookleftorright , player.position.y + 0.5f) , Color.cyan , 1f);
 
-        print(hit.transform.name);
+
         if (hit && hit.transform.CompareTag("Enemy"))
         {
             hit.transform.gameObject.GetComponent<HealthSystem>().Damage(MeleeDamage);

@@ -55,7 +55,10 @@ public abstract class Enemy : MonoBehaviour {
 
 
         // other
-        Target = ServiceLocator.GetService<PlayerController>().transform;
+        if (Target == null)
+        {
+            Target = ServiceLocator.GetService<PlayerController>().transform;
+        }
         Physics2D.IgnoreCollision(gameObject.GetComponent<CapsuleCollider2D>(), ServiceLocator.GetService<PickupSystem>().GetComponent<BoxCollider2D>(), true);
 
         

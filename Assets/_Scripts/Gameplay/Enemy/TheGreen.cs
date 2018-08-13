@@ -25,11 +25,34 @@ public class TheGreen : Enemy
     protected override IEnumerator AttackCoroutine()
     {
         yield return null;
-        GameObject fireball = Instantiate(Projectile, transform.position + new Vector3(1,1,0), getProjectileAngle());
-        fireball.GetComponent<Rigidbody2D>().velocity = fireball.transform.right * ProjectileVelocity;
+        GameObject fireball = fireball = Instantiate(Projectile, transform.position, Quaternion.identity);
+
+        //fireball = Instantiate(Projectile, transform.position, getProjectileAngle());
+
+
+
+
+        fireball.GetComponent<Rigidbody2D>().velocity = getProjectileVelocity(Target.position.x - transform.position.x, Target.position.y - transform.position.y, -Physics2D.gravity.y, 45);
+        //fireball.transform.right * ProjectileVelocity;
+           
     }
 
-    private Quaternion getProjectileAngle()
+    Vector2 getProjectileVelocity(float distanceX, float distanceY, float gravity, float angle)
+    {
+ 
+        distanceX = Mathf.Abs(distanceX);
+        float TotalSpeed;
+        Vector2 Solution;
+        TotalSpeed = (1 / Mathf.Cos(angle * Mathf.Deg2Rad)) * Mathf.Sqrt(0.5F * distanceX * distanceX * gravity / (distanceY + Mathf.Tan(angle * Mathf.Deg2Rad) * distanceX));
+        Solution.x = TotalSpeed * Mathf.Cos(angle * Mathf.Deg2Rad);
+        Solution.y = TotalSpeed * Mathf.Sin(angle * Mathf.Deg2Rad);
+        print(Solution);
+        return Solution;
+    }
+
+
+
+    /*private Quaternion getProjectileAngle()
     {
 
         float x = Target.position.x - transform.position.x;
@@ -42,35 +65,27 @@ public class TheGreen : Enemy
             Mathf.Atan
             (
             
-                Mathf.Pow(ProjectileVelocity, 2) - 
+                (Mathf.Pow(ProjectileVelocity, 2) + 
                 Mathf.Sqrt( 
                     Mathf.Pow(ProjectileVelocity, 4) - 
                     g*(g*Mathf.Pow(x,2)) + 
                     2*y*Mathf.Pow(ProjectileVelocity,2)   
-                )
+                ))
                 / g*x
             
             )
-            * Mathf.Rad2Deg
-            
-            ;
+            * Mathf.Rad2Deg;
 
 
-        Debug.Log(Mathf.Pow(ProjectileVelocity, 2) +
-                Mathf.Sqrt(
-                    Mathf.Pow(ProjectileVelocity, 4) -
-                    g * (g * Mathf.Pow(x, 2)) +
-                    2 * y * Mathf.Pow(ProjectileVelocity, 2)
-                )
-                / g * x);
 
         Debug.Log("Angle: " + angle);
-        Debug.Log(Mathf.Pow(9, 2));
-        Vector3 Euler = new Vector3(0, 0, angle);
+        Vector3 Euler = new Vector3(0, 0, angle+90);
         Quaternion Q = Quaternion.Euler(Euler);
+
        
         return Q;
-    }
+    }*/
+
 
 
     override
