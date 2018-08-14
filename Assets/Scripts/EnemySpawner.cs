@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour {
         if (collision.CompareTag("Bullet"))
         {
             
-            healthsystem.Damage(20);
+            healthsystem.Damage(collision.GetComponent<Bullet>().damage);
            
         }
     }

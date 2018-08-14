@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour {
    
 	// Update is called once per frame
 	void FixedUpdate () {
+        
+     
         move.x = Input.GetAxis("Horizontal");
-
+        
         Vector2 mouseInWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mouseInWorld.x>transform.position.x&&!facingRight)
         {
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour {
         }
 
 
-
+       
         rg.velocity = new Vector2(move.x * maxSpeed, rg.velocity.y) ;
         
         
@@ -53,14 +55,17 @@ public class PlayerController : MonoBehaviour {
     {
        // Debug.Log("Grounded");
         RaycastHit2D hit = Physics2D.Raycast(groundChecker.transform.position, -Vector3.up,0.1f);
-        if(hit.collider != null)
-        {
-            Debug.Log(hit.collider.tag);
-           return hit.collider.CompareTag("Ground");
-           
-          //  return (hit.normal == Vector2.up) ? true : false;
-        }
-        return false;
+        //  if(hit.collider != null)
+
+        //Debug.Log(hit.collider.tag);
+        // return hit.collider.CompareTag("Ground");
+        Vector2 res = hit.normal;
+        res.y = Mathf.Round(res.y);
+        res.x = Mathf.Round(res.x);
+        Debug.Log(res);
+          return ( res == Vector2.up) ? true : false;
+        
+        //return false;
     }
 
 

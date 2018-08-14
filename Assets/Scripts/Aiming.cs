@@ -18,7 +18,7 @@ public class Aiming : MonoBehaviour {
         aimDir = new Vector3(aimDir.x - transform.position.x, aimDir.y - transform.position.y,aimDir.z);
         transform.up =new Vector3( -aimDir.x, -aimDir.y , transform.up.z);
 
-        Debug.Log(aimDir);
+       // Debug.Log(aimDir);
 
     }
 }

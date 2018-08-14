@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 
     // Use this for initialization
     public float destructAfter;
+    public int damage;
     void Start()
     {
         Destroy(gameObject, destructAfter);
