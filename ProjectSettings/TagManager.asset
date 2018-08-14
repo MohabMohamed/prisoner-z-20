@@ -4,8 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
   - Ground
+  - Platform
+  - Enemy
+  - FlipCharTrigger
+  - GroundTouchTrigger
+  - HealthPickup
+  - PlayerMelee
+  - PlayerBullet
+  - EnemySword
+  - PathTrigger
+  - LeftJumpPathTrigger
+  - RightJumpPathTrigger
   layers:
   - Default
   - TransparentFX
@@ -15,9 +25,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - HealthLayer
+  - EnemyLayer
   - 
   - 
   - 
