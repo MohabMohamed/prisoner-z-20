@@ -5,26 +5,29 @@ using UnityEngine;
 public class FireballProjectile : MonoBehaviour {
 
 
-    private int Dmg;
     private Rigidbody2D myRigidBody;
     public GameObject explosioneffect;
+    Transform PlayerTarget;
 
-    void Start () {
-        
+    void Start() {
+
         myRigidBody = gameObject.GetComponent<Rigidbody2D>();
-        //myRigidBody.angularVelocity = 700;
+        PlayerTarget = ServiceLocator.GetService<TheGreen>().Target;
     }
-	
 
-	
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    public void Explode(int dmg)
     {
-        if (collision.CompareTag("Player"))
+        GameObject explosion = Instantiate(explosioneffect, transform.position, Quaternion.identity);
+        Destroy(explosion, 1f);
+        if (Vector3.Distance(PlayerTarget.position, transform.position) < 3)
         {
-            GameObject explosion = Instantiate(explosioneffect, transform.position, explosioneffect.transform.rotation);
-            Destroy(explosion, 1f);
-            Destroy(gameObject);
+            PlayerTarget.GetComponent<HealthSystem>().Damage(dmg);
         }
+        print("destroyed");
+        Destroy(gameObject, 0.03f);
+        
     }
+    
     
 }

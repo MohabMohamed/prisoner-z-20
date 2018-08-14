@@ -23,24 +23,17 @@ public class TheRed : Enemy {
     public GameObject[] RangedThrowables;
 
 
-
-
+    private float width;
     PlayerController player;
 
-    public void ActivateSword()
-    {
-        mySwordRef.GetComponent<Collider2D>().enabled = true;
-    }
-    public void DeactivateSword()
-    {
-        mySwordRef.GetComponent<Collider2D>().enabled = false;
-    }
+
 
 
     private new void Start () {
         base.Start();
 
         player = Target.GetComponent<PlayerController>();
+        width = transform.gameObject.GetComponent<CapsuleCollider2D>().size.x * transform.localScale.x;
     }
 	
 	
@@ -59,6 +52,7 @@ public class TheRed : Enemy {
         {
             isMelee = true;
             attackDelay = MeleeAttackDelay;
+            //attackDelayTemp = attackDelay;
             followDistance = MeleeFollowDistance;
             attackDistance = MeleeAttackDistance;
         }
@@ -99,32 +93,34 @@ public void OnPlayerDied()
 
     void ThrowRangedThrowable()
     {
-        GameObject Throwable = Instantiate(RangedThrowables[Random.Range(0 , RangedThrowables.Length)], transform.position, Quaternion.identity);
+        
 
 
         BezierCurve projectileCurve = new GameObject().AddComponent<BezierCurve>(); // fireball.AddComponent<BezierCurve>();
 
-        GameObject p1 = new GameObject("p1");
-        GameObject p2 = new GameObject("p2");
-        GameObject p3 = new GameObject("p3");
+        GameObject startPoint = new GameObject("startPoint");
+        GameObject endPoint = new GameObject("endPoint");
 
-        p1.transform.position = transform.position;
-        p3.transform.position = Target.position;
-        p2.transform.position = (Target.transform.position + transform.transform.position) / 2;// + new Vector3(0, Mathf.Max(p1.transform.position.y , p3.transform.position.y), 0);
+        startPoint.transform.position = transform.position + new Vector3(isLookingLeft? -width : width, 1f);
+        endPoint.transform.position = Target.position + new Vector3(0, 0.8f);
 
-        projectileCurve.AddPointAt(p1.transform.position);
-        projectileCurve.AddPointAt(new Vector2(p2.transform.position.x, 1f + Mathf.Max(p1.transform.position.y, p3.transform.position.y))).setHandleX(isLookingLeft ? -1 : 1);
-        projectileCurve.AddPointAt(p3.transform.position);
+        float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
 
-
-        Throwable.AddComponent<CurveFollow>().curve = projectileCurve;
-        Throwable.GetComponent<CurveFollow>().Move();
+        projectileCurve.AddPointAt(startPoint.transform.position);
+        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, 1f + max)).setHandleX(isLookingLeft ? -1.8f : 1.8f);
+        projectileCurve.AddPointAt(endPoint.transform.position);
 
 
-        Destroy(p1);
-        Destroy(p2);
-        Destroy(p3);
-        Destroy(projectileCurve, 3);
+        GameObject projectile = Instantiate(RangedThrowables[Random.Range(0, RangedThrowables.Length)], startPoint.transform.position, Quaternion.identity);
+
+        //projectile.AddComponent<CurveFollow>().curve = projectileCurve;
+        projectile.GetComponent<CurveFollow>().curve = projectileCurve;
+        projectile.GetComponent<CurveFollow>().Move(0.5f + map(Vector3.Distance(transform.position, Target.position), 0, 45, 0, 3));
+
+
+        Destroy(startPoint);
+        Destroy(endPoint);
+        Destroy(projectileCurve, 3f);
     }
 
 
@@ -132,6 +128,30 @@ public void OnPlayerDied()
     {
         DeactivateSword();
 
-        Debug.Log("Ayyyyyyy");
+        //Debug.Log("SwordHitPlayer");
+        Target.GetComponent<HealthSystem>().Damage(HitPower);
+    }
+
+    public void ActivateSword()
+    {
+        mySwordRef.GetComponent<Collider2D>().enabled = true;
+        //Debug.Log("ActivateSword");
+    }
+    public void DeactivateSword()
+    {
+        mySwordRef.GetComponent<Collider2D>().enabled = false;
+        Debug.Log("DisableSword");
+    }
+
+    protected override void Idle()
+    {
+        anim.SetBool("Walk", false);
+
+    }
+
+    protected override void Follow(int sign)
+    {
+        anim.SetBool("Walk", true);
+        myRigidBody.velocity = new Vector2(sign * Speed, myRigidBody.velocity.y);
     }
 }

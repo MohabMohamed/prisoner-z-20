@@ -130,11 +130,20 @@ public class GameManager : MonoBehaviour {
     public void endWave()
     {
         CancelInvoke("endWave");
+        /*if (isBossON)
+        {
+            ServiceLocator.GetService<PlatformsGenerator>().RemoveMap();
+            LeanTween.delayedCall(2f, () => { ServiceLocator.GetService<PlatformsGenerator>().GenerateMap(); });
+        }*/
+        
+
+
         isWaveOn = false;
         isBossON = false;
         Debug.Log("Wave " + currentWaveNum + " Ended");
-        // prepare the next wave or prepare for the mighty boss
 
+
+        // prepare the next wave or prepare for the mighty boss
         if (++currentWaveNum % BossAfterKamWave == 0)
         {
             prepareWave(currentWaveNum, true);

@@ -127,7 +127,7 @@ public abstract class Enemy : MonoBehaviour {
             anim.Play("Rogue_death_01");
             ServiceLocator.GetService<ScoreManager>().addScore(30);
 
-            if (gameObject.GetComponent<CurveFollow>() != null)
+            if (gameObject.GetComponent<CurveFollow>() ?? null)
                 gameObject.GetComponent<CurveFollow>().enabled = false;
 
             if ( Random.Range(0, 1f) <= .7f) // 70% chance to spawn health
@@ -139,7 +139,8 @@ public abstract class Enemy : MonoBehaviour {
 
             
             Destroy( this.gameObject  , 1);
-            transform.parent.GetComponent<EnemySpawner>().EnemyDied(gameObject);
+            if(transform.parent != null  && transform.parent.GetComponent<EnemySpawner>() != null)
+                transform.parent.GetComponent<EnemySpawner>().EnemyDied(gameObject);
         }
 
         
@@ -156,7 +157,7 @@ public abstract class Enemy : MonoBehaviour {
         
     }
 
-    protected void Follow(int sign)
+    virtual protected void Follow(int sign)
     {
         anim.SetBool("Run", true);
         myRigidBody.velocity = new Vector2(sign * Speed, myRigidBody.velocity.y);

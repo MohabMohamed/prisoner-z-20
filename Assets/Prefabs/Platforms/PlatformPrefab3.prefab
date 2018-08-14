@@ -73,9 +73,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AssociatedEnemies:
   - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  - {fileID: 1000013301305156, guid: 7ac6bdc2e4b5e47468b8b460ca863a5f, type: 2}
   SpawnRateInSec: 15
   MaxEnemiesToGenerate: 1
   isBossSpawner: 0
+  bossGenerated: 0
 --- !u!212 &212721145961615398
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -34,20 +34,30 @@ public class PlatformsGenerator : MonoBehaviour {
     void Start () {
 
 
-        platformList.Add(firstPlatform);
-       // lowplatformList.Add(firstPlatform);
 
-        while(currentPos <= endOfMap)
+        GenerateMap();
+
+    
+	}
+
+
+    public void GenerateMap()
+    {
+
+        platformList.Add(firstPlatform);
+        // lowplatformList.Add(firstPlatform);
+
+        while (currentPos <= endOfMap)
         {
             GameObject randomPlatform = platformPrefabs[Mathf.RoundToInt(Random.Range(0, platformPrefabs.Length))];
             GameObject platform;
             float distance = Random.Range(minDistance, maxDistance);
             currentPos += distance;
 
-            if (Random.Range(0f,1f) <= .8f && tmphigh < 2) // high platform
+            if (Random.Range(0f, 1f) <= .8f && tmphigh < 2) // high platform
             {
                 float height = Random.Range(high_minHeight, high_maxHeight);
-                platform = Instantiate(randomPlatform , new Vector3(currentPos, height),randomPlatform.transform.rotation ,PlatformParent.transform);
+                platform = Instantiate(randomPlatform, new Vector3(currentPos, height), randomPlatform.transform.rotation, PlatformParent.transform);
                 platform.name = "HighPlatform";
                 tmphigh++;
             }
@@ -58,23 +68,23 @@ public class PlatformsGenerator : MonoBehaviour {
                 platform.name = "LowPlatform";
                 tmphigh = 0;
 
-               // lowplatformList.Add(platform);
+                // lowplatformList.Add(platform);
             }
 
             platformList.Add(platform);
 
         }
 
-        
+
 
         gameObject.GetComponent<PlatformBezierLogic>().SetUp(platformList.ToArray());
+    }
 
-       
-        
-
-
-    
-	}
+    /*public void RemoveMap()
+    {
+        GetComponent<Animator>().SetTrigger("MapExit");
+        Destroy(gameObject, 1f);
+    }*/
 	
 	
 }

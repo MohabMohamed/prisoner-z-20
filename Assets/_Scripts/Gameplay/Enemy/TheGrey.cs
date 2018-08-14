@@ -76,7 +76,6 @@ public class TheGrey : Enemy
 
             if (hit && hit.transform.CompareTag("Player"))
             {
-                print("should hit player");
                 hit.transform.gameObject.GetComponent<HealthSystem>().Damage(HitPower);
                 GameObject BloodFX = Instantiate(BloodParticleFX, hit.point, hit.transform.rotation);
                 Destroy(BloodFX, 1f);

@@ -48,30 +48,31 @@ public class TheGreen : Enemy
 
         BezierCurve projectileCurve = new GameObject().AddComponent<BezierCurve>(); // fireball.AddComponent<BezierCurve>();
 
-        GameObject p1 = new GameObject("p1");
-        GameObject p2 = new GameObject("p2");
-        GameObject p3 = new GameObject("p3");
+        GameObject startPoint = new GameObject("startPoint");
+        GameObject endPoint = new GameObject("endPoint");
 
-        p1.transform.position = transform.position;
-        p3.transform.position = Target.position;
-        p2.transform.position = (Target.transform.position + transform.transform.position) / 2;// + new Vector3(0, Mathf.Max(p1.transform.position.y , p3.transform.position.y), 0);
+        startPoint.transform.position = transform.position + new Vector3(0,1f);
+        endPoint.transform.position = Target.position + new Vector3(0,0.8f);
 
-        projectileCurve.AddPointAt(p1.transform.position);
-        projectileCurve.AddPointAt(new Vector2(p2.transform.position.x , 1f+  Mathf.Max(p1.transform.position.y, p3.transform.position.y))).setHandleX( isLookingLeft? -1 : 1); 
-        projectileCurve.AddPointAt(p3.transform.position);
+        float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
+
+        projectileCurve.AddPointAt(startPoint.transform.position);
+        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, 1f+ max)).setHandleX( isLookingLeft? -2f : 2f); 
+        projectileCurve.AddPointAt(endPoint.transform.position);
 
 
         fireball.AddComponent<CurveFollow>().curve = projectileCurve;
-        fireball.GetComponent<CurveFollow>().Move(0.5f + map(Vector3.Distance(transform.position , Target.position) , 0 , 45, 0 , 3));
+        fireball.GetComponent<CurveFollow>().MoveFireBallProjectile(HitPower, 0.5f + map(Vector3.Distance(transform.position , Target.position) , 0 , 45, 0 , 3));
 
 
-        Destroy(p1);
-        Destroy(p2);
-        Destroy(p3);
-        Destroy(projectileCurve, 3);
+        Destroy(startPoint);
+        Destroy(endPoint);
+        Destroy(projectileCurve, 3f);
+        Destroy(fireball, 3f);
     }
 
-    Vector2 getProjectileVelocity(float distanceX, float distanceY, float gravity, float angle)
+
+    /*Vector2 getProjectileVelocity(float distanceX, float distanceY, float gravity, float angle)
     {
  
         distanceX = Mathf.Abs(distanceX);
@@ -82,7 +83,7 @@ public class TheGreen : Enemy
         Solution.y = TotalSpeed * Mathf.Sin(angle * Mathf.Deg2Rad);
         print(Solution);
         return Solution;
-    }
+    }*/
 
 
 

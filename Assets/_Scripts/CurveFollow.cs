@@ -25,12 +25,23 @@ public class CurveFollow : MonoBehaviour {
         LeanTween.cancelAll(gameObject);
     }
 
-    public void Move(float speed = 1 , LeanTweenType easeType = LeanTweenType.easeInSine)
+    public void Move(float speed = 1f , LeanTweenType easeType = LeanTweenType.easeInSine)
     {
         LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setEase(easeType).setOnComplete(()=> {
             LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); });
         });
- }
+    }
+
+    public void MoveFireBallProjectile(int Dmg, float speed = 1f, LeanTweenType easeType = LeanTweenType.easeInSine)
+    {
+        LeanTween.move(gameObject, curve.GetPointAt(0), 0.1f).setEase(easeType).setOnComplete(() => 
+        {
+            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setOnComplete( () => 
+            {
+                ServiceLocator.GetService<FireballProjectile>().Explode(Dmg);
+            } );
+        });
+    }
 
     /*void moveDown(int index)
     {
@@ -47,5 +58,5 @@ public class CurveFollow : MonoBehaviour {
         else
             LeanTween.move(gameObject, curve.GetAnchorPoints()[index].position, .1f).setOnComplete(() => { moveUp(index - 1); });
     }*/
-	
+
 }

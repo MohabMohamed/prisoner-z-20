@@ -35,11 +35,11 @@ public class HealthSystem : MonoBehaviour {
 
                 if (currentHealth <= 0)  ServiceLocator.GetService<GameManager>().OnPlayerDied();
             }
-            else if (currentHealth <= 0)
+            /*else if (currentHealth <= 0)
             {
 
                 print(this.name + " Dead");
-            }
+            }*/
         }        
     }
 
