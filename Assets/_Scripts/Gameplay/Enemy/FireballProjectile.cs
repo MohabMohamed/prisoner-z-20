@@ -20,7 +20,7 @@ public class FireballProjectile : MonoBehaviour {
     {
         GameObject explosion = Instantiate(explosioneffect, transform.position, Quaternion.identity);
         Destroy(explosion, 1f);
-        if (Vector3.Distance(PlayerTarget.position, transform.position) < 3)
+        if (Vector3.Distance(PlayerTarget.position, transform.position) < 2 )
         {
             PlayerTarget.GetComponent<HealthSystem>().Damage(dmg);
         }

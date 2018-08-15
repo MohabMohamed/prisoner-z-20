@@ -1499,7 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e8607c25129c1943b8278a89b126abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PistolDamage: 100
+  PistolDamage: 15
   bulletPrefab: {fileID: 1222731926214720, guid: fafe5bbdedc81384f9b5b8d860963a6e,
     type: 2}
   bulletSpawn: {fileID: 4165091439279192}

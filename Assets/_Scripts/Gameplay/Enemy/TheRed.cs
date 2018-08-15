@@ -107,7 +107,7 @@ public void OnPlayerDied()
         float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
 
         projectileCurve.AddPointAt(startPoint.transform.position);
-        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, 1f + max)).setHandleX(isLookingLeft ? -1.8f : 1.8f);
+        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, Random.Range(0.5f,3f) + max)).setHandleX(isLookingLeft ? -1.8f : 1.8f);
         projectileCurve.AddPointAt(endPoint.transform.position);
 
 

@@ -1288,7 +1288,7 @@ MonoBehaviour:
   Speed: 2
   Health: 100
   HitPower: 20
-  CanJump: 0
+  isMelee: 0
   healthpickup: {fileID: 1820191042726334, guid: 31c6ac692c0bfb948af2dcb41407a1be,
     type: 2}
   Target: {fileID: 4909390163613042, guid: 64e0d1d19dc5503458a72961eb6f8fca, type: 2}
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   attackDelay: 3
   attackDelayTemp: 0
   followDistance: 40
-  attackDistance: 25
+  attackDistance: 18
   projectilePrefab: {fileID: 1947036552665956, guid: cedfbfda4f88dcf4699a1acde4f9d7ee,
     type: 2}
   projectileSpawn: {fileID: 4000011509621182}

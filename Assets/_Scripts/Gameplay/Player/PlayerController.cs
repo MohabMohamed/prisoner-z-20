@@ -103,19 +103,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!health.IsDead())
         {
-            /*
-            if (isGrounded && RIGID.velocity.magnitude != 0)
-            {
-                anim.SetBool("Run", true);
-            }
-            else
-                anim.SetBool("Run", false);
-                */
-
-
-
-
-
 
             // Horizontal Movement
             if(Input.GetAxis("Horizontal") != 0)

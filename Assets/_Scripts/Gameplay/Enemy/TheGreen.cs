@@ -24,21 +24,21 @@ public class TheGreen : Enemy
 
     protected override IEnumerator AttackCoroutine()
     {
+        Debug.Log("TheGreenAttack");
         yield return null;
-
-        if(Target!=null)
+        if (Target!=null)
             createCurve();
-            /*
-        GameObject fireball = fireball = Instantiate(Projectile, transform.position, Quaternion.identity);
 
-        //fireball = Instantiate(Projectile, transform.position, getProjectileAngle());
+        
 
 
 
-
-        fireball.GetComponent<Rigidbody2D>().velocity = getProjectileVelocity(Target.position.x - transform.position.x, Target.position.y - transform.position.y, -Physics2D.gravity.y, 45);
-        //fireball.transform.right * ProjectileVelocity;
-           */
+        /*
+    GameObject fireball = fireball = Instantiate(Projectile, transform.position, Quaternion.identity);
+    //fireball = Instantiate(Projectile, transform.position, getProjectileAngle());
+    fireball.GetComponent<Rigidbody2D>().velocity = getProjectileVelocity(Target.position.x - transform.position.x, Target.position.y - transform.position.y, -Physics2D.gravity.y, 45);
+    //fireball.transform.right * ProjectileVelocity;
+       */
     }
 
     void createCurve()
@@ -71,6 +71,13 @@ public class TheGreen : Enemy
         Destroy(fireball, 3f);
     }
 
+    override
+public void OnPlayerDied()
+    {
+        Debug.Log(name + " Knew that player is dead.");
+
+        Idle();
+    }
 
     /*Vector2 getProjectileVelocity(float distanceX, float distanceY, float gravity, float angle)
     {
@@ -123,13 +130,7 @@ public class TheGreen : Enemy
 
 
 
-    override
-    public void OnPlayerDied()
-    {
-        Debug.Log(name + " Knew that player is dead.");
 
-        Idle();
-    }
 
 
 

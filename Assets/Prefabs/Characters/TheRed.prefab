@@ -1367,7 +1367,7 @@ MonoBehaviour:
   MeleeAttackDelay: 3.12
   MeleeFollowDistance: 60
   MeleeAttackDistance: 6
-  RangedAttackDelay: 2
+  RangedAttackDelay: 1
   RangedFollowDistance: 60
   RangedAttackDistance: 15
   RangedThrowables:

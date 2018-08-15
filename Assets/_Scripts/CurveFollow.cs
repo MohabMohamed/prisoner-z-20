@@ -34,11 +34,11 @@ public class CurveFollow : MonoBehaviour {
 
     public void MoveFireBallProjectile(int Dmg, float speed = 1f, LeanTweenType easeType = LeanTweenType.easeInSine)
     {
-        LeanTween.move(gameObject, curve.GetPointAt(0), 0.1f).setEase(easeType).setOnComplete(() => 
-        {
-            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setOnComplete( () => 
-            {
-                ServiceLocator.GetService<FireballProjectile>().Explode(Dmg);
+        LeanTween.move(gameObject, curve.GetPointAt(0), 0.1f).setEase(easeType).setOnComplete(() => {
+            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setOnComplete( () => {
+
+                GetComponent<FireballProjectile>().Explode(Dmg); // this gets called 2 times
+                print("leantween code"); 
             } );
         });
     }
