@@ -27,6 +27,7 @@ public class TheRed : Enemy {
 
 
     PlayerController player;
+    AudioSource audioSource;
 
     public void ActivateSword()
     {
@@ -38,13 +39,15 @@ public class TheRed : Enemy {
     }
     public void ShakeCamera()
     {
+        audioSource.Play();
        StartCoroutine(Camera.main.GetComponent<CameraController>().Shake(0.15f, cameraShakeAmount));
     }
 
     private new void Start () {
         base.Start();
-
+        audioSource = GetComponent<AudioSource>();
         player = Target.GetComponent<PlayerController>();
+        DeactivateSword();
     }
 	
 	

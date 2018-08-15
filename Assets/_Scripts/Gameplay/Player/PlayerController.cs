@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D RIGID;
     public Camera camReference;
+    public GameObject bossHitEffect;
     HealthSystem health;
     Animator anim;
     bool isGrounded = false;
@@ -197,7 +198,10 @@ public class PlayerController : MonoBehaviour
             health.Heal(20);
         }
 
-
+        if (other.CompareTag("BossSword")){
+            health.Damage(other.transform.root.GetComponent<TheRed>().HitPower);
+           Destroy(Instantiate(bossHitEffect, transform.position, Quaternion.identity),0.5f);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)

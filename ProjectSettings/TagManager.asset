@@ -16,6 +16,8 @@ TagManager:
   - PathTrigger
   - LeftJumpPathTrigger
   - RightJumpPathTrigger
+  - FxTemporaire
+  - BossSword
   layers:
   - Default
   - TransparentFX

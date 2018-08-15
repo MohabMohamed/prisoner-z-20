@@ -4712,12 +4712,12 @@ Prefab:
     - target: {fileID: 114868945688300738, guid: 7ac6bdc2e4b5e47468b8b460ca863a5f,
         type: 2}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114868945688300738, guid: 7ac6bdc2e4b5e47468b8b460ca863a5f,
         type: 2}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ac6bdc2e4b5e47468b8b460ca863a5f, type: 2}
@@ -12844,6 +12844,11 @@ Prefab:
       propertyPath: PistolDamage
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 114086445843788678, guid: 590124d53cc00854d94b443cf19fcdd0,
+        type: 2}
+      propertyPath: bossHitEffect
+      value: 
+      objectReference: {fileID: 100004, guid: f95ff734540a0d749be6571b6cb5b37f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 590124d53cc00854d94b443cf19fcdd0, type: 2}
   m_IsPrefabAsset: 0
