@@ -8,6 +8,9 @@ using TMPro;
 
 public class GameManager : MonoBehaviour {
 
+    public bool isTouchInput;
+
+    [Space]
     public PlayerController player;
 
     public bool isGameON { get; set; }
@@ -60,7 +63,7 @@ public class GameManager : MonoBehaviour {
     int currentWaveNum;
     [HideInInspector]
     public int currentTotalSpawnedEnemies { get; set; }
-    float currentWaveTime;
+    //float currentWaveTime;
 
 
     // Use this for initialization
@@ -94,8 +97,8 @@ public class GameManager : MonoBehaviour {
 
             ShowMsg("Wave " + currentWaveNum);
 
-            currentWaveTime = initialWaveTimeInSecs + (WaveTimeIncrement * (currentWaveNum - 1));
-            currentWaveTime = currentWaveTime > MaxWaveTime ? MaxWaveTime : currentWaveTime;
+            //currentWaveTime = initialWaveTimeInSecs + (WaveTimeIncrement * (currentWaveNum - 1));
+            //currentWaveTime = currentWaveTime > MaxWaveTime ? MaxWaveTime : currentWaveTime;
 
             CurrentEnemiesCount = currentTotalSpawnedEnemies = 0;
             CurrentMaxEnemiesCount = initialMaxEnemies + (maxEnemiesIncrement * (currentWaveNum - 1));
@@ -104,7 +107,7 @@ public class GameManager : MonoBehaviour {
             {
                 isWaveOn = true;
 
-                Invoke("endWave", currentWaveTime);
+                //Invoke("endWave", currentWaveTime);
             });
 
         }
@@ -173,14 +176,13 @@ public class GameManager : MonoBehaviour {
 
     }
 
-
-
     public void Application_Exit()
     {
         Application.Quit();
     }
     public void Application_Restart()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void PauseGame()

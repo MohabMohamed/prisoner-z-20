@@ -167,4 +167,12 @@ public void OnPlayerDied()
         anim.SetBool("Walk", true);
         myRigidBody.velocity = new Vector2(sign * Speed, myRigidBody.velocity.y);
     }
+
+
+    public void TriggerCameraShake()
+    {
+        Debug.Log("Trigger Shake");
+        StartCoroutine(ServiceLocator.GetService<CameraController>().Shake(.3f, .25f));
+    }
+
 }

@@ -1001,7 +1001,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1506652724587856}
-  m_LocalRotation: {x: -0, y: -0, z: 0.072141506, w: 0.99739444}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -1.4861908, y: 1.4251325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1009,7 +1009,7 @@ Transform:
   - {fileID: 4271164853136678}
   m_Father: {fileID: 4942856686330498}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!4 &4383062294770786
 Transform:
   m_ObjectHideFlags: 1
@@ -1472,6 +1472,8 @@ MonoBehaviour:
   AimingShoulder: {fileID: 1506652724587856}
   Pistol: {fileID: 1466199781758270}
   Sword: {fileID: 1299155366517010}
+  meleescript: {fileID: 0}
+  rangedscript: {fileID: 0}
 --- !u!114 &114413412392924416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1487,7 +1489,7 @@ MonoBehaviour:
     type: 2}
   MeleeRange: 2
   MeleeDamage: 100
-  coolDownTime: 0.5
+  coolDownTime: 0.25
 --- !u!114 &114468643817805940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1507,6 +1509,7 @@ MonoBehaviour:
     type: 2}
   bulletSpeed: 15
   flash: {fileID: 1859909031025558}
+  cooldownTime: 0.2
 --- !u!114 &114909022418715440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1518,6 +1521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8469b2fa0ff67b4296ca5270ff3a80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimingJoystick: {fileID: 0}
 --- !u!212 &212070569745701884
 SpriteRenderer:
   m_ObjectHideFlags: 1

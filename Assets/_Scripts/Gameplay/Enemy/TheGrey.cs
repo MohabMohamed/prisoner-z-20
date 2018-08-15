@@ -43,7 +43,7 @@ public class TheGrey : Enemy
     override
     public void OnPlayerDied()
     {
-        Debug.Log(name + " Knew that player is dead.");
+        //Debug.Log(name + " Knew that player is dead.");
 
         Idle();
     }

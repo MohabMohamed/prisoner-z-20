@@ -46,6 +46,10 @@ public class EnemySpawner : MonoBehaviour {
                 Invoke("Generate", SpawnRateInSec / 3f);
             }
         }
+        else
+        {
+            Invoke("Generate", SpawnRateInSec / 2);
+        }
     }
     public void GenerateBoss()
     {

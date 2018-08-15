@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class LookAt : MonoBehaviour {
 
-
 	// Use this for initialization
 	void Start () {
-       
+
     }
 	
 	// Update is called once per frame
@@ -19,14 +18,7 @@ public class LookAt : MonoBehaviour {
 
         transform.up = direction;*/
 
-        if (!ServiceLocator.GetService<GameManager>().IsPaused() && !ServiceLocator.GetService<PlayerController>().gameObject.GetComponent<HealthSystem>().IsDead())
-        {
-            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
-        }
-
-
+        
 
     }
 }

@@ -12,6 +12,27 @@ public class UIManager : MonoBehaviour
     public GameObject GameOverPanel;
     public GameObject GUI;
     public Image HealthBar;
+
+    public GameObject TouchInputCanvas;
+
+    void Start()
+    {
+        HideTouchInput();
+    }
+
+
+    void ShowTouchInput()
+    {
+        if (ServiceLocator.GetService<GameManager>().isTouchInput)
+        {
+            TouchInputCanvas.SetActive(true);
+        }
+    }
+    void HideTouchInput()
+    {
+        TouchInputCanvas.SetActive(false);
+    }
+
     void Update()
     {
 
@@ -35,6 +56,7 @@ public class UIManager : MonoBehaviour
     public void ToggleOptionsPanel()
     {
         OptionsPanel.SetActive(!OptionsPanel.activeInHierarchy);
+
     }
 
     public void HideOptionsPanel()
@@ -51,10 +73,12 @@ public class UIManager : MonoBehaviour
     public void ShowGUI()
     {
         GUI.SetActive(true);
+        ShowTouchInput();
     }
     public void HideGUI()
     {
         GUI.SetActive(false);
+        HideTouchInput();
     }
 
     public void ShowGameOverPanel()
