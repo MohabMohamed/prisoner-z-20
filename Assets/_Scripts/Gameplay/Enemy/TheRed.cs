@@ -8,12 +8,13 @@ public class TheRed : Enemy {
 
     [Space]
     public EnemySword mySwordRef;
-
+    
     [Space]
     [Header("Boss Properties")]
     public float MeleeAttackDelay;
     public float MeleeFollowDistance;
     public float MeleeAttackDistance;
+    public float cameraShakeAmount;
     [Space]
     public float RangedAttackDelay;
     public float RangedFollowDistance;
@@ -35,7 +36,10 @@ public class TheRed : Enemy {
     {
         mySwordRef.GetComponent<Collider2D>().enabled = false;
     }
-
+    public void ShakeCamera()
+    {
+       StartCoroutine(Camera.main.GetComponent<CameraController>().Shake(0.15f, cameraShakeAmount));
+    }
 
     private new void Start () {
         base.Start();
