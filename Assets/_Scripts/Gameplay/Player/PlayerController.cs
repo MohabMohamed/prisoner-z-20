@@ -199,7 +199,8 @@ public class PlayerController : MonoBehaviour
         }
 
         if (other.CompareTag("BossSword")){
-            health.Damage(other.transform.root.GetComponent<TheRed>().HitPower);
+            //Debug.Log("Boss Sword Hit me, Ayyyy");
+            //health.Damage(other.transform.root.GetComponent<TheRed>().HitPower);
            Destroy(Instantiate(bossHitEffect, transform.position, Quaternion.identity),0.5f);
         }
     }

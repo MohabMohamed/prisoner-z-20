@@ -140,5 +140,6 @@ public void OnPlayerDied()
         DeactivateSword();
 
         Debug.Log("Ayyyyyyy");
+        ServiceLocator.GetService<PlayerController>().GetComponent<HealthSystem>().Damage(HitPower);
     }
 }

@@ -139,7 +139,6 @@ public abstract class Enemy : MonoBehaviour {
 
             
             Destroy( this.gameObject  , 1);
-            transform.parent.GetComponent<EnemySpawner>().EnemyDied(gameObject);
         }
 
         

@@ -9067,7 +9067,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 3.375
+  - time: 1.875
     functionName: DeactivateSword
     data: 
     objectReferenceParameter: {fileID: 0}
