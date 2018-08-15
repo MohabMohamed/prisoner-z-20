@@ -137,8 +137,8 @@ public abstract class Enemy : MonoBehaviour {
 
             }
 
-            
-            Destroy( this.gameObject  , 1);
+            LeanTween.cancel(gameObject);
+            Destroy( gameObject  , 1);
             if(transform.parent != null  && transform.parent.GetComponent<EnemySpawner>() != null)
                 transform.parent.GetComponent<EnemySpawner>().EnemyDied(gameObject);
         }

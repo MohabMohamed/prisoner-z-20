@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
     public int maxEnemiesIncrement;
 
     [Space]
+    public float EnemiesStillExistWait;
+
+    [Space]
     [Header("Boss Rules")]
     public GameObject BossEnemy;
     public float BossHealthIncrement;
@@ -108,11 +111,12 @@ public class GameManager : MonoBehaviour {
         else // boss wave
         {
             ShowMsg("Boss " + currentWaveNum / BossAfterKamWave);
-            
-            
+
+            ServiceLocator.GetService<AudioManager>().PlayBossEntranceSFX();
 
             LeanTween.delayedCall(1f, () =>
             {
+
                 isBossON = true;
 
                 foreach (EnemySpawner s in FindObjectsOfType<EnemySpawner>())
@@ -135,27 +139,30 @@ public class GameManager : MonoBehaviour {
             ServiceLocator.GetService<PlatformsGenerator>().RemoveMap();
             LeanTween.delayedCall(2f, () => { ServiceLocator.GetService<PlatformsGenerator>().GenerateMap(); });
         }*/
-        
 
-
-        isWaveOn = false;
-        isBossON = false;
-        Debug.Log("Wave " + currentWaveNum + " Ended");
-
-
-        // prepare the next wave or prepare for the mighty boss
-        if (++currentWaveNum % BossAfterKamWave == 0)
+        if (CurrentEnemiesCount > 0)
         {
-            prepareWave(currentWaveNum, true);
+            Debug.Log("current Enemies Count : " + CurrentEnemiesCount);
+            Invoke("endWave", EnemiesStillExistWait);
         }
         else
         {
-            prepareWave(currentWaveNum, false);
+            isWaveOn = false;
+            isBossON = false;
+            Debug.Log("Wave " + currentWaveNum + " Ended");
+
+
+            // prepare the next wave or prepare for the mighty boss
+            if (++currentWaveNum % BossAfterKamWave == 0)
+            {
+                prepareWave(currentWaveNum, true);
+            }
+            else
+            {
+                prepareWave(currentWaveNum, false);
+            }
         }
-
     }
-
-
 
     public void ShowMsg(string msg)
     {

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class TheRed : Enemy {
+public class TheRed : Enemy
+{
 
     [Space]
     public EnemySword mySwordRef;
@@ -29,15 +30,19 @@ public class TheRed : Enemy {
 
 
 
-    private new void Start () {
+    private new void Start()
+    {
         base.Start();
 
         player = Target.GetComponent<PlayerController>();
         width = transform.gameObject.GetComponent<CapsuleCollider2D>().size.x * transform.localScale.x;
     }
-	
-	
-	public new void Update () {
+
+
+    public new void Update()
+    {
+        if (!ServiceLocator.GetService<GameManager>().isGameON) return;
+
         base.Update();
 
         if (player.isPlayerOnPlatform)
@@ -69,13 +74,14 @@ public void OnPlayerDied()
 
     protected override void CheckHealth()
     {
-        if(healthsystem.IsDead() && !Dead)
+        if (healthsystem.IsDead() && !Dead)
         {
             print("bosswaveend");
             ServiceLocator.GetService<GameManager>().endWave();
+            ServiceLocator.GetService<AudioManager>().PlayBossDeathSFX();
         }
         base.CheckHealth();
-       
+
     }
 
     protected override IEnumerator AttackCoroutine()
@@ -93,7 +99,7 @@ public void OnPlayerDied()
 
     void ThrowRangedThrowable()
     {
-        
+
 
 
         BezierCurve projectileCurve = new GameObject().AddComponent<BezierCurve>(); // fireball.AddComponent<BezierCurve>();
@@ -101,13 +107,13 @@ public void OnPlayerDied()
         GameObject startPoint = new GameObject("startPoint");
         GameObject endPoint = new GameObject("endPoint");
 
-        startPoint.transform.position = transform.position + new Vector3(isLookingLeft? -width : width, 1f);
+        startPoint.transform.position = transform.position + new Vector3(isLookingLeft ? -width : width, 1f);
         endPoint.transform.position = Target.position + new Vector3(0, 0.8f);
 
         float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
 
         projectileCurve.AddPointAt(startPoint.transform.position);
-        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, Random.Range(0.5f,3f) + max)).setHandleX(isLookingLeft ? -1.8f : 1.8f);
+        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, Random.Range(0.5f, 3f) + max)).setHandleX(isLookingLeft ? -1.8f : 1.8f);
         projectileCurve.AddPointAt(endPoint.transform.position);
 
 
@@ -126,10 +132,12 @@ public void OnPlayerDied()
 
     public void OnSwordHitThePlayer()
     {
-        DeactivateSword();
-
         //Debug.Log("SwordHitPlayer");
-        Target.GetComponent<HealthSystem>().Damage(HitPower);
+        if (SwordIsActivated())
+        {
+            Target.GetComponent<HealthSystem>().Damage(HitPower);
+            DeactivateSword();
+        }
     }
 
     public void ActivateSword()
@@ -141,6 +149,11 @@ public void OnPlayerDied()
     {
         mySwordRef.GetComponent<Collider2D>().enabled = false;
         Debug.Log("DisableSword");
+    }
+
+    public bool SwordIsActivated()
+    {
+        return mySwordRef.GetComponent<Collider2D>().enabled;
     }
 
     protected override void Idle()

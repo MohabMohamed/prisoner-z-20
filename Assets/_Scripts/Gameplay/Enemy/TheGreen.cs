@@ -9,6 +9,9 @@ public class TheGreen : Enemy
     public float ProjectileVelocity;
     public GameObject Projectile;
 
+
+    GameObject fireball;
+
     private new void Start()
     {
         base.Start();
@@ -17,6 +20,7 @@ public class TheGreen : Enemy
 
     public new void Update()
     {
+        if (!ServiceLocator.GetService<GameManager>().isGameON) return;
         base.Update();
     }
 
@@ -24,7 +28,7 @@ public class TheGreen : Enemy
 
     protected override IEnumerator AttackCoroutine()
     {
-        Debug.Log("TheGreenAttack");
+        //Debug.Log("TheGreenAttack");
         yield return null;
         if (Target!=null)
             createCurve();
@@ -43,38 +47,39 @@ public class TheGreen : Enemy
 
     void createCurve()
     {
-        GameObject fireball = Instantiate(Projectile, transform.position, Quaternion.identity);
+        if (fireball == null)
+        {
+            fireball = Instantiate(Projectile, transform.position, Quaternion.identity);
 
 
-        BezierCurve projectileCurve = new GameObject().AddComponent<BezierCurve>(); // fireball.AddComponent<BezierCurve>();
+            BezierCurve projectileCurve = new GameObject().AddComponent<BezierCurve>(); // fireball.AddComponent<BezierCurve>();
 
-        GameObject startPoint = new GameObject("startPoint");
-        GameObject endPoint = new GameObject("endPoint");
+            GameObject startPoint = new GameObject("startPoint");
+            GameObject endPoint = new GameObject("endPoint");
 
-        startPoint.transform.position = transform.position + new Vector3(0,1f);
-        endPoint.transform.position = Target.position + new Vector3(0,0.8f);
+            startPoint.transform.position = transform.position + new Vector3(0, 1f);
+            endPoint.transform.position = Target.position + new Vector3(0, 0.8f);
 
-        float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
+            float max = Mathf.Max(startPoint.transform.position.y, endPoint.transform.position.y);
 
-        projectileCurve.AddPointAt(startPoint.transform.position);
-        projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, 1f+ max)).setHandleX( isLookingLeft? -2f : 2f); 
-        projectileCurve.AddPointAt(endPoint.transform.position);
-
-
-        fireball.AddComponent<CurveFollow>().curve = projectileCurve;
-        fireball.GetComponent<CurveFollow>().MoveFireBallProjectile(HitPower, 0.5f + map(Vector3.Distance(transform.position , Target.position) , 0 , 45, 0 , 3));
+            projectileCurve.AddPointAt(startPoint.transform.position);
+            projectileCurve.AddPointAt(new Vector2((startPoint.transform.position.x + endPoint.transform.position.x) / 2, 1f + max)).setHandleX(isLookingLeft ? -2f : 2f);
+            projectileCurve.AddPointAt(endPoint.transform.position);
 
 
-        Destroy(startPoint);
-        Destroy(endPoint);
-        Destroy(projectileCurve, 3f);
-        Destroy(fireball, 3f);
+            fireball.AddComponent<CurveFollow>().curve = projectileCurve;
+            fireball.GetComponent<CurveFollow>().MoveFireBallProjectile(HitPower, 0.5f + map(Vector3.Distance(transform.position, Target.position), 0, 45, 0, 3));
+
+
+            Destroy(startPoint);
+            Destroy(endPoint);
+        }
     }
 
     override
 public void OnPlayerDied()
     {
-        Debug.Log(name + " Knew that player is dead.");
+        //Debug.Log(name + " Knew that player is dead.");
 
         Idle();
     }

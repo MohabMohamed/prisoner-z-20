@@ -30,15 +30,22 @@ public class EnemySpawner : MonoBehaviour {
 
     void Generate()
     {
-        if(Vector3.Distance(transform.position , playerTransform.position) >= 8 && ServiceLocator.GetService<GameManager>().isWaveOn && spawnedEnemies.Count < MaxEnemiesToGenerate && ServiceLocator.GetService<GameManager>().currentTotalSpawnedEnemies < ServiceLocator.GetService<GameManager>().CurrentMaxEnemiesCount)
+        if(ServiceLocator.GetService<GameManager>().isWaveOn && spawnedEnemies.Count < MaxEnemiesToGenerate && ServiceLocator.GetService<GameManager>().currentTotalSpawnedEnemies < ServiceLocator.GetService<GameManager>().CurrentMaxEnemiesCount)
         {
-            spawnedEnemies.Add(Instantiate(AssociatedEnemies[Random.Range(0, AssociatedEnemies.Count)], transform.position, Quaternion.identity));
-            spawnedEnemies[spawnedEnemies.Count - 1].transform.parent = transform;
-            
-            ServiceLocator.GetService<GameManager>().CurrentEnemiesCount++;
-        }
-        Invoke("Generate", SpawnRateInSec);
+            //Debug.Log(Vector3.Distance(transform.position, playerTransform.position));
+            if (Vector3.Distance(transform.position, playerTransform.position) >= 8)
+            {
+                spawnedEnemies.Add(Instantiate(AssociatedEnemies[Random.Range(0, AssociatedEnemies.Count)], transform.position, Quaternion.identity));
+                spawnedEnemies[spawnedEnemies.Count - 1].transform.parent = transform;
 
+                ServiceLocator.GetService<GameManager>().CurrentEnemiesCount++;
+                Invoke("Generate", SpawnRateInSec);
+            }
+            else
+            {
+                Invoke("Generate", SpawnRateInSec / 3f);
+            }
+        }
     }
     public void GenerateBoss()
     {

@@ -28,8 +28,8 @@ TagManager:
   - PlayerLayer
   - HealthLayer
   - EnemyLayer
-  - 
-  - 
+  - BossLayer
+  - PlatformLayer
   - 
   - 
   - 

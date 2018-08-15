@@ -8087,6 +8087,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &565169630
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 23.1994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.5617006
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011826580284, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610385065346662, guid: 5b210609803658e488f512fc13a6163e,
+        type: 2}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610385065346662, guid: 5b210609803658e488f512fc13a6163e,
+        type: 2}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011821036864, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b210609803658e488f512fc13a6163e, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &566044063
 GameObject:
   m_ObjectHideFlags: 0
@@ -12962,6 +13018,10 @@ MonoBehaviour:
   SwordClips:
   - {fileID: 8300000, guid: c3217a48cabc9564884a87deeb9ba33a, type: 3}
   - {fileID: 8300000, guid: 6f21a68854f781848814d23ec452ccc3, type: 3}
+  BossEntranceClips:
+  - {fileID: 8300000, guid: c4f825f3afd0e1d46a445907f60c925b, type: 3}
+  BossDeathClips:
+  - {fileID: 8300000, guid: f24b9b4cc0e2a3e4ebfedb5417fff559, type: 3}
 --- !u!4 &877919828
 Transform:
   m_ObjectHideFlags: 0
@@ -17840,6 +17900,7 @@ MonoBehaviour:
   MaxWaveTime: 120
   initialMaxEnemies: 10
   maxEnemiesIncrement: 5
+  EnemiesStillExistWait: 2
   BossEnemy: {fileID: 1000011821036864, guid: 5b210609803658e488f512fc13a6163e, type: 2}
   BossHealthIncrement: 3
   BossDamageIncrement: 3

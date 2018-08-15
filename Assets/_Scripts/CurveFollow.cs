@@ -8,7 +8,9 @@ public class CurveFollow : MonoBehaviour {
 
     public Transform[] points;
 
-    
+
+    bool isCompleted;
+
 	// Use this for initialization
 	void Start () {
         //LeanTween.init(800);
@@ -16,31 +18,45 @@ public class CurveFollow : MonoBehaviour {
         // curve.res
         //Debug.Log(curve.
 
-
+        isCompleted = false;
 
     }
 
     void OnDestroy()
     {
-        LeanTween.cancelAll(gameObject);
+        LeanTween.cancel(gameObject);
     }
 
     public void Move(float speed = 1f , LeanTweenType easeType = LeanTweenType.easeInSine)
     {
+        //Debug.Log(name + " , curve is moving");
         LeanTween.move(gameObject ,curve.GetPointAt(0) , 0.1f).setEase(easeType).setOnComplete(()=> {
-            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); });
+            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setOnComplete(()=> { //Debug.Log(name + " , curve is completed"); 
+            });
         });
     }
 
     public void MoveFireBallProjectile(int Dmg, float speed = 1f, LeanTweenType easeType = LeanTweenType.easeInSine)
     {
-        LeanTween.move(gameObject, curve.GetPointAt(0), 0.1f).setEase(easeType).setOnComplete(() => {
-            LeanTween.value(0, 1, speed).setOnUpdate((x) => { gameObject.transform.position = curve.GetPointAt(x); }).setOnComplete( () => {
-
-                GetComponent<FireballProjectile>().Explode(Dmg); // this gets called 2 times
-                print("leantween code"); 
-            } );
-        });
+        //Debug.Log(name + " MoveFireball Projectile");
+        if (!LeanTween.isTweening(gameObject))
+        {
+            LeanTween.move(gameObject, curve.GetPointAt(0), 0.1f).setEase(easeType).setOnComplete(() =>
+            {
+                LeanTween.value(0, 1, speed).setOnUpdate((x) => {
+                    gameObject.transform.position = curve.GetPointAt(x);
+                })
+                .setOnComplete(() =>
+                {
+                    if (!isCompleted)
+                    {
+                        isCompleted = true;
+                        GetComponent<FireballProjectile>().Explode(Dmg); // this gets called 2 times
+                        //print(name + " FireballProjectile Explode");
+                    }
+                });
+            });
+        }
     }
 
     /*void moveDown(int index)

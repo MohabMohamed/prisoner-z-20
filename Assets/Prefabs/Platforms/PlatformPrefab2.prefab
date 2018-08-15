@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 68896437068413340}
   - component: {fileID: 251756531099457750}
   - component: {fileID: 114913028817206124}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PlatformPrefab2
   m_TagString: Platform
   m_Icon: {fileID: 0}
@@ -72,10 +72,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AssociatedEnemies:
-  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
+  - {fileID: 1000013301305156, guid: 7ac6bdc2e4b5e47468b8b460ca863a5f, type: 2}
   - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  - {fileID: 1000013234968400, guid: 4a6e9a7d544412d4d92db88d8587228e, type: 2}
+  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
+  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
+  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
+  - {fileID: 1000011922212602, guid: b3d1057caadaef44ab620edfef78b14f, type: 2}
   SpawnRateInSec: 10
   MaxEnemiesToGenerate: 2
+  isBossSpawner: 0
+  bossGenerated: 0
 --- !u!212 &212039029819390732
 SpriteRenderer:
   m_ObjectHideFlags: 1

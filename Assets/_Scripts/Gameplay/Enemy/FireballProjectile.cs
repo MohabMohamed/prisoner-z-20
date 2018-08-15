@@ -19,14 +19,20 @@ public class FireballProjectile : MonoBehaviour {
     public void Explode(int dmg)
     {
         GameObject explosion = Instantiate(explosioneffect, transform.position, Quaternion.identity);
-        Destroy(explosion, 1f);
+
+        Destroy(explosion, 1);
+
         if (Vector3.Distance(PlayerTarget.position, transform.position) < 2 )
         {
             PlayerTarget.GetComponent<HealthSystem>().Damage(dmg);
         }
-        print("destroyed");
-        Destroy(gameObject, 0.03f);
-        
+
+        //print("Fireball Explode");
+
+
+        LeanTween.cancel(gameObject);
+        Destroy(gameObject.GetComponent<CurveFollow>().curve);
+        Destroy(gameObject);     
     }
     
     
